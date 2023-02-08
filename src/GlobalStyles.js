@@ -3,12 +3,16 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     :root {
         --clr-black: #000;
+        --clr-light-black: #161515;
         --clr-white: #fff;
+        --clr-rgb-white: 255, 255, 255;
         --clr-gray: #d3d3d3;
+        --clr-green: #6bc10f;
         --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         --spacing: 0.1rem;
         --max-content-width: 1200px;
+        --navbar-height: 5rem;
         --radius: 0.25rem;
         --trans-ease: all 0.4s ease;
     }
@@ -74,14 +78,14 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-    .section {
-        margin: 4rem auto;
-    }
-
     .section-center {
         max-width: var(--max-content-width);
         width: 90vw;
         margin: 0 auto;
+    }
+
+    .section {
+        margin: 4rem auto;
     }
 `;
 
