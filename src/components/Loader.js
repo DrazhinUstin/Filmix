@@ -12,12 +12,13 @@ const Loader = ({ fullScreen }) => {
 export default Loader;
 
 const Wrapper = styled.section`
-    margin: 2rem 0;
+    margin: 4rem 0;
     ${(props) =>
         props.fullScreen &&
         css`
             height: 100vh;
             display: grid;
             place-items: center;
+            margin: 0;
         `}
 `;

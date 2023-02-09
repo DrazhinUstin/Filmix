@@ -1,5 +1,5 @@
 import useFetch from '../hooks/useFetch';
-import { Loader, Button } from './';
+import { Loader, Error, Button } from './';
 import { cutString } from '../utils/helpers';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ const Hero = () => {
 
     if (isLoading) return <Loader fullScreen />;
 
-    if (error) return <h2>error...</h2>;
+    if (error) return <Error msg={error.message} fullScreen />;
 
     const { title, overview, backdrop_path } =
         data.results[Math.floor(Math.random() * data.results.length)];

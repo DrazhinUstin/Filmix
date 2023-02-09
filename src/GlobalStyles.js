@@ -87,6 +87,15 @@ const GlobalStyle = createGlobalStyle`
     .section {
         margin: 4rem auto;
     }
+
+    .react-horizontal-scrolling-menu--scroll-container {
+        gap: 1rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 `;
 
 export default GlobalStyle;
