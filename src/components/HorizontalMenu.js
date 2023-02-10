@@ -34,6 +34,7 @@ function onWheel(apiObj, ev) {
 const Arrows = () => {
     const { isFirstItemVisible, scrollPrev, isLastItemVisible, scrollNext } =
         useContext(VisibilityContext);
+    if (isFirstItemVisible && isLastItemVisible) return null;
     return (
         <Wrapper>
             <button disabled={isFirstItemVisible} onClick={() => scrollPrev()}>

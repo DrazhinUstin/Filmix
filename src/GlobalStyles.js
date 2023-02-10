@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: var(--font);
         font-size: 1rem;
         line-height: 1.5;
+        overflow-wrap: anywhere;
     }
 
     h1,

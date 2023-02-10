@@ -8,11 +8,14 @@ const ScrollRow = ({ title, url }) => {
 
     if (error) return <Error title={`failed to fetch ${url}`} msg={error.message} />;
 
+    const items = data.results || data.parts;
     return (
-        <section className='section section-center'>
-            {title && <Title>{title}</Title>}
-            <HorizontalMenu items={data.results} />
-        </section>
+        items.length > 0 && (
+            <section className='section section-center'>
+                {title && <Title>{title}</Title>}
+                <HorizontalMenu items={data.results || data.parts} />
+            </section>
+        )
     );
 };
 

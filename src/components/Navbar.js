@@ -27,6 +27,7 @@ const Navbar = () => {
                                 <NavLink
                                     to={path}
                                     className={({ isActive }) => (isActive ? 'active' : null)}
+                                    end
                                 >
                                     {title}
                                 </NavLink>

@@ -1,14 +1,20 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from './Button';
 
 const MovieCard = ({ item }) => {
-    const { title, poster_path } = item;
+    const { id, title, poster_path, backdrop_path } = item;
     return (
         <Wrapper>
-            <img src={`https://image.tmdb.org/t/p/original${poster_path}`} alt={title} />
+            <img
+                src={`https://image.tmdb.org/t/p/original${poster_path || backdrop_path}`}
+                alt={title}
+            />
             <div className='info'>
                 <h4>{title}</h4>
-                <Button>details</Button>
+                <Button as={Link} to={`/movies/${id}`}>
+                    details
+                </Button>
             </div>
         </Wrapper>
     );
@@ -33,6 +39,7 @@ const Wrapper = styled.article`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0.5rem;
         background-color: rgba(var(--clr-rgb-white), 0.9);
         text-align: center;
         visibility: hidden;

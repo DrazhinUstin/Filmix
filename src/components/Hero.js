@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Loader, Error, Button } from './';
 import { cutString } from '../utils/helpers';
@@ -10,7 +11,7 @@ const Hero = () => {
 
     if (error) return <Error msg={error.message} fullScreen />;
 
-    const { title, overview, backdrop_path } =
+    const { id, title, overview, backdrop_path } =
         data.results[Math.floor(Math.random() * data.results.length)];
     return (
         <Wrapper url={backdrop_path}>
@@ -18,7 +19,9 @@ const Hero = () => {
                 <article>
                     <h1>{title}</h1>
                     <p>{cutString(overview)}</p>
-                    <Button withBorder>view details</Button>
+                    <Button as={Link} to={`/movies/${id}`} withBorder>
+                        view details
+                    </Button>
                 </article>
             </div>
         </Wrapper>
