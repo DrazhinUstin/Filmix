@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Loader, Error, Title, Button, ScrollRow } from '../components';
 import useFetch from '../hooks/useFetch';
 import { formatRuntime, formatToCurrency } from '../utils/helpers';
+import defaultPoster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
@@ -11,7 +12,7 @@ const MovieDetail = () => {
 
     if (isLoading) return <Loader fullScreen />;
 
-    if (error) return <Error msg={error.message} fullScreen />;
+    if (error) return <Error err={error} link fullScreen />;
 
     const {
         title,
@@ -24,7 +25,6 @@ const MovieDetail = () => {
         revenue,
         runtime,
         poster_path,
-        backdrop_path,
         belongs_to_collection: collection,
     } = movie;
     return (
@@ -32,7 +32,11 @@ const MovieDetail = () => {
             <Title>{title}</Title>
             <article className='info'>
                 <img
-                    src={`https://image.tmdb.org/t/p/original/${poster_path || backdrop_path}`}
+                    src={
+                        poster_path
+                            ? `https://image.tmdb.org/t/p/original${poster_path}`
+                            : defaultPoster
+                    }
                     alt={title}
                 />
                 <ul>

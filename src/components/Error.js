@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { Title, Button } from './';
 import styled, { css } from 'styled-components';
 
-const Error = ({ title, msg, homeLink, fullScreen }) => {
+const Error = ({ title, err, link, fullScreen }) => {
     return (
         <Wrapper fullScreen={fullScreen}>
             <Title>{title || 'there was an error'}</Title>
-            {msg && <p>{msg}</p>}
-            {homeLink && (
-                <Button to='/' as={Link} withBorder>
-                    back home
+            {err && <p>{err.status_message || err.message}</p>}
+            {link && (
+                <Button to={link.path || '/'} as={Link} withBorder>
+                    {link.title || 'back home'}
                 </Button>
             )}
         </Wrapper>

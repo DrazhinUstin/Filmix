@@ -1,13 +1,18 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import Button from './Button';
+import defaultPoster from '../assets/images/default_poster.jpg';
+import styled from 'styled-components';
 
 const MovieCard = ({ item }) => {
-    const { id, title, poster_path, backdrop_path } = item;
+    const { id, title, poster_path } = item;
     return (
         <Wrapper>
             <img
-                src={`https://image.tmdb.org/t/p/original${poster_path || backdrop_path}`}
+                src={
+                    poster_path
+                        ? `https://image.tmdb.org/t/p/original${poster_path}`
+                        : defaultPoster
+                }
                 alt={title}
             />
             <div className='info'>

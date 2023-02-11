@@ -6,7 +6,7 @@ const ScrollRow = ({ title, url }) => {
 
     if (isLoading) return <Loader />;
 
-    if (error) return <Error title={`failed to fetch ${url}`} msg={error.message} />;
+    if (error) return <Error title={`failed to fetch ${url}`} err={error} />;
 
     const items = data.results || data.parts;
     return (

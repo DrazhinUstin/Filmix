@@ -8,7 +8,16 @@ const MovieImages = () => {
 
     if (isLoading) return <Loader fullScreen />;
 
-    if (error) return <Error msg={error.message} fullScreen />;
+    if (error) return <Error err={error} link fullScreen />;
+
+    if (!data.backdrops.length)
+        return (
+            <Error
+                title='images were not found'
+                link={{ title: 'back to movie', path: '..' }}
+                fullScreen
+            />
+        );
 
     return (
         <main className='main'>

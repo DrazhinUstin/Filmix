@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const ImageViewer = ({ items, index, setIsViewerOpen }) => {
     const [step, setStep] = useState(index);
-    const file_path = items[step].file_path;
+    const { file_path } = items[step];
     return (
         <Wrapper>
             <img src={`https://image.tmdb.org/t/p/original${file_path}`} alt='backdrop' />

@@ -9,7 +9,7 @@ const Hero = () => {
 
     if (isLoading) return <Loader fullScreen />;
 
-    if (error) return <Error msg={error.message} fullScreen />;
+    if (error) return <Error err={error} fullScreen />;
 
     const { id, title, overview, backdrop_path } =
         data.results[Math.floor(Math.random() * data.results.length)];
@@ -33,7 +33,7 @@ export default Hero;
 const Wrapper = styled.section`
     height: 75vh;
     background: ${(props) =>
-        `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1) 90%), url(https://image.tmdb.org/t/p/original/${props.url}) no-repeat center/cover`};
+        `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1) 90%), url(https://image.tmdb.org/t/p/original${props.url}) no-repeat center/cover`};
     display: grid;
     align-items: center;
     article {
