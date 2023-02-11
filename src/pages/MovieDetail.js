@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { Loader, Error, Title, ScrollRow } from '../components';
+import { useParams, Link } from 'react-router-dom';
+import { Loader, Error, Title, Button, ScrollRow } from '../components';
 import useFetch from '../hooks/useFetch';
 import { formatRuntime, formatToCurrency } from '../utils/helpers';
 import { breakpoints } from '../GlobalStyles';
@@ -67,11 +67,17 @@ const MovieDetail = () => {
                 </ul>
             </article>
             {overview && (
-                <div className='storyline'>
+                <div className='extra-info'>
                     <h2>Storyline:</h2>
                     <p>{overview}</p>
                 </div>
             )}
+            <div className='extra-info'>
+                <h2>movie images:</h2>
+                <Button margin='1rem 0 0' as={Link} to='images'>
+                    find images
+                </Button>
+            </div>
             {collection && <ScrollRow title='in collection' url={`/collection/${collection.id}`} />}
             <ScrollRow title='recommended movies' url={`/movie/${id}/recommendations`} />
             <ScrollRow title='similar movies' url={`/movie/${id}/similar`} />
@@ -113,7 +119,7 @@ const Wrapper = styled.main`
             grid-template-columns: unset;
         }
     }
-    .storyline {
+    .extra-info {
         margin-top: 2rem;
         font-size: 1.2rem;
         h2 {

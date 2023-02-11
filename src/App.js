@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, MovieDetail } from './pages';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { Home, MovieDetail, MovieImages } from './pages';
 import { Navbar } from './components';
 
 const App = () => {
@@ -8,7 +8,10 @@ const App = () => {
             <Navbar />
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='movies/:id' element={<MovieDetail />} />
+                <Route path='movies/:id' element={<Outlet />}>
+                    <Route index element={<MovieDetail />} />
+                    <Route path='images' element={<MovieImages />} />
+                </Route>
             </Routes>
         </Router>
     );

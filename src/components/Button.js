@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Button = styled.button`
     display: inline-block;
+    margin: ${(props) => props.margin || '0'};
     padding: 0.5rem;
     border: none;
     border-radius: var(--radius);

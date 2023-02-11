@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     :root {
         --clr-black: #000;
+        --clr-rgb-black: 0, 0, 0;
         --clr-light-black: #161515;
         --clr-white: #fff;
         --clr-rgb-white: 255, 255, 255;
@@ -24,7 +25,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        min-height: 100vh;
         background-color: var(--clr-black);
         color: var(--clr-white);
         font-family: var(--font);
@@ -77,6 +77,12 @@ const GlobalStyle = createGlobalStyle`
         &:disabled {
             cursor: not-allowed;
         }
+    }
+
+    .main {
+        max-width: var(--max-content-width);
+        width: 90vw;
+        margin: calc(var(--navbar-height) + 4rem) auto 4rem;
     }
 
     .section-center {
