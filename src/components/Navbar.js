@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
+import { useGlobalContext } from '../contexts/GlobalContext';
 import { navbarLinks } from '../utils/localData';
 import styled, { css } from 'styled-components';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const navbarRef = useRef(null);
+    const { setIsSearchEnabled } = useGlobalContext();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,6 +38,11 @@ const Navbar = () => {
                         );
                     })}
                 </ul>
+                <div>
+                    <button onClick={() => setIsSearchEnabled(true)}>
+                        <FaSearch />
+                    </button>
+                </div>
             </div>
         </Wrapper>
     );
@@ -75,5 +83,12 @@ const Wrapper = styled.nav`
                 border-bottom: 3px solid var(--clr-green);
             }
         }
+    }
+    button {
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: var(--clr-white);
+        font-size: 1.2rem;
     }
 `;

@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import { Home, MovieDetail, MovieImages } from './pages';
-import { Navbar } from './components';
+import { Navbar, SearchForm } from './components';
 
 const App = () => {
     return (
         <Router>
             <Navbar />
+            <SearchForm />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='movies/:id' element={<Outlet />}>
