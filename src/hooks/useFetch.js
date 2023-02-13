@@ -6,22 +6,23 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
 
+    const fetchData = async (path) => {
+        setIsLoading(true);
+        try {
+            const { data } = await tmdbAPI(path);
+            setData(data);
+            setError(null);
+        } catch (error) {
+            setError(error?.response?.data || error);
+        }
+        setIsLoading(false);
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const { data } = await tmdbAPI(url);
-                setData(data);
-                setError(null);
-            } catch (error) {
-                setError(error?.response?.data || error);
-            }
-            setIsLoading(false);
-        };
-        fetchData();
+        fetchData(url);
     }, [url]);
 
-    return { isLoading, error, data };
+    return { isLoading, error, data, fetchData };
 };
 
 export default useFetch;

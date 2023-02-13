@@ -11,6 +11,7 @@
         "react-dom": "^18.2.0",
         "react-horizontal-scrolling-menu": "^3.2.3",
         "react-icons": "^4.7.1",
+        "react-paginate": "^8.1.4",
         "react-router-dom": "^6.8.1",
         "react-scripts": "5.0.1",
         "styled-components": "^5.3.6",
