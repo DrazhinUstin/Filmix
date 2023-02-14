@@ -72,6 +72,13 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 
+    input,
+    select {
+        &:disabled {
+            cursor: not-allowed;
+        }
+    } 
+
     button {
         cursor: pointer;
         &:disabled {
@@ -102,6 +109,13 @@ const GlobalStyle = createGlobalStyle`
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+
+    .message {
+        text-align: center;
+        text-decoration: underline;
+        text-decoration-color: var(--clr-green);
+        font-size: 1.2rem;
     }
 `;
 

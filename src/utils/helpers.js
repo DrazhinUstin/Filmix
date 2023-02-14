@@ -16,3 +16,16 @@ export const formatToCurrency = (amount) => {
         minimumFractionDigits: 0,
     }).format(amount);
 };
+
+export const getYears = (startYear = 1900) => {
+    const currentYear = +new Date().getFullYear();
+    return [...Array(currentYear - startYear + 1)].map((_, i) => currentYear - i);
+};
+
+export const sortArrWithObj = (arr, key) => {
+    return [...arr].sort((a, b) => {
+        if (a[key] < b[key]) return -1;
+        if (a[key] > b[key]) return 1;
+        return 0;
+    });
+};

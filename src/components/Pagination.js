@@ -6,7 +6,7 @@ const Pagination = ({ pageCount, handlePageClick, forcePage }) => {
     return (
         <Wrapper>
             <ReactPaginate
-                pageCount={pageCount}
+                pageCount={pageCount > 500 ? 500 : pageCount}
                 onPageChange={handlePageClick}
                 forcePage={forcePage}
                 pageRangeDisplayed={3}

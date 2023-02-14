@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-import { Home, MovieDetail, MovieImages, Search } from './pages';
+import { Home, Movies, MovieDetail, MovieImages, Search } from './pages';
 import { Navbar, SearchForm } from './components';
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
             <SearchForm />
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path='movies' element={<Movies />} />
                 <Route path='movies/:id' element={<Outlet />}>
                     <Route index element={<MovieDetail />} />
                     <Route path='images' element={<MovieImages />} />
