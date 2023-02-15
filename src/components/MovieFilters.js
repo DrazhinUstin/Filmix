@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const MovieFilters = ({ isLoading }) => {
     const [genres, setGenres] = useState([]);
     const [languages, setLanguages] = useState([]);
-    const { filters: params, dispatch } = useMoviesContext();
+    const { filters, dispatch } = useMoviesContext();
 
     useEffect(() => {
         Promise.allSettled([
@@ -35,7 +35,7 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='genre'
                     id='genre'
-                    value={params.genre}
+                    value={filters.genre}
                     onChange={handleChange}
                     disabled={isLoading}
                 >
@@ -51,7 +51,7 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='language'
                     id='language'
-                    value={params.language}
+                    value={filters.language}
                     onChange={handleChange}
                     disabled={isLoading}
                 >
@@ -67,7 +67,7 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='year'
                     id='year'
-                    value={params.year}
+                    value={filters.year}
                     onChange={handleChange}
                     disabled={isLoading}
                 >
@@ -83,7 +83,7 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='runtime'
                     id='runtime'
-                    value={params.runtime}
+                    value={filters.runtime}
                     onChange={handleChange}
                     disabled={isLoading}
                 >
@@ -99,7 +99,7 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='sort'
                     id='sort'
-                    value={params.sort}
+                    value={filters.sort}
                     onChange={handleChange}
                     disabled={isLoading}
                 >

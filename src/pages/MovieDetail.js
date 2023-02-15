@@ -34,7 +34,7 @@ const MovieDetail = () => {
                 <img
                     src={
                         poster_path
-                            ? `https://image.tmdb.org/t/p/original${poster_path}`
+                            ? `https://image.tmdb.org/t/p/w780${poster_path}`
                             : defaultPoster
                     }
                     alt={title}
@@ -55,9 +55,11 @@ const MovieDetail = () => {
                     <li>
                         <span>genres:</span> {genres.map(({ name }) => name).join(', ')}
                     </li>
-                    <li>
-                        <span>runtime:</span> {formatRuntime(runtime)}
-                    </li>
+                    {runtime > 0 && (
+                        <li>
+                            <span>runtime:</span> {formatRuntime(runtime)}
+                        </li>
+                    )}
                     {budget > 0 && (
                         <li>
                             <span>budget:</span> {formatToCurrency(budget)}

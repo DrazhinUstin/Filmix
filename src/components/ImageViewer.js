@@ -7,7 +7,7 @@ const ImageViewer = ({ items, index, setIsViewerOpen }) => {
     const { file_path } = items[step];
     return (
         <Wrapper>
-            <img src={`https://image.tmdb.org/t/p/original${file_path}`} alt='backdrop' />
+            <img src={`https://image.tmdb.org/t/p/w1280${file_path}`} alt='backdrop' />
             <div className='counter'>
                 <button onClick={() => setIsViewerOpen(false)}>
                     <FaTimes />

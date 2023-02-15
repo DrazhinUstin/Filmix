@@ -21,7 +21,9 @@ const MovieImages = () => {
 
     return (
         <main className='main'>
-            <Title>image gallery</Title>
+            <Title>
+                image <span>gallery</span>
+            </Title>
             <ImageGallery items={data.backdrops} />
             <Button margin='4rem 0 0' as={Link} to='..'>
                 back to movie

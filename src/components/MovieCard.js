@@ -8,11 +8,7 @@ const MovieCard = ({ item }) => {
     return (
         <Wrapper>
             <img
-                src={
-                    poster_path
-                        ? `https://image.tmdb.org/t/p/original${poster_path}`
-                        : defaultPoster
-                }
+                src={poster_path ? `https://image.tmdb.org/t/p/w342${poster_path}` : defaultPoster}
                 alt={title}
             />
             <div className='info'>

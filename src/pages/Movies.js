@@ -6,10 +6,10 @@ const Movies = () => {
     const { page, filters, dispatch } = useMoviesContext();
     const { isLoading, error, data } = useFetch(
         `/discover/movie?page=${page + 1}&sort_by=${filters.sort}${
-            filters.genre ? `&with_genres=${filters.genre}` : ''
-        }${filters.year ? `&primary_release_year=${filters.year}` : ''}${
-            filters.language ? `&with_original_language=${filters.language}` : ''
-        }${filters.runtime ? `&with_runtime.lte=${filters.runtime}` : ''}`
+            filters.genre && `&with_genres=${filters.genre}`
+        }${filters.year && `&primary_release_year=${filters.year}`}${
+            filters.language && `&with_original_language=${filters.language}`
+        }${filters.runtime && `&with_runtime.lte=${filters.runtime}`}`
     );
 
     if (error) return <Error err={error} link fullScreen />;

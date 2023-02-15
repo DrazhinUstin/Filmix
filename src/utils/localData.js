@@ -67,22 +67,22 @@ export const tmdbRuntimeOptions = [
     },
     {
         id: 2,
-        value: '150',
+        value: 150,
         name: '150min or less',
     },
     {
         id: 3,
-        value: '120',
+        value: 120,
         name: '120min or less',
     },
     {
         id: 4,
-        value: '90',
+        value: 90,
         name: '90min or less',
     },
     {
         id: 5,
-        value: '60',
+        value: 60,
         name: '60min or less',
     },
 ];

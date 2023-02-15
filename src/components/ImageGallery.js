@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import ImageViewer from './ImageViewer';
+import { Pagination, ImageViewer } from './';
 import styled from 'styled-components';
 
-const ImageGallery = ({ items }) => {
+const ImageGallery = ({ items, itemsPerPage = 20 }) => {
+    const [itemsOffset, setItemsOffset] = useState(0);
+    const currentItems = items.slice(itemsOffset, itemsOffset + itemsPerPage);
     const [index, setIndex] = useState(0);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
     return (
@@ -11,18 +13,24 @@ const ImageGallery = ({ items }) => {
                 total: <span>{items.length}</span>
             </p>
             <div className='images'>
-                {items.map(({ file_path }, i) => (
+                {currentItems.map(({ file_path }, i) => (
                     <img
                         key={i}
-                        src={`https://image.tmdb.org/t/p/original${file_path}`}
+                        src={`https://image.tmdb.org/t/p/w300${file_path}`}
                         alt='backdrop'
                         onClick={() => {
-                            setIndex(i);
+                            setIndex(itemsOffset + i);
                             setIsViewerOpen(true);
                         }}
                     />
                 ))}
             </div>
+            {items.length > itemsPerPage && (
+                <Pagination
+                    pageCount={Math.ceil(items.length / itemsPerPage)}
+                    handlePageClick={(e) => setItemsOffset(e.selected * itemsPerPage)}
+                />
+            )}
             {isViewerOpen && (
                 <ImageViewer items={items} index={index} setIsViewerOpen={setIsViewerOpen} />
             )}
@@ -44,7 +52,7 @@ const Wrapper = styled.section`
     }
     .images {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: 1rem;
         img {
             width: 100%;
