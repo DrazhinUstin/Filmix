@@ -86,3 +86,30 @@ export const tmdbRuntimeOptions = [
         name: '60min or less',
     },
 ];
+
+export const faqList = [
+    {
+        id: 1,
+        title: 'the first title',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 2,
+        title: 'the second title',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 3,
+        title: 'the third title',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 4,
+        title: 'the fourth title',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+];

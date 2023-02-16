@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-import { Home, Movies, MovieDetail, MovieImages, Search } from './pages';
+import { Home, Movies, MovieDetail, MovieImages, Search, About, NotFound } from './pages';
 import { Navbar, SearchForm } from './components';
 
 const App = () => {
@@ -15,6 +15,8 @@ const App = () => {
                     <Route path='images' element={<MovieImages />} />
                 </Route>
                 <Route path='search/:q' element={<Search />} />
+                <Route path='about' element={<About />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </Router>
     );

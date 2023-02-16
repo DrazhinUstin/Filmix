@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
         --clr-rgb-white: 255, 255, 255;
         --clr-gray: #d3d3d3;
         --clr-green: #6bc10f;
+        --clr-red: #ed0d3d;
         --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         --spacing: 0.1rem;
@@ -75,6 +76,7 @@ const GlobalStyle = createGlobalStyle`
     input,
     select {
         &:disabled {
+            opacity: 0.7;
             cursor: not-allowed;
         }
     } 
@@ -82,6 +84,7 @@ const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
         &:disabled {
+            opacity: 0.7;
             cursor: not-allowed;
         }
     }

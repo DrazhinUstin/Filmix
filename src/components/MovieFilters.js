@@ -3,7 +3,7 @@ import { useMoviesContext } from '../contexts/MoviesContext';
 import tmdbAPI from '../utils/tmdbAPI';
 import { tmdbSortOptions, tmdbRuntimeOptions } from '../utils/localData';
 import { sortArrWithObj, getYears } from '../utils/helpers';
-import { Button } from './';
+import { RedButton } from './';
 import styled from 'styled-components';
 
 const MovieFilters = ({ isLoading }) => {
@@ -110,13 +110,13 @@ const MovieFilters = ({ isLoading }) => {
                     ))}
                 </select>
             </div>
-            <Button
+            <RedButton
                 type='button'
                 onClick={() => dispatch({ type: 'RESTORE_FILTERS' })}
                 disabled={isLoading}
             >
                 clear filters
-            </Button>
+            </RedButton>
         </Wrapper>
     );
 };

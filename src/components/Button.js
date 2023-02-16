@@ -14,6 +14,9 @@ const Button = styled.button`
     line-height: 1.25;
     text-transform: capitalize;
     letter-spacing: var(--spacing);
+    &:hover {
+        filter: brightness(110%);
+    }
     ${(props) =>
         props.withBorder &&
         css`
@@ -21,8 +24,22 @@ const Button = styled.button`
             background-color: transparent;
             &:hover {
                 background-color: var(--clr-green);
+                filter: unset;
             }
         `}
 `;
 
 export default Button;
+
+export const RedButton = styled(Button)`
+    background-color: var(--clr-red);
+    ${(props) =>
+        props.withBorder &&
+        css`
+            border: 1px solid var(--clr-red);
+            background-color: transparent;
+            &:hover {
+                background-color: var(--clr-red);
+            }
+        `}
+`;
