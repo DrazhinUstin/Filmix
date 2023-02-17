@@ -120,6 +120,12 @@ const GlobalStyle = createGlobalStyle`
         text-decoration-color: var(--clr-green);
         font-size: 1.2rem;
     }
+
+    @keyframes appear {
+        100% {
+            opacity: 1;
+        }
+    }
 `;
 
 export default GlobalStyle;

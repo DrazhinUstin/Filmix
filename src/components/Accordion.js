@@ -70,6 +70,7 @@ const Wrapper = styled.ul`
                 flex: 0 0 1rem;
                 height: 2px;
                 background-color: var(--clr-green);
+                transition: var(--trans-ease);
                 &::after {
                     content: '';
                     position: absolute;
@@ -105,8 +106,11 @@ const Wrapper = styled.ul`
         }
         &.active {
             box-shadow: 0 0 0 1px var(--clr-green);
-            header span::after {
+            header span {
                 transform: rotate(360deg);
+                &::after {
+                    transform: rotate(360deg);
+                }
             }
             article::after {
                 width: 100%;
