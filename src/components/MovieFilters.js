@@ -2,29 +2,32 @@ import { useState, useEffect } from 'react';
 import { useMoviesContext } from '../contexts/MoviesContext';
 import tmdbAPI from '../utils/tmdbAPI';
 import { tmdbSortOptions, tmdbRuntimeOptions } from '../utils/localData';
-import { sortArrWithObj, getYears } from '../utils/helpers';
+import { dynamicSort, getYears } from '../utils/helpers';
 import { RedButton } from './';
 import styled from 'styled-components';
 
 const MovieFilters = ({ isLoading }) => {
     const [genres, setGenres] = useState([]);
     const [languages, setLanguages] = useState([]);
+    const [certifications, setCertifications] = useState([]);
     const { filters, dispatch } = useMoviesContext();
 
     useEffect(() => {
         Promise.allSettled([
             tmdbAPI('/genre/movie/list'),
             tmdbAPI('/configuration/languages'),
+            tmdbAPI('/certification/movie/list'),
         ]).then((values) => {
             setGenres(values[0]?.value?.data?.genres || []);
-            const languages = values[1]?.value?.data || [];
-            setLanguages(sortArrWithObj(languages, 'english_name'));
+            setLanguages(values[1]?.value?.data?.sort(dynamicSort('english_name')) || []);
+            setCertifications(values[2]?.value?.data?.certifications?.US || []);
         });
     }, []);
 
     const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        let name = e.target.name;
+        let value = e.target.value;
+        if (name === 'runtime') value = JSON.parse(value);
         dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });
     };
 
@@ -83,13 +86,29 @@ const MovieFilters = ({ isLoading }) => {
                 <select
                     name='runtime'
                     id='runtime'
-                    value={filters.runtime}
+                    value={JSON.stringify(filters.runtime)}
                     onChange={handleChange}
                     disabled={isLoading}
                 >
                     {tmdbRuntimeOptions.map(({ id, name, value }) => (
-                        <option key={id} value={value}>
+                        <option key={id} value={JSON.stringify(value)}>
                             {name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div>
+                <label htmlFor='certification'>certification:</label>
+                <select
+                    name='certification'
+                    id='certification'
+                    value={filters.certification}
+                    onChange={handleChange}
+                    disabled={isLoading}
+                >
+                    {['All', ...certifications].map((item, index) => (
+                        <option key={index} value={item.certification || ''}>
+                            {item.certification || item}
                         </option>
                     ))}
                 </select>

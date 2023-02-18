@@ -19,6 +19,7 @@ const initialState = {
         year: '',
         language: '',
         runtime: '',
+        certification: '',
     },
     page: 0,
 };
