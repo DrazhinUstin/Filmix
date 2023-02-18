@@ -90,25 +90,43 @@ export const tmdbRuntimeOptions = [
 export const faqList = [
     {
         id: 1,
-        title: 'the first title',
+        title: 'Where does your data come from?',
         content:
             'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
     },
     {
         id: 2,
-        title: 'the second title',
+        title: 'How can I use the data?',
         content:
             'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
     },
     {
         id: 3,
-        title: 'the third title',
+        title: 'How many movies are on FILMIX?',
         content:
             'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
     },
     {
         id: 4,
-        title: 'the fourth title',
+        title: "Why can't I find what I am looking for?",
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 5,
+        title: 'Can I watch videos on FILMIX?',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 6,
+        title: 'Where do I signup?',
+        content:
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
+    },
+    {
+        id: 7,
+        title: 'What are the benefits of singing up?',
         content:
             'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eligendi obcaecati provident. Reprehenderit, nesciunt laudantium pariatur saepe quas sapiente sequi at culpa. Blanditiis numquam deleniti repudiandae non, autem odio quibusdam.',
     },

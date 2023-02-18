@@ -8,7 +8,7 @@ const Error = ({ title, err, link, fullScreen }) => {
             <Title>{title || 'there was an error'}</Title>
             {err && <p>{err.status_message || err.message}</p>}
             {link && (
-                <Button to={link.path || '/'} as={Link} withBorder>
+                <Button to={link.path || '/'} as={Link} $withBorder>
                     {link.title || 'back home'}
                 </Button>
             )}

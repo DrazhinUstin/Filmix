@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pagination, ImageViewer } from './';
+import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const ImageGallery = ({ items, itemsPerPage = 20 }) => {
@@ -54,6 +55,9 @@ const Wrapper = styled.section`
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: 1rem;
+        @media ${breakpoints.sm} {
+            grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        }
         img {
             width: 100%;
             transition: var(--trans-ease);

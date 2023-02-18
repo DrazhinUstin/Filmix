@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import defaultPoster from '../assets/images/default_poster.jpg';
+import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const MovieCard = ({ item }) => {
@@ -27,6 +28,9 @@ const Wrapper = styled.article`
     position: relative;
     width: 17.5rem;
     flex-shrink: 0;
+    @media ${breakpoints.sm} {
+        width: 12rem;
+    }
     img {
         width: 100%;
     }

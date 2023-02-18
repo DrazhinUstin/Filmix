@@ -1,5 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const breakpoints = {
+    lg: '(max-width: 1200px)',
+    md: '(max-width: 1024px)',
+    sm: '(max-width: 768px)',
+    xsm: '(max-width: 425px)',
+};
+
 const GlobalStyle = createGlobalStyle`
     :root {
         --clr-black: #000;
@@ -112,6 +119,9 @@ const GlobalStyle = createGlobalStyle`
         &::-webkit-scrollbar {
             display: none;
         }
+        @media ${breakpoints.sm} {
+            gap: 0.5rem;
+        }
     }
 
     .message {
@@ -129,10 +139,3 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default GlobalStyle;
-
-export const breakpoints = {
-    lg: '(max-width: 1200px)',
-    md: '(max-width: 1024px)',
-    sm: '(max-width: 768px)',
-    xsm: '(max-width: 425px)',
-};

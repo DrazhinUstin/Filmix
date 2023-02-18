@@ -18,7 +18,7 @@ const Button = styled.button`
         filter: brightness(110%);
     }
     ${(props) =>
-        props.withBorder &&
+        props.$withBorder &&
         css`
             border: 1px solid var(--clr-green);
             background-color: transparent;
@@ -34,7 +34,7 @@ export default Button;
 export const RedButton = styled(Button)`
     background-color: var(--clr-red);
     ${(props) =>
-        props.withBorder &&
+        props.$withBorder &&
         css`
             border: 1px solid var(--clr-red);
             background-color: transparent;

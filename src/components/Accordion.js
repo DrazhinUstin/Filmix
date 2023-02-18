@@ -36,7 +36,7 @@ const Accordion = ({ items = [] }) => {
                 return (
                     <li key={id}>
                         <header>
-                            <h4>{title}</h4>
+                            <p>{title}</p>
                             <span></span>
                         </header>
                         <div className='content'>
@@ -65,6 +65,9 @@ const Wrapper = styled.ul`
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            p {
+                font-weight: 500;
+            }
             span {
                 position: relative;
                 flex: 0 0 1rem;

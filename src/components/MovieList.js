@@ -1,4 +1,5 @@
 import MovieCard from './MovieCard';
+import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const MovieList = ({ items }) => {
@@ -20,5 +21,9 @@ const Wrapper = styled.section`
     gap: 2rem;
     & > article {
         width: 100%;
+    }
+    @media ${breakpoints.sm} {
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        gap: 1rem;
     }
 `;

@@ -19,7 +19,7 @@ const Hero = () => {
                 <article>
                     <h1>{title}</h1>
                     <p>{cutString(overview)}</p>
-                    <Button as={Link} to={`/movies/${id}`} withBorder>
+                    <Button as={Link} to={`/movies/${id}`} $withBorder>
                         view details
                     </Button>
                 </article>
