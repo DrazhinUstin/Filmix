@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
+import { NavLink, Link } from 'react-router-dom';
+import { FaUserAlt, FaSearch } from 'react-icons/fa';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { navbarLinks } from '../utils/localData';
 import { breakpoints } from '../GlobalStyles';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -54,7 +54,15 @@ const Navbar = () => {
                         );
                     })}
                 </ul>
-                <div>
+                <div
+                    css={`
+                        display: flex;
+                        gap: 1rem;
+                    `}
+                >
+                    <Link className='btn' to='/profile' onClick={() => setIsMenuOpen(false)}>
+                        <FaUserAlt />
+                    </Link>
                     <button onClick={() => setIsSearchEnabled(true)}>
                         <FaSearch />
                     </button>
@@ -129,7 +137,8 @@ const Wrapper = styled.nav`
             }
         }
     }
-    button {
+    button,
+    .btn {
         display: block;
         border: none;
         background-color: transparent;
