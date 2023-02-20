@@ -10,9 +10,7 @@ const GlobalProvider = ({ children }) => {
     const [isSearchEnabled, setIsSearchEnabled] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) setUser(user);
-        });
+        const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
         return () => unsubscribe();
     }, []);
 

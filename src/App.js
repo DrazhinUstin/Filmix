@@ -1,5 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-import { Home, Movies, MovieDetail, MovieImages, Search, About, Auth, NotFound } from './pages';
+import {
+    Home,
+    Movies,
+    MovieDetail,
+    MovieImages,
+    Search,
+    About,
+    Auth,
+    RequireAuth,
+    Profile,
+    NotFound,
+} from './pages';
 import { Navbar, SearchForm } from './components';
 
 const App = () => {
@@ -17,6 +28,9 @@ const App = () => {
                 <Route path='search/:q' element={<Search />} />
                 <Route path='about' element={<About />} />
                 <Route path='auth' element={<Auth />} />
+                <Route element={<RequireAuth />}>
+                    <Route path='profile' element={<Profile />} />
+                </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </Router>
