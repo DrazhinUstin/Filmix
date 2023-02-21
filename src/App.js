@@ -11,6 +11,7 @@ import {
     ProfileLayout,
     Profile,
     EditProfile,
+    UpdateEmail,
     NotFound,
 } from './pages';
 import { Navbar, SearchForm } from './components';
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path='profile' element={<ProfileLayout />}>
                         <Route index element={<Profile />} />
                         <Route path='edit_profile' element={<EditProfile />} />
+                        <Route path='update_email' element={<UpdateEmail />} />
                     </Route>
                 </Route>
                 <Route path='*' element={<NotFound />} />

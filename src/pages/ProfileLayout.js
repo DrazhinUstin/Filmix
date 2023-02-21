@@ -12,6 +12,9 @@ const ProfileLayout = () => {
                 <NavLink to='edit_profile' end>
                     edit profile
                 </NavLink>
+                <NavLink to='update_email' end>
+                    update email
+                </NavLink>
             </aside>
             <section className='detail'>
                 <Outlet />
@@ -54,6 +57,8 @@ const Wrapper = styled.main`
             display: flex;
             a {
                 flex-shrink: 0;
+                padding: 0.5rem;
+                font-size: 1rem;
             }
         }
     }

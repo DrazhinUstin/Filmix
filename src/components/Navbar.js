@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { FaUserAlt, FaSearch } from 'react-icons/fa';
+import { FaUserCheck, FaUserPlus, FaSearch } from 'react-icons/fa';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { navbarLinks } from '../utils/localData';
 import { breakpoints } from '../GlobalStyles';
@@ -10,7 +10,7 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navbarRef = useRef(null);
-    const { setIsSearchEnabled } = useGlobalContext();
+    const { user, setIsSearchEnabled } = useGlobalContext();
 
     useEffect(() => {
         if (isMenuOpen) document.body.style.overflow = 'hidden';
@@ -61,7 +61,7 @@ const Navbar = () => {
                     `}
                 >
                     <Link className='btn' to='/profile' onClick={() => setIsMenuOpen(false)}>
-                        <FaUserAlt />
+                        {user ? <FaUserCheck /> : <FaUserPlus />}
                     </Link>
                     <button onClick={() => setIsSearchEnabled(true)}>
                         <FaSearch />

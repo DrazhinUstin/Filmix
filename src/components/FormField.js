@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
-const FormField = ({ type = 'text', name, value, onChange, disabled, required, labelText }) => {
+const FormField = ({
+    type = 'text',
+    name,
+    value,
+    onChange,
+    disabled,
+    required,
+    placeholder,
+    labelText,
+}) => {
     return (
         <Wrapper>
             <label htmlFor={name}>{labelText || name}</label>
@@ -12,6 +21,7 @@ const FormField = ({ type = 'text', name, value, onChange, disabled, required, l
                 onChange={onChange}
                 disabled={disabled}
                 required={required}
+                placeholder={placeholder}
             />
         </Wrapper>
     );
