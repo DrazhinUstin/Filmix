@@ -8,7 +8,9 @@ import {
     About,
     Auth,
     RequireAuth,
+    ProfileLayout,
     Profile,
+    EditProfile,
     NotFound,
 } from './pages';
 import { Navbar, SearchForm } from './components';
@@ -29,7 +31,10 @@ const App = () => {
                 <Route path='about' element={<About />} />
                 <Route path='auth' element={<Auth />} />
                 <Route element={<RequireAuth />}>
-                    <Route path='profile' element={<Profile />} />
+                    <Route path='profile' element={<ProfileLayout />}>
+                        <Route index element={<Profile />} />
+                        <Route path='edit_profile' element={<EditProfile />} />
+                    </Route>
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>

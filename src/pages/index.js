@@ -6,5 +6,7 @@ export { default as Search } from './Search';
 export { default as About } from './About';
 export { default as Auth } from './Auth';
 export { default as RequireAuth } from './RequireAuth';
+export { default as ProfileLayout } from './ProfileLayout';
 export { default as Profile } from './Profile';
+export { default as EditProfile } from './EditProfile';
 export { default as NotFound } from './NotFound';
