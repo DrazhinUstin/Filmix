@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Title, FormField, Button } from '../components';
+import { Title, FormField, Button, TextButton } from '../components';
 import styled from 'styled-components';
 
 const UpdatePassword = () => {
@@ -47,6 +48,13 @@ const UpdatePassword = () => {
             <Button type='submit' disabled={isLoading} margin='0.5rem 0 0'>
                 submit
             </Button>
+            <p className='form-message'>
+                Forgot password?{' '}
+                <TextButton as={Link} to='/reset_password'>
+                    click
+                </TextButton>{' '}
+                here to reset it.
+            </p>
             {success && <p className='form-success'>{success.message}</p>}
             {error && <p className='form-error'>{error.message}</p>}
         </Wrapper>
@@ -60,6 +68,9 @@ const Wrapper = styled.form`
     display: grid;
     gap: 1rem;
     margin: 0 auto;
+    .form-message {
+        text-align: center;
+    }
     .form-success {
         color: var(--clr-green);
         text-align: center;

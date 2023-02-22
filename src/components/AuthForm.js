@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -47,6 +47,7 @@ const AuthForm = () => {
                     name='displayName'
                     value={values.displayName}
                     onChange={handleChange}
+                    disabled={isLoading}
                     required
                     labelText='username'
                 />
@@ -56,6 +57,7 @@ const AuthForm = () => {
                 name='email'
                 value={values.email}
                 onChange={handleChange}
+                disabled={isLoading}
                 required
             />
             <FormField
@@ -63,11 +65,19 @@ const AuthForm = () => {
                 name='password'
                 value={values.password}
                 onChange={handleChange}
+                disabled={isLoading}
                 required
             />
             <Button type='submit' disabled={isLoading} margin='0.5rem 0 0'>
                 submit
             </Button>
+            {!isSignUp && (
+                <p className='form-message'>
+                    <TextButton as={Link} to='/reset_password'>
+                        forgot password?
+                    </TextButton>
+                </p>
+            )}
             <p className='form-message'>
                 {isSignUp ? 'Already have an account? ' : "Don't have an account? "}
                 <TextButton onClick={() => setIsSignUp(!isSignUp)}>

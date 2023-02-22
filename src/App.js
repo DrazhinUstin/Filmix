@@ -7,6 +7,7 @@ import {
     Search,
     About,
     Auth,
+    ResetPassword,
     RequireAuth,
     ProfileLayout,
     Profile,
@@ -32,6 +33,7 @@ const App = () => {
                 <Route path='search/:q' element={<Search />} />
                 <Route path='about' element={<About />} />
                 <Route path='auth' element={<Auth />} />
+                <Route path='reset_password' element={<ResetPassword />} />
                 <Route element={<RequireAuth />}>
                     <Route path='profile' element={<ProfileLayout />}>
                         <Route index element={<Profile />} />
