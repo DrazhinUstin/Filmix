@@ -4,7 +4,6 @@ import { EmailAuthProvider, reauthenticateWithCredential, updateEmail } from 'fi
 import { auth } from '../firebase';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { Title, FormField, Button } from '../components';
-import styled from 'styled-components';
 
 const UpdateEmail = () => {
     const { user } = useGlobalContext();
@@ -32,7 +31,7 @@ const UpdateEmail = () => {
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
     return (
-        <Wrapper onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Title margin='0'>update email</Title>
             <FormField
                 type='email'
@@ -54,19 +53,8 @@ const UpdateEmail = () => {
                 submit
             </Button>
             {error && <p className='form-error'>{error.message}</p>}
-        </Wrapper>
+        </form>
     );
 };
 
 export default UpdateEmail;
-
-const Wrapper = styled.form`
-    max-width: 600px;
-    display: grid;
-    gap: 1rem;
-    margin: 0 auto;
-    .form-error {
-        color: var(--clr-red);
-        text-align: center;
-    }
-`;

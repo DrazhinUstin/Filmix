@@ -3,7 +3,7 @@ import { useMoviesContext } from '../contexts/MoviesContext';
 import tmdbAPI from '../utils/tmdbAPI';
 import { tmdbSortOptions, tmdbRuntimeOptions } from '../utils/localData';
 import { dynamicSort, getYears } from '../utils/helpers';
-import { RedButton } from './';
+import { FormField, RedButton } from './';
 import styled from 'styled-components';
 
 const MovieFilters = ({ isLoading }) => {
@@ -33,102 +33,80 @@ const MovieFilters = ({ isLoading }) => {
 
     return (
         <Wrapper onSubmit={(e) => e.preventDefault()}>
-            <div>
-                <label htmlFor='genre'>genre:</label>
-                <select
-                    name='genre'
-                    id='genre'
-                    value={filters.genre}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {['All', ...genres].map((item, index) => (
-                        <option key={index} value={item.id || ''}>
-                            {item.name || item}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='language'>original language:</label>
-                <select
-                    name='language'
-                    id='language'
-                    value={filters.language}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {['All', ...languages].map((item, index) => (
-                        <option key={index} value={item.iso_639_1 || ''}>
-                            {item.english_name || item}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='year'>year:</label>
-                <select
-                    name='year'
-                    id='year'
-                    value={filters.year}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {['All', ...getYears()].map((item, index) => (
-                        <option key={index} value={item === 'all' ? '' : item}>
-                            {item}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='runtime'>runtime:</label>
-                <select
-                    name='runtime'
-                    id='runtime'
-                    value={JSON.stringify(filters.runtime)}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {tmdbRuntimeOptions.map(({ id, name, value }) => (
-                        <option key={id} value={JSON.stringify(value)}>
-                            {name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='certification'>certification:</label>
-                <select
-                    name='certification'
-                    id='certification'
-                    value={filters.certification}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {['All', ...certifications].map((item, index) => (
-                        <option key={index} value={item.certification || ''}>
-                            {item.certification || item}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor='sort'>sort by:</label>
-                <select
-                    name='sort'
-                    id='sort'
-                    value={filters.sort}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                >
-                    {tmdbSortOptions.map(({ id, name, value }) => (
-                        <option key={id} value={value}>
-                            {name}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            <FormField
+                name='genre'
+                value={filters.genre}
+                onChange={handleChange}
+                disabled={isLoading}
+            >
+                {['All', ...genres].map((item, index) => (
+                    <option key={index} value={item.id || ''}>
+                        {item.name || item}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
+                name='language'
+                value={filters.language}
+                onChange={handleChange}
+                disabled={isLoading}
+                labelText='original language'
+            >
+                {['All', ...languages].map((item, index) => (
+                    <option key={index} value={item.iso_639_1 || ''}>
+                        {item.english_name || item}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
+                name='year'
+                value={filters.year}
+                onChange={handleChange}
+                disabled={isLoading}
+            >
+                {['All', ...getYears()].map((item, index) => (
+                    <option key={index} value={item === 'all' ? '' : item}>
+                        {item}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
+                name='runtime'
+                value={JSON.stringify(filters.runtime)}
+                onChange={handleChange}
+                disabled={isLoading}
+            >
+                {tmdbRuntimeOptions.map(({ id, name, value }) => (
+                    <option key={id} value={JSON.stringify(value)}>
+                        {name}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
+                name='certification'
+                value={filters.certification}
+                onChange={handleChange}
+                disabled={isLoading}
+            >
+                {['All', ...certifications].map((item, index) => (
+                    <option key={index} value={item.certification || ''}>
+                        {item.certification || item}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
+                name='sort'
+                value={filters.sort}
+                onChange={handleChange}
+                disabled={isLoading}
+                labelText='sort by'
+            >
+                {tmdbSortOptions.map(({ id, name, value }) => (
+                    <option key={id} value={value}>
+                        {name}
+                    </option>
+                ))}
+            </FormField>
             <RedButton
                 type='button'
                 onClick={() => dispatch({ type: 'RESTORE_FILTERS' })}
@@ -148,22 +126,4 @@ const Wrapper = styled.form`
     align-items: flex-end;
     gap: 1rem;
     margin-bottom: 4rem;
-    label {
-        display: block;
-        margin-bottom: 0.375rem;
-        text-transform: capitalize;
-    }
-    select {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0.25rem;
-        outline: none;
-        border: none;
-        background-color: var(--clr-white);
-        color: var(--clr-black);
-        font-size: 0.9rem;
-        &:focus {
-            box-shadow: 0 0 0 2px var(--clr-green);
-        }
-    }
 `;

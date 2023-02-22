@@ -131,6 +131,20 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.2rem;
     }
 
+    .form-message {
+        text-align: center;
+    }
+
+    .form-success {
+        color: var(--clr-green);
+        text-align: center;
+    }
+    
+    .form-error {
+        color: var(--clr-red);
+        text-align: center;
+    }
+
     @keyframes appear {
         100% {
             opacity: 1;

@@ -6,7 +6,6 @@ import { auth, storage } from '../firebase';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { Title, FormField, Button, RedButton } from '../components';
 import { validateFile } from '../utils/helpers';
-import styled from 'styled-components';
 
 const EditProfile = () => {
     const { user } = useGlobalContext();
@@ -44,7 +43,7 @@ const EditProfile = () => {
     };
 
     return (
-        <Wrapper onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ gap: '1.5rem' }}>
             <Title margin='0'>edit profile</Title>
             <FormField
                 name='displayName'
@@ -69,19 +68,8 @@ const EditProfile = () => {
                 submit
             </Button>
             {error && <p className='form-error'>{error.message}</p>}
-        </Wrapper>
+        </form>
     );
 };
 
 export default EditProfile;
-
-const Wrapper = styled.form`
-    max-width: 600px;
-    display: grid;
-    gap: 2rem;
-    margin: 0 auto;
-    .form-error {
-        color: var(--clr-red);
-        text-align: center;
-    }
-`;

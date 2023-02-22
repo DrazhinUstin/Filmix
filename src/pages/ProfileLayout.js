@@ -47,6 +47,12 @@ const Wrapper = styled.main`
         padding: 2rem 1rem;
         border-radius: var(--radius);
         background-color: var(--clr-light-black);
+        form {
+            max-width: 600px;
+            display: grid;
+            gap: 1rem;
+            margin: 0 auto;
+        }
     }
     @media ${breakpoints.sm} {
         grid-template-columns: unset;

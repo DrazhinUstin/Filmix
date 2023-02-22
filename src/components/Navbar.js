@@ -85,6 +85,7 @@ const Wrapper = styled.nav`
         isScrolled &&
         css`
             background-color: var(--clr-light-black);
+            box-shadow: 0 5px 10px rgba(var(--clr-rgb-black), 0.5);
         `}
     .section-center {
         height: 100%;

@@ -66,16 +66,5 @@ const Wrapper = styled.main`
         padding: 2rem 1rem;
         border-radius: var(--radius);
         background-color: var(--clr-light-black);
-        .form-message {
-            text-align: center;
-        }
-        .form-success {
-            color: var(--clr-green);
-            text-align: center;
-        }
-        .form-error {
-            color: var(--clr-red);
-            text-align: center;
-        }
     }
 `;

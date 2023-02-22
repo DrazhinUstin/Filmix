@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Title, FormField, Button, TextButton } from '../components';
-import styled from 'styled-components';
 
 const UpdatePassword = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +28,7 @@ const UpdatePassword = () => {
     };
 
     return (
-        <Wrapper onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Title margin='0'>update password</Title>
             <FormField
                 type='password'
@@ -57,26 +56,8 @@ const UpdatePassword = () => {
             </p>
             {success && <p className='form-success'>{success.message}</p>}
             {error && <p className='form-error'>{error.message}</p>}
-        </Wrapper>
+        </form>
     );
 };
 
 export default UpdatePassword;
-
-const Wrapper = styled.form`
-    max-width: 600px;
-    display: grid;
-    gap: 1rem;
-    margin: 0 auto;
-    .form-message {
-        text-align: center;
-    }
-    .form-success {
-        color: var(--clr-green);
-        text-align: center;
-    }
-    .form-error {
-        color: var(--clr-red);
-        text-align: center;
-    }
-`;

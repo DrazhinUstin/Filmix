@@ -99,11 +99,4 @@ const Wrapper = styled.form`
     padding: 2rem 1rem;
     border-radius: var(--radius);
     background-color: var(--clr-light-black);
-    .form-message {
-        text-align: center;
-    }
-    .form-error {
-        color: var(--clr-red);
-        text-align: center;
-    }
 `;
