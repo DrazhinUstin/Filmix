@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { profilePageLinks } from '../utils/localData';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
@@ -6,15 +7,11 @@ const ProfileLayout = () => {
     return (
         <Wrapper className='main'>
             <aside className='sidebar'>
-                <NavLink to='/profile' end>
-                    view profile
-                </NavLink>
-                <NavLink to='edit_profile' end>
-                    edit profile
-                </NavLink>
-                <NavLink to='update_email' end>
-                    update email
-                </NavLink>
+                {profilePageLinks.map(({ id, path, title }) => (
+                    <NavLink key={id} to={path} end>
+                        {title}
+                    </NavLink>
+                ))}
             </aside>
             <section className='detail'>
                 <Outlet />

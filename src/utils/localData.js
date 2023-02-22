@@ -16,6 +16,29 @@ export const navbarLinks = [
     },
 ];
 
+export const profilePageLinks = [
+    {
+        id: 1,
+        path: '/profile',
+        title: 'view profile',
+    },
+    {
+        id: 2,
+        path: 'edit_profile',
+        title: 'edit profile',
+    },
+    {
+        id: 3,
+        path: 'update_email',
+        title: 'update email',
+    },
+    {
+        id: 4,
+        path: 'update_password',
+        title: 'update password',
+    },
+];
+
 export const tmdbSortOptions = [
     {
         id: 1,

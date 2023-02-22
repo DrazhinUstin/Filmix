@@ -12,6 +12,7 @@ import {
     Profile,
     EditProfile,
     UpdateEmail,
+    UpdatePassword,
     NotFound,
 } from './pages';
 import { Navbar, SearchForm } from './components';
@@ -36,6 +37,7 @@ const App = () => {
                         <Route index element={<Profile />} />
                         <Route path='edit_profile' element={<EditProfile />} />
                         <Route path='update_email' element={<UpdateEmail />} />
+                        <Route path='update_password' element={<UpdatePassword />} />
                     </Route>
                 </Route>
                 <Route path='*' element={<NotFound />} />
