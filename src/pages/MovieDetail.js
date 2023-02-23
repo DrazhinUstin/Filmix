@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
-import { Loader, Error, Title, Button, ScrollRow } from '../components';
+import { Loader, Error, Title, Button, AddToWatchlist, ScrollRow } from '../components';
 import useFetch from '../hooks/useFetch';
+import { useGlobalContext } from '../contexts/GlobalContext';
 import { formatRuntime, formatToCurrency } from '../utils/helpers';
 import defaultPoster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
@@ -9,6 +10,7 @@ import styled from 'styled-components';
 const MovieDetail = () => {
     const { id } = useParams();
     const { isLoading, error, data: movie } = useFetch(`/movie/${id}`);
+    const { user } = useGlobalContext();
 
     if (isLoading) return <Loader fullScreen />;
 
@@ -84,6 +86,7 @@ const MovieDetail = () => {
                     find images
                 </Button>
             </div>
+            {user && <AddToWatchlist data={{ uid: user.uid, id, title, poster_path }} />}
             {collection && <ScrollRow title='in collection' url={`/collection/${collection.id}`} />}
             <ScrollRow title='recommended movies' url={`/movie/${id}/recommendations`} />
             <ScrollRow title='similar movies' url={`/movie/${id}/similar`} />

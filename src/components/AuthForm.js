@@ -5,7 +5,8 @@ import {
     signInWithEmailAndPassword,
     updateProfile,
 } from 'firebase/auth';
-import { auth } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { Title, FormField, Button, TextButton } from '../components';
 import styled from 'styled-components';
 
@@ -25,6 +26,7 @@ const AuthForm = () => {
             if (isSignUp) {
                 const { user } = await createUserWithEmailAndPassword(auth, email, password);
                 await updateProfile(user, { displayName });
+                await setDoc(doc(db, `users/${user.uid}`), {});
                 navigate('/profile');
             } else {
                 await signInWithEmailAndPassword(auth, email, password);
