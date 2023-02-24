@@ -14,6 +14,11 @@ export const navbarLinks = [
         path: '/about',
         title: 'about',
     },
+    {
+        id: 4,
+        path: '/watchlist',
+        title: 'watchlist',
+    },
 ];
 
 export const profilePageLinks = [

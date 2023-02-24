@@ -40,6 +40,7 @@ const Navbar = () => {
                 <h2 className='logo'>FILMIX</h2>
                 <ul className='menu'>
                     {navbarLinks.map(({ id, path, title }) => {
+                        if (!user && title === 'watchlist') return null;
                         return (
                             <li key={id}>
                                 <NavLink

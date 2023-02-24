@@ -14,6 +14,7 @@ import {
     EditProfile,
     UpdateEmail,
     UpdatePassword,
+    Watchlist,
     NotFound,
 } from './pages';
 import { Navbar, SearchForm } from './components';
@@ -41,6 +42,7 @@ const App = () => {
                         <Route path='update_email' element={<UpdateEmail />} />
                         <Route path='update_password' element={<UpdatePassword />} />
                     </Route>
+                    <Route path='watchlist' element={<Watchlist />} />
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>
