@@ -5,7 +5,7 @@ import { db } from '../firebase';
 import { Button, RedButton } from './';
 import styled from 'styled-components';
 
-const AddToWatchlist = ({ data: { uid, id, title, poster_path } }) => {
+const AddToWatchlist = ({ data: { uid, id, title, genres, release_date, poster_path } }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [onWatchlist, setOnWatchlist] = useState(false);
 
@@ -23,6 +23,8 @@ const AddToWatchlist = ({ data: { uid, id, title, poster_path } }) => {
             if (!onWatchlist) {
                 await setDoc(doc(db, `users/${uid}/watchlist/${id}`), {
                     title,
+                    genres: genres.map(({ name }) => name),
+                    release_date,
                     poster_path,
                     timestamp: serverTimestamp(),
                 });

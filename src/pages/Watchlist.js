@@ -1,28 +1,36 @@
 import { useState, useEffect } from 'react';
-import { query, collection, orderBy, limit, startAfter, getDocs } from 'firebase/firestore';
+import { query, collection, where, orderBy, limit, startAfter, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
-import { Loader, Error, Title, MovieList, Button } from '../components';
+import { Loader, Error, Title, WatchlistFilters, MovieList, Button } from '../components';
 
 const Watchlist = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [watchlist, setWatchlist] = useState([]);
     const [lastItem, setLastItem] = useState(null);
-    const itemsPerRequest = 10;
+    const [filters, setFilters] = useState({
+        genre: '',
+        order: ['timestamp', 'desc'],
+        limit: 10,
+    });
 
     useEffect(() => {
         const getWatchlist = async () => {
             setIsLoading(true);
             try {
-                const q = query(
-                    collection(db, `users/${auth.currentUser.uid}/watchlist`),
-                    orderBy('timestamp'),
-                    limit(itemsPerRequest)
-                );
+                const coll = collection(db, `users/${auth.currentUser.uid}/watchlist`);
+                const q = filters.genre
+                    ? query(
+                          coll,
+                          where('genres', 'array-contains', filters.genre),
+                          orderBy(...filters.order),
+                          limit(filters.limit)
+                      )
+                    : query(coll, orderBy(...filters.order), limit(filters.limit));
                 const querySnapshot = await getDocs(q);
                 setWatchlist(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
                 setLastItem(
-                    querySnapshot.size === itemsPerRequest
+                    querySnapshot.size === filters.limit
                         ? querySnapshot.docs[querySnapshot.docs.length - 1]
                         : null
                 );
@@ -32,24 +40,33 @@ const Watchlist = () => {
             setIsLoading(false);
         };
         getWatchlist();
-    }, []);
+    }, [filters]);
 
     const handleClick = async () => {
         setIsLoading(true);
         try {
-            const q = query(
-                collection(db, `users/${auth.currentUser.uid}/watchlist`),
-                orderBy('timestamp'),
-                startAfter(lastItem),
-                limit(itemsPerRequest)
-            );
+            const coll = collection(db, `users/${auth.currentUser.uid}/watchlist`);
+            const q = filters.genre
+                ? query(
+                      coll,
+                      where('genres', 'array-contains', filters.genre),
+                      orderBy(...filters.order),
+                      startAfter(lastItem),
+                      limit(filters.limit)
+                  )
+                : query(
+                      coll,
+                      orderBy(...filters.order),
+                      startAfter(lastItem),
+                      limit(filters.limit)
+                  );
             const querySnapshot = await getDocs(q);
             setWatchlist([
                 ...watchlist,
                 ...querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
             ]);
             setLastItem(
-                querySnapshot.size === itemsPerRequest
+                querySnapshot.size === filters.limit
                     ? querySnapshot.docs[querySnapshot.docs.length - 1]
                     : null
             );
@@ -75,6 +92,7 @@ const Watchlist = () => {
             <Title>
                 your <span>watchlist</span>
             </Title>
+            <WatchlistFilters isLoading={isLoading} filters={filters} setFilters={setFilters} />
             <MovieList items={watchlist} />
             {lastItem && (
                 <div style={{ textAlign: 'center', marginTop: '4rem' }}>

@@ -86,7 +86,7 @@ const MovieDetail = () => {
                     find images
                 </Button>
             </div>
-            {user && <AddToWatchlist data={{ uid: user.uid, id, title, poster_path }} />}
+            {user && <AddToWatchlist data={{ uid: user.uid, ...movie }} />}
             {collection && <ScrollRow title='in collection' url={`/collection/${collection.id}`} />}
             <ScrollRow title='recommended movies' url={`/movie/${id}/recommendations`} />
             <ScrollRow title='similar movies' url={`/movie/${id}/similar`} />

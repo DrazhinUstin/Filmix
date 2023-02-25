@@ -125,6 +125,41 @@ export const tmdbRuntimeOptions = [
     },
 ];
 
+export const watchlistOrderOptions = [
+    {
+        id: 1,
+        value: ['timestamp', 'desc'],
+        name: 'Time of addition (desc)',
+    },
+    {
+        id: 2,
+        value: ['timestamp'],
+        name: 'Time of addition (asc)',
+    },
+    {
+        id: 3,
+        value: ['title', 'desc'],
+        name: 'Title (desc)',
+    },
+    {
+        id: 4,
+        value: ['title'],
+        name: 'Title (asc)',
+    },
+    {
+        id: 5,
+        value: ['release_date', 'desc'],
+        name: 'Release date (desc)',
+    },
+    {
+        id: 6,
+        value: ['release_date'],
+        name: 'Release date (asc)',
+    },
+];
+
+export const watchlistLimitOptions = [5, 10, 15, 20, 25];
+
 export const faqList = [
     {
         id: 1,
