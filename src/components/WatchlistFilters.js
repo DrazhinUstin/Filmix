@@ -1,17 +1,19 @@
 import useFetch from '../hooks/useFetch';
+import { useWatchlistContext } from '../contexts/WatchlistContext';
 import { FormField, RedButton } from './';
 import { watchlistOrderOptions, watchlistLimitOptions } from '../utils/localData';
 import styled from 'styled-components';
 
-const WatchlistFilters = ({ filters, setFilters, isLoading }) => {
+const WatchlistFilters = ({ isLoading }) => {
     const { data } = useFetch('/genre/movie/list');
+    const { filters, dispatch } = useWatchlistContext();
 
     const handleChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         if (name === 'order') value = JSON.parse(value);
         if (name === 'limit') value = +value;
-        setFilters({ ...filters, [name]: value });
+        dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });
     };
 
     return (
@@ -56,7 +58,7 @@ const WatchlistFilters = ({ filters, setFilters, isLoading }) => {
             </FormField>
             <RedButton
                 type='button'
-                onClick={() => setFilters({ ...filters, genre: '' })}
+                onClick={() => dispatch({ type: 'RESTORE_FILTERS' })}
                 disabled={isLoading}
             >
                 clear filters

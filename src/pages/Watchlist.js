@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { query, collection, where, orderBy, limit, startAfter, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
+import { useWatchlistContext } from '../contexts/WatchlistContext';
 import { Loader, Error, Title, WatchlistFilters, MovieList, Button } from '../components';
 
 const Watchlist = () => {
@@ -8,29 +9,24 @@ const Watchlist = () => {
     const [error, setError] = useState(null);
     const [watchlist, setWatchlist] = useState([]);
     const [lastItem, setLastItem] = useState(null);
-    const [filters, setFilters] = useState({
-        genre: '',
-        order: ['timestamp', 'desc'],
-        limit: 10,
-    });
+    const {
+        filters: { genre, order, limit: reqLimit },
+    } = useWatchlistContext();
 
     useEffect(() => {
         const getWatchlist = async () => {
             setIsLoading(true);
             try {
-                const coll = collection(db, `users/${auth.currentUser.uid}/watchlist`);
-                const q = filters.genre
-                    ? query(
-                          coll,
-                          where('genres', 'array-contains', filters.genre),
-                          orderBy(...filters.order),
-                          limit(filters.limit)
-                      )
-                    : query(coll, orderBy(...filters.order), limit(filters.limit));
+                let q = query(
+                    collection(db, `users/${auth.currentUser.uid}/watchlist`),
+                    orderBy(...order),
+                    limit(reqLimit)
+                );
+                if (genre) q = query(q, where('genres', 'array-contains', genre));
                 const querySnapshot = await getDocs(q);
                 setWatchlist(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
                 setLastItem(
-                    querySnapshot.size === filters.limit
+                    querySnapshot.size === reqLimit
                         ? querySnapshot.docs[querySnapshot.docs.length - 1]
                         : null
                 );
@@ -40,33 +36,25 @@ const Watchlist = () => {
             setIsLoading(false);
         };
         getWatchlist();
-    }, [filters]);
+    }, [genre, order, reqLimit]);
 
     const handleClick = async () => {
         setIsLoading(true);
         try {
-            const coll = collection(db, `users/${auth.currentUser.uid}/watchlist`);
-            const q = filters.genre
-                ? query(
-                      coll,
-                      where('genres', 'array-contains', filters.genre),
-                      orderBy(...filters.order),
-                      startAfter(lastItem),
-                      limit(filters.limit)
-                  )
-                : query(
-                      coll,
-                      orderBy(...filters.order),
-                      startAfter(lastItem),
-                      limit(filters.limit)
-                  );
+            let q = query(
+                collection(db, `users/${auth.currentUser.uid}/watchlist`),
+                orderBy(...order),
+                startAfter(lastItem),
+                limit(reqLimit)
+            );
+            if (genre) q = query(q, where('genres', 'array-contains', genre));
             const querySnapshot = await getDocs(q);
             setWatchlist([
                 ...watchlist,
                 ...querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
             ]);
             setLastItem(
-                querySnapshot.size === filters.limit
+                querySnapshot.size === reqLimit
                     ? querySnapshot.docs[querySnapshot.docs.length - 1]
                     : null
             );
@@ -78,21 +66,12 @@ const Watchlist = () => {
 
     if (error) return <Error err={error} link fullScreen />;
 
-    if (!isLoading && !watchlist.length)
-        return (
-            <Error
-                title='your watchlist is empty'
-                link={{ title: 'fill it now', path: '/movies' }}
-                fullScreen
-            />
-        );
-
     return (
         <main className='main'>
             <Title>
                 your <span>watchlist</span>
             </Title>
-            <WatchlistFilters isLoading={isLoading} filters={filters} setFilters={setFilters} />
+            <WatchlistFilters isLoading={isLoading} />
             <MovieList items={watchlist} />
             {lastItem && (
                 <div style={{ textAlign: 'center', marginTop: '4rem' }}>
@@ -102,6 +81,12 @@ const Watchlist = () => {
                 </div>
             )}
             {isLoading && <Loader />}
+            {!isLoading && !watchlist.length && (
+                <Error
+                    title='no items were found'
+                    link={{ title: 'fill watchlist', path: '/movies' }}
+                />
+            )}
         </main>
     );
 };
