@@ -42,6 +42,11 @@ export const profilePageLinks = [
         path: 'update_password',
         title: 'update password',
     },
+    {
+        id: 5,
+        path: 'watchlist',
+        title: 'watchlist',
+    },
 ];
 
 export const tmdbSortOptions = [

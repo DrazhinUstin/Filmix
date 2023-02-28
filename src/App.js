@@ -14,6 +14,7 @@ import {
     EditProfile,
     UpdateEmail,
     UpdatePassword,
+    WatchlistDetail,
     Watchlist,
     NotFound,
 } from './pages';
@@ -41,6 +42,7 @@ const App = () => {
                         <Route path='edit_profile' element={<EditProfile />} />
                         <Route path='update_email' element={<UpdateEmail />} />
                         <Route path='update_password' element={<UpdatePassword />} />
+                        <Route path='watchlist' element={<WatchlistDetail />} />
                     </Route>
                     <Route path='watchlist' element={<Watchlist />} />
                 </Route>
