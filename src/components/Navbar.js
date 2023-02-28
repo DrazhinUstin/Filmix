@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { FaUserCheck, FaUserPlus, FaSearch } from 'react-icons/fa';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { navbarLinks } from '../utils/localData';
+import logo from '../assets/images/logo.png';
 import { breakpoints } from '../GlobalStyles';
 import styled, { css } from 'styled-components/macro';
 
@@ -37,7 +38,9 @@ const Navbar = () => {
                 <button className='menu-toggle-btn' onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <span></span>
                 </button>
-                <h2 className='logo'>FILMIX</h2>
+                <Link to='/' onClick={() => setIsMenuOpen(false)}>
+                    <img src={logo} alt='logo' />
+                </Link>
                 <ul className='menu'>
                     {navbarLinks.map(({ id, path, title }) => {
                         if (!user && title === 'watchlist') return null;
@@ -94,9 +97,9 @@ const Wrapper = styled.nav`
         justify-content: space-between;
         align-items: center;
     }
-    .logo {
-        color: var(--clr-green);
-        font-size: 2.5rem;
+    img[alt='logo'] {
+        width: 152px;
+        height: 43px;
     }
     .menu {
         display: flex;
