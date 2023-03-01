@@ -96,10 +96,7 @@ const MovieDetail = () => {
 
 export default MovieDetail;
 
-const Wrapper = styled.main`
-    max-width: var(--max-content-width);
-    width: 90vw;
-    margin: calc(var(--navbar-height) + 4rem) auto 4rem;
+const Wrapper = styled.main.attrs(() => ({ className: 'main' }))`
     & > .info {
         display: grid;
         grid-template-columns: 1fr 1fr;

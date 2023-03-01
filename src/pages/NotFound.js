@@ -21,7 +21,7 @@ const NotFound = () => {
 export default NotFound;
 
 const Wrapper = styled.section`
-    height: 100vh;
+    min-height: var(--fullscreen);
     display: grid;
     place-items: center;
     text-align: center;

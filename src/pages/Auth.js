@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import AuthForm from '../components/AuthForm';
-import styled from 'styled-components/macro';
+import 'styled-components/macro';
 
 const Auth = () => {
     const { user } = useGlobalContext();
@@ -15,7 +15,7 @@ const Auth = () => {
     return (
         <main
             css={`
-                height: 100vh;
+                min-height: var(--fullscreen);
                 display: grid;
                 place-items: center;
             `}

@@ -18,7 +18,7 @@ import {
     Watchlist,
     NotFound,
 } from './pages';
-import { Navbar, SearchForm } from './components';
+import { Navbar, SearchForm, Footer } from './components';
 
 const App = () => {
     return (
@@ -48,6 +48,7 @@ const App = () => {
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>
+            <Footer />
         </Router>
     );
 };

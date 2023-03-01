@@ -36,6 +36,7 @@ const Wrapper = styled.section`
         `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1) 90%), url(https://image.tmdb.org/t/p/original${props.url}) no-repeat center/cover`};
     display: grid;
     align-items: center;
+    margin-top: calc(var(--navbar-height) * -1);
     article {
         max-width: 600px;
         h1 {

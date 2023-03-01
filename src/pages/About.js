@@ -25,7 +25,7 @@ const About = () => {
 
 export default About;
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
     .hero {
         height: 20rem;
         display: grid;

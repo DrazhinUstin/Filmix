@@ -55,7 +55,7 @@ const ResetPassword = () => {
 export default ResetPassword;
 
 const Wrapper = styled.main`
-    height: 100vh;
+    min-height: var(--fullscreen);
     display: grid;
     place-items: center;
     form {

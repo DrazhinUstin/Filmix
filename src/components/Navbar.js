@@ -79,7 +79,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     height: var(--navbar-height);

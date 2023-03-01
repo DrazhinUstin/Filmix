@@ -26,7 +26,7 @@ const Wrapper = styled.section`
     ${(props) =>
         props.fullScreen &&
         css`
-            height: 100vh;
+            min-height: var(--fullscreen);
             display: flex;
             flex-direction: column;
             justify-content: center;

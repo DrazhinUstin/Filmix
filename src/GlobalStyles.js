@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
         --spacing: 0.1rem;
         --max-content-width: 1200px;
         --navbar-height: 5rem;
+        --footer-height: 5rem;
+        --fullscreen: calc(100vh - var(--navbar-height) - var(--footer-height));
         --radius: 0.25rem;
         --trans-ease: all 0.4s ease;
     }
@@ -98,8 +100,9 @@ const GlobalStyle = createGlobalStyle`
 
     .main {
         max-width: var(--max-content-width);
+        min-height: calc(var(--fullscreen) - 8rem);
         width: 90vw;
-        margin: calc(var(--navbar-height) + 4rem) auto 4rem;
+        margin: 4rem auto;
     }
 
     .section-center {

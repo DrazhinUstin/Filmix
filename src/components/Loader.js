@@ -16,7 +16,7 @@ const Wrapper = styled.section`
     ${(props) =>
         props.fullScreen &&
         css`
-            height: 100vh;
+            min-height: var(--fullscreen);
             display: grid;
             place-items: center;
             margin: 0;
