@@ -5,6 +5,7 @@ import {
     MovieDetail,
     MovieCredits,
     MovieImages,
+    PersonDetail,
     Search,
     About,
     Auth,
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path='credits' element={<MovieCredits />} />
                     <Route path='images' element={<MovieImages />} />
                 </Route>
+                <Route path='people/:id' element={<PersonDetail />} />
                 <Route path='search/:q' element={<Search />} />
                 <Route path='about' element={<About />} />
                 <Route path='auth' element={<Auth />} />

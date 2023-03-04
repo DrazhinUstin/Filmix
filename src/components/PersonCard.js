@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const PersonCard = ({ item: { id, name, character, job, profile_path } }) => {
     return (
-        <Link to={`people/${id}`}>
+        <Link to={`/people/${id}`}>
             <Wrapper>
                 <img
                     src={

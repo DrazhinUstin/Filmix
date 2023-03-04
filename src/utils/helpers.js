@@ -3,6 +3,16 @@ export const cutString = (str, maxLength = 150) => {
     return `${str.slice(0, maxLength - 3)}...`;
 };
 
+export const formatDate = (dateStr) => {
+    const [year, month, day] = dateStr.split('-');
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }).format(date);
+};
+
 export const formatRuntime = (timeInMin) => {
     const h = Math.floor(timeInMin / 60);
     const m = timeInMin % (h * 60 || 60);
