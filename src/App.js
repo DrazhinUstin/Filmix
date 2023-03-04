@@ -3,6 +3,7 @@ import {
     Home,
     Movies,
     MovieDetail,
+    MovieCredits,
     MovieImages,
     Search,
     About,
@@ -30,6 +31,7 @@ const App = () => {
                 <Route path='movies' element={<Movies />} />
                 <Route path='movies/:id' element={<Outlet />}>
                     <Route index element={<MovieDetail />} />
+                    <Route path='credits' element={<MovieCredits />} />
                     <Route path='images' element={<MovieImages />} />
                 </Route>
                 <Route path='search/:q' element={<Search />} />

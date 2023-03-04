@@ -1,5 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
-import { Loader, Error, Title, Button, AddToWatchlist, ScrollRow } from '../components';
+import {
+    Loader,
+    Error,
+    Title,
+    AltTitle,
+    MovieTopCast,
+    Button,
+    AddToWatchlist,
+    ScrollRow,
+} from '../components';
 import useFetch from '../hooks/useFetch';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { formatRuntime, formatToCurrency } from '../utils/helpers';
@@ -75,14 +84,15 @@ const MovieDetail = () => {
                 </ul>
             </article>
             {overview && (
-                <div className='extra-info'>
-                    <h2>Storyline:</h2>
-                    <p>{overview}</p>
-                </div>
+                <article className='section-sm'>
+                    <AltTitle>Storyline:</AltTitle>
+                    <p style={{ fontSize: '1.2rem' }}>{overview}</p>
+                </article>
             )}
-            <div className='extra-info'>
-                <h2>movie images:</h2>
-                <Button margin='1rem 0 0' as={Link} to='images'>
+            <MovieTopCast id={id} />
+            <div className='section-sm'>
+                <AltTitle>movie images:</AltTitle>
+                <Button as={Link} to='images'>
                     find images
                 </Button>
             </div>
@@ -123,15 +133,6 @@ const Wrapper = styled.main.attrs(() => ({ className: 'main' }))`
         }
         @media ${breakpoints.md} {
             grid-template-columns: unset;
-        }
-    }
-    .extra-info {
-        margin-top: 2rem;
-        font-size: 1.2rem;
-        h2 {
-            margin-bottom: 1rem;
-            padding-left: 0.5rem;
-            border-left: 3px solid var(--clr-green);
         }
     }
 `;

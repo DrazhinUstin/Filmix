@@ -115,6 +115,10 @@ const GlobalStyle = createGlobalStyle`
         margin: 4rem auto;
     }
 
+    .section-sm {
+        margin: 2rem 0;
+    }
+
     .react-horizontal-scrolling-menu--scroll-container {
         gap: 1rem;
         -ms-overflow-style: none;

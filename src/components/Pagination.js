@@ -2,9 +2,9 @@ import ReactPaginate from 'react-paginate';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
-const Pagination = ({ pageCount, handlePageClick, forcePage }) => {
+const Pagination = ({ pageCount, handlePageClick, forcePage, marginTop }) => {
     return (
-        <Wrapper>
+        <Wrapper marginTop={marginTop}>
             <ReactPaginate
                 pageCount={pageCount > 500 ? 500 : pageCount}
                 onPageChange={handlePageClick}
@@ -28,7 +28,7 @@ const Pagination = ({ pageCount, handlePageClick, forcePage }) => {
 export default Pagination;
 
 const Wrapper = styled.section`
-    margin-top: 4rem;
+    margin-top: ${(props) => props.marginTop || '4rem'};
     .pagination {
         display: flex;
         flex-flow: row wrap;

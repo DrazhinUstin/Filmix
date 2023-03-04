@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import usePreventBodyScroll from '../hooks/usePreventBodyScroll';
-import MovieCard from './MovieCard';
+import { MovieCard, PersonCard } from './';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -12,7 +12,11 @@ const HorizontalMenu = ({ items }) => {
         <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
             <ScrollMenu onWheel={onWheel} Footer={Arrows}>
                 {items.map((item) => {
-                    return <MovieCard key={item.id} item={item} />;
+                    return item.title ? (
+                        <MovieCard key={item.id} item={item} />
+                    ) : (
+                        <PersonCard key={item.id} item={item} />
+                    );
                 })}
             </ScrollMenu>
         </div>
