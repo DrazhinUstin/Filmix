@@ -3,7 +3,7 @@ import { Pagination, ImageViewer } from './';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const ImageGallery = ({ items, itemsPerPage = 20 }) => {
+const ImageGallery = ({ items, itemsPerPage = 20, imgSizes = { sm: 'w300', lg: 'w1280' } }) => {
     const [itemsOffset, setItemsOffset] = useState(0);
     const currentItems = items.slice(itemsOffset, itemsOffset + itemsPerPage);
     const [index, setIndex] = useState(0);
@@ -17,7 +17,7 @@ const ImageGallery = ({ items, itemsPerPage = 20 }) => {
                 {currentItems.map(({ file_path }, i) => (
                     <img
                         key={i}
-                        src={`https://image.tmdb.org/t/p/w300${file_path}`}
+                        src={`https://image.tmdb.org/t/p/${imgSizes.sm}${file_path}`}
                         alt='backdrop'
                         onClick={() => {
                             setIndex(itemsOffset + i);
@@ -33,7 +33,12 @@ const ImageGallery = ({ items, itemsPerPage = 20 }) => {
                 />
             )}
             {isViewerOpen && (
-                <ImageViewer items={items} index={index} setIsViewerOpen={setIsViewerOpen} />
+                <ImageViewer
+                    items={items}
+                    index={index}
+                    setIsViewerOpen={setIsViewerOpen}
+                    imgSize={imgSizes.lg}
+                />
             )}
         </Wrapper>
     );

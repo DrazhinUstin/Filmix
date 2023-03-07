@@ -6,6 +6,7 @@ import {
     MovieCredits,
     MovieImages,
     PersonDetail,
+    PersonImages,
     Search,
     About,
     Auth,
@@ -21,7 +22,6 @@ import {
     NotFound,
 } from './pages';
 import { Navbar, SearchForm, Footer } from './components';
-import PersonCredits from './pages/PersonCredits';
 
 const App = () => {
     return (
@@ -36,8 +36,9 @@ const App = () => {
                     <Route path='credits' element={<MovieCredits />} />
                     <Route path='images' element={<MovieImages />} />
                 </Route>
-                <Route path='people/:id' element={<PersonDetail />}>
-                    <Route index element={<PersonCredits />} />
+                <Route path='people/:id' element={<Outlet />}>
+                    <Route index element={<PersonDetail />} />
+                    <Route path='images' element={<PersonImages />} />
                 </Route>
                 <Route path='search/:q' element={<Search />} />
                 <Route path='about' element={<About />} />

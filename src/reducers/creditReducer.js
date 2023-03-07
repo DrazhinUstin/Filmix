@@ -1,4 +1,4 @@
-import { initialState } from '../pages/PersonCredits';
+import { initialState } from '../components/PersonCredits';
 import { dynamicSort } from '../utils/helpers';
 
 const reducer = (state, action) => {

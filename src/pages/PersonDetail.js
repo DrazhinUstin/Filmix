@@ -1,6 +1,14 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, AltTitle, LongParagraph } from '../components';
+import {
+    Loader,
+    Error,
+    Title,
+    AltTitle,
+    LongParagraph,
+    Button,
+    PersonCredits,
+} from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
 import { formatDate } from '../utils/helpers';
 import { breakpoints } from '../GlobalStyles';
@@ -62,7 +70,13 @@ const PersonDetail = () => {
                     <LongParagraph str={biography} fontSize='1.2rem' />
                 </article>
             )}
-            <Outlet />
+            <section className='section-sm'>
+                <AltTitle>media</AltTitle>
+                <Button as={Link} to='images'>
+                    open gallery
+                </Button>
+            </section>
+            <PersonCredits />
         </main>
     );
 };

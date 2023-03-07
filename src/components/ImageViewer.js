@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
-const ImageViewer = ({ items, index, setIsViewerOpen }) => {
+const ImageViewer = ({ items, index, setIsViewerOpen, imgSize = 'original' }) => {
     const [step, setStep] = useState(index);
     const { file_path } = items[step];
     return (
         <Wrapper>
-            <img src={`https://image.tmdb.org/t/p/w1280${file_path}`} alt='backdrop' />
+            <img src={`https://image.tmdb.org/t/p/${imgSize}${file_path}`} alt='backdrop' />
             <div className='counter'>
                 <button onClick={() => setIsViewerOpen(false)}>
                     <FaTimes />

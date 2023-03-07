@@ -12,6 +12,7 @@ export { default as Pagination } from './Pagination';
 export { default as MovieCard } from './MovieCard';
 export { default as PersonCard } from './PersonCard';
 export { default as MovieTopCast } from './MovieTopCast';
+export { default as PersonCredits } from './PersonCredits';
 export { default as ImageGallery } from './ImageGallery';
 export { default as ImageViewer } from './ImageViewer';
 export { default as AddToWatchlist } from './AddToWatchlist';

@@ -2,7 +2,7 @@ import { useReducer, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import reducer from '../reducers/creditReducer';
-import { Loader, Error, AltTitle, CreditFilters, MovieList, Pagination } from '../components';
+import { Loader, Error, AltTitle, CreditFilters, MovieList, Pagination } from '.';
 
 export const initialState = {
     credits: {},

@@ -4,6 +4,7 @@ export { default as MovieDetail } from './MovieDetail';
 export { default as MovieCredits } from './MovieCredits';
 export { default as MovieImages } from './MovieImages';
 export { default as PersonDetail } from './PersonDetail';
+export { default as PersonImages } from './PersonImages';
 export { default as Search } from './Search';
 export { default as About } from './About';
 export { default as Auth } from './Auth';
