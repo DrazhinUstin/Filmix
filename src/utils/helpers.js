@@ -1,5 +1,5 @@
 export const cutString = (str, maxLength = 150) => {
-    if (str <= maxLength) return str;
+    if (str.length <= maxLength) return str;
     return `${str.slice(0, maxLength - 3)}...`;
 };
 
@@ -39,7 +39,9 @@ export const dynamicSort = (prop) => {
         prop = prop.slice(1);
     }
     return (a, b) => {
-        const result = a[prop] < b[prop] ? -1 : a[prop] > b[prop] ? 1 : 0;
+        const valueA = typeof a[prop] === 'string' ? a[prop].toUpperCase() : a[prop];
+        const valueB = typeof b[prop] === 'string' ? b[prop].toUpperCase() : b[prop];
+        const result = valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
         return result * order;
     };
 };

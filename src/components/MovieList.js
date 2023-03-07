@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const MovieList = ({ items }) => {
     return (
         <Wrapper>
-            {items.map((item) => (
-                <MovieCard key={item.id} item={item} />
+            {items.map((item, index) => (
+                <MovieCard key={index} item={item} />
             ))}
         </Wrapper>
     );

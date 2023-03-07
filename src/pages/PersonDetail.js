@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Loader, Error, Title, AltTitle, LongParagraph } from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
@@ -62,6 +62,7 @@ const PersonDetail = () => {
                     <LongParagraph str={biography} fontSize='1.2rem' />
                 </article>
             )}
+            <Outlet />
         </main>
     );
 };
