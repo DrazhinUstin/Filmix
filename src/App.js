@@ -5,6 +5,7 @@ import {
     MovieDetail,
     MovieCredits,
     MovieImages,
+    People,
     PersonDetail,
     PersonImages,
     Search,
@@ -36,6 +37,7 @@ const App = () => {
                     <Route path='credits' element={<MovieCredits />} />
                     <Route path='images' element={<MovieImages />} />
                 </Route>
+                <Route path='people' element={<People />} />
                 <Route path='people/:id' element={<Outlet />}>
                     <Route index element={<PersonDetail />} />
                     <Route path='images' element={<PersonImages />} />

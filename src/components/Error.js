@@ -6,7 +6,7 @@ const Error = ({ title, err, link, fullScreen }) => {
     return (
         <Wrapper fullScreen={fullScreen}>
             <Title>{title || 'there was an error'}</Title>
-            {err && <p>{err.status_message || err.message}</p>}
+            {err && <p>{err.status_message || err.message || err.errors?.[0]}</p>}
             {link && (
                 <Button to={link.path || '/'} as={Link} $withBorder>
                     {link.title || 'back home'}

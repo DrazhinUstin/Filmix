@@ -4,6 +4,7 @@ import {
     Error,
     Title,
     AltTitle,
+    LongParagraph,
     MovieTopCast,
     Button,
     AddToWatchlist,
@@ -86,14 +87,14 @@ const MovieDetail = () => {
             {overview && (
                 <article className='section-sm'>
                     <AltTitle>Storyline:</AltTitle>
-                    <p style={{ fontSize: '1.2rem' }}>{overview}</p>
+                    <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
             <MovieTopCast id={id} />
             <div className='section-sm'>
-                <AltTitle>movie images:</AltTitle>
+                <AltTitle>media:</AltTitle>
                 <Button as={Link} to='images'>
-                    find images
+                    open gallery
                 </Button>
             </div>
             {user && <AddToWatchlist data={{ uid: user.uid, ...movie }} />}

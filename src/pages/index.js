@@ -3,6 +3,7 @@ export { default as Movies } from './Movies';
 export { default as MovieDetail } from './MovieDetail';
 export { default as MovieCredits } from './MovieCredits';
 export { default as MovieImages } from './MovieImages';
+export { default as People } from './People';
 export { default as PersonDetail } from './PersonDetail';
 export { default as PersonImages } from './PersonImages';
 export { default as Search } from './Search';

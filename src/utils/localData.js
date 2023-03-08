@@ -11,11 +11,16 @@ export const navbarLinks = [
     },
     {
         id: 3,
+        path: '/people',
+        title: 'people',
+    },
+    {
+        id: 4,
         path: '/about',
         title: 'about',
     },
     {
-        id: 4,
+        id: 5,
         path: '/watchlist',
         title: 'watchlist',
     },

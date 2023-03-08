@@ -8,7 +8,7 @@ const ScrollRow = ({ title, altTitle, url, className = 'section section-center' 
 
     if (error) return <Error title={`failed to fetch ${url}`} err={error} />;
 
-    const items = data.results || data.parts || data.cast;
+    const items = data.results || data.parts;
     return (
         items.length > 0 && (
             <section className={className}>

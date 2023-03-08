@@ -4,8 +4,8 @@ const Home = () => {
     return (
         <main>
             <Hero />
+            <ScrollRow title='trending' url='trending/movie/day' />
             <ScrollRow title='most popular' url='/movie/popular' />
-            <ScrollRow title='top rated' url='/movie/top_rated' />
             <ScrollRow title='upcoming' url='/movie/upcoming' />
         </main>
     );
