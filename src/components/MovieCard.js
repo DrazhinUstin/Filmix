@@ -4,17 +4,16 @@ import defaultPoster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const MovieCard = ({ item }) => {
-    const { id, title, poster_path } = item;
+const MovieCard = ({ item: { id, title, name, poster_path } }) => {
     return (
         <Wrapper>
             <img
                 src={poster_path ? `https://image.tmdb.org/t/p/w342${poster_path}` : defaultPoster}
-                alt={title}
+                alt={title || name}
             />
             <div className='info'>
-                <h4>{title}</h4>
-                <Button as={Link} to={`/movies/${id}`}>
+                <h4>{title || name}</h4>
+                <Button as={Link} to={`/${title ? 'movies' : 'tv'}/${id}`}>
                     details
                 </Button>
             </div>

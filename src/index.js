@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import GlobalStyle from './GlobalStyles';
 import GlobalProvider from './contexts/GlobalContext';
 import MoviesProvider from './contexts/MoviesContext';
+import TVShowsProvider from './contexts/TVShowsContext';
 import PeopleProvider from './contexts/PeopleContext';
 import WatchlistProvider from './contexts/WatchlistContext';
 import App from './App';
@@ -13,11 +14,13 @@ root.render(
         <GlobalStyle />
         <GlobalProvider>
             <MoviesProvider>
-                <PeopleProvider>
-                    <WatchlistProvider>
-                        <App />
-                    </WatchlistProvider>
-                </PeopleProvider>
+                <TVShowsProvider>
+                    <PeopleProvider>
+                        <WatchlistProvider>
+                            <App />
+                        </WatchlistProvider>
+                    </PeopleProvider>
+                </TVShowsProvider>
             </MoviesProvider>
         </GlobalProvider>
     </React.StrictMode>

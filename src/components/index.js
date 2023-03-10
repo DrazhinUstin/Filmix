@@ -5,6 +5,7 @@ export { default as Hero } from './Hero';
 export { default as ScrollRow } from './ScrollRow';
 export { default as HorizontalMenu } from './HorizontalMenu';
 export { default as MovieFilters } from './MovieFilters';
+export { default as TVShowFilters } from './TVShowFilters';
 export { default as CreditFilters } from './CreditFilters';
 export { default as PeopleSearch } from './PeopleSearch';
 export { default as MovieList } from './MovieList';

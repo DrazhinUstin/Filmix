@@ -11,16 +11,21 @@ export const navbarLinks = [
     },
     {
         id: 3,
+        path: '/tv',
+        title: 'TV shows',
+    },
+    {
+        id: 4,
         path: '/people',
         title: 'people',
     },
     {
-        id: 4,
+        id: 5,
         path: '/about',
         title: 'about',
     },
     {
-        id: 5,
+        id: 6,
         path: '/watchlist',
         title: 'watchlist',
     },
@@ -127,6 +132,67 @@ export const tmdbSortOptions = [
         id: 8,
         value: 'original_title.asc',
         name: 'Original title (asc)',
+    },
+];
+
+export const tmdbTVSortOptions = [
+    {
+        id: 1,
+        value: 'popularity.desc',
+        name: 'Popularity (desc)',
+    },
+    {
+        id: 2,
+        value: 'popularity.asc',
+        name: 'Popularity (asc)',
+    },
+    {
+        id: 3,
+        value: 'first_air_date.desc',
+        name: 'First air date (desc)',
+    },
+    {
+        id: 4,
+        value: 'first_air_date.asc',
+        name: 'First air date (asc)',
+    },
+];
+
+export const tmdbTVStatusOptions = [
+    {
+        id: 1,
+        value: '',
+        name: 'All',
+    },
+    {
+        id: 2,
+        value: 0,
+        name: 'Returning series',
+    },
+    {
+        id: 3,
+        value: 1,
+        name: 'Planned',
+    },
+    {
+        id: 4,
+        value: 2,
+        name: 'In production',
+    },
+    {
+        id: 5,
+        value: 3,
+        name: 'Ended',
+    },
+    {
+        id: 6,
+        value: 4,
+        name: 'Cancelled',
+    },
+    {
+        id: 7,
+        value: 5,
+        name: 'Pilot',
     },
 ];
 
