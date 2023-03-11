@@ -11,11 +11,11 @@ const HorizontalMenu = ({ items }) => {
     return (
         <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
             <ScrollMenu onWheel={onWheel} Footer={Arrows}>
-                {items.map((item) => {
-                    return item.title ? (
-                        <MovieCard key={item.id} item={item} />
+                {items.map((item, index) => {
+                    return item.poster_path !== undefined ? (
+                        <MovieCard key={index} item={item} />
                     ) : (
-                        <PersonCard key={item.id} item={item} />
+                        <PersonCard key={index} item={item} />
                     );
                 })}
             </ScrollMenu>

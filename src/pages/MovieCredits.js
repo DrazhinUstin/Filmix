@@ -3,9 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Loader, Error, Title, AltTitle, PersonList, Pagination, Button } from '../components';
 
-const MovieCredits = ({ itemsPerPage = 20 }) => {
+const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) => {
     const { id } = useParams();
-    const { isLoading, error, data } = useFetch(`/movie/${id}/credits`);
+    const { isLoading, error, data } = useFetch(`/${urlPart}/${id}/credits`);
     const [offset, setOffset] = useState(0);
 
     if (isLoading) return <Loader fullScreen />;
@@ -16,7 +16,7 @@ const MovieCredits = ({ itemsPerPage = 20 }) => {
         return (
             <Error
                 title='credits were not found'
-                link={{ title: 'back to movie', path: '..' }}
+                link={{ title: `back to ${name}`, path: '..' }}
                 fullScreen
             />
         );
@@ -25,7 +25,7 @@ const MovieCredits = ({ itemsPerPage = 20 }) => {
     return (
         <main className='main'>
             <Title>
-                movie <span>credits</span>
+                {name} <span>credits</span>
             </Title>
             {director && (
                 <section className='section-sm'>
@@ -47,7 +47,7 @@ const MovieCredits = ({ itemsPerPage = 20 }) => {
                 </section>
             )}
             <Button as={Link} to='..' margin='2rem 0 0'>
-                back to movie
+                back to {name}
             </Button>
         </main>
     );

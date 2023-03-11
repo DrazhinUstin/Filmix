@@ -4,6 +4,7 @@ export { default as MovieDetail } from './MovieDetail';
 export { default as MovieCredits } from './MovieCredits';
 export { default as MovieImages } from './MovieImages';
 export { default as TVShows } from './TVShows';
+export { default as TVShowDetail } from './TVShowDetail';
 export { default as People } from './People';
 export { default as PersonDetail } from './PersonDetail';
 export { default as PersonImages } from './PersonImages';

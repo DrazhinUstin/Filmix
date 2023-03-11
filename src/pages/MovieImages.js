@@ -2,9 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { Loader, Error, Title, ImageGallery, Button } from '../components';
 import useFetch from '../hooks/useFetch';
 
-const MovieImages = () => {
+const MovieImages = ({ urlPart = 'movie', name = 'movie' }) => {
     const { id } = useParams();
-    const { isLoading, error, data } = useFetch(`/movie/${id}/images`);
+    const { isLoading, error, data } = useFetch(`/${urlPart}/${id}/images`);
 
     if (isLoading) return <Loader fullScreen />;
 
@@ -14,7 +14,7 @@ const MovieImages = () => {
         return (
             <Error
                 title='images were not found'
-                link={{ title: 'back to movie', path: '..' }}
+                link={{ title: `back to ${name}`, path: '..' }}
                 fullScreen
             />
         );
@@ -26,7 +26,7 @@ const MovieImages = () => {
             </Title>
             <ImageGallery items={data.backdrops} />
             <Button margin='4rem 0 0' as={Link} to='..'>
-                back to movie
+                back to {name}
             </Button>
         </main>
     );

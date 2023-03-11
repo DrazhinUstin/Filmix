@@ -6,6 +6,7 @@ import {
     MovieCredits,
     MovieImages,
     TVShows,
+    TVShowDetail,
     People,
     PersonDetail,
     PersonImages,
@@ -39,6 +40,11 @@ const App = () => {
                     <Route path='images' element={<MovieImages />} />
                 </Route>
                 <Route path='tv' element={<TVShows />} />
+                <Route path='tv/:id' element={<Outlet />}>
+                    <Route index element={<TVShowDetail />} />
+                    <Route path='credits' element={<MovieCredits urlPart='tv' name='TV show' />} />
+                    <Route path='images' element={<MovieImages urlPart='tv' name='TV show' />} />
+                </Route>
                 <Route path='people' element={<People />} />
                 <Route path='people/:id' element={<Outlet />}>
                     <Route index element={<PersonDetail />} />
