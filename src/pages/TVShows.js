@@ -1,6 +1,6 @@
 import { useTVShowsContext } from '../contexts/TVShowsContext';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, TVShowFilters, MovieList, Pagination } from '../components';
+import { Loader, Error, Title, TVShowFilters, GridView, Pagination } from '../components';
 
 const TVShows = () => {
     const {
@@ -29,7 +29,7 @@ const TVShows = () => {
             ) : (
                 <>
                     {data.results.length ? (
-                        <MovieList items={data.results} />
+                        <GridView items={data.results} />
                     ) : (
                         <p className='message'>There are no TV shows matching your search</p>
                     )}

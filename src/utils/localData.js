@@ -234,6 +234,29 @@ export const tmdbRuntimeOptions = [
     },
 ];
 
+export const tmdbSearchOptions = [
+    {
+        id: 1,
+        value: 'multi',
+        name: 'all',
+    },
+    {
+        id: 2,
+        value: 'movie',
+        name: 'movies',
+    },
+    {
+        id: 3,
+        value: 'tv',
+        name: 'TV',
+    },
+    {
+        id: 4,
+        value: 'person',
+        name: 'people',
+    },
+];
+
 export const watchlistOrderOptions = [
     {
         id: 1,

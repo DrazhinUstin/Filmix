@@ -2,7 +2,7 @@ import { useReducer, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import reducer from '../reducers/creditReducer';
-import { Loader, Error, AltTitle, CreditFilters, MovieList, Pagination } from '.';
+import { Loader, Error, AltTitle, CreditFilters, GridView, Pagination } from '.';
 
 export const initialState = {
     credits: {},
@@ -40,7 +40,7 @@ const PersonCredits = () => {
         <section className='section-sm'>
             <AltTitle>credits:</AltTitle>
             <CreditFilters credits={state.credits} filters={state.filters} dispatch={dispatch} />
-            <MovieList items={state.items.slice(state.offset, state.offset + state.itemsPerPage)} />
+            <GridView items={state.items.slice(state.offset, state.offset + state.itemsPerPage)} />
             {!state.items.length && (
                 <p className='message'>There are no movies matching these criteria</p>
             )}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, AltTitle, PersonList, Pagination, Button } from '../components';
+import { Loader, Error, Title, AltTitle, GridView, Pagination, Button } from '../components';
 
 const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) => {
     const { id } = useParams();
@@ -30,13 +30,13 @@ const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) 
             {director && (
                 <section className='section-sm'>
                     <AltTitle>crew:</AltTitle>
-                    <PersonList items={[director]} />
+                    <GridView items={[director]} />
                 </section>
             )}
             {data.cast.length > 0 && (
                 <section className='section-sm'>
                     <AltTitle>cast:</AltTitle>
-                    <PersonList items={data.cast.slice(offset, offset + itemsPerPage)} />
+                    <GridView items={data.cast.slice(offset, offset + itemsPerPage)} />
                     {data.cast.length > itemsPerPage && (
                         <Pagination
                             pageCount={Math.ceil(data.cast.length / itemsPerPage)}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { query, collection, where, orderBy, limit, startAfter, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useWatchlistContext } from '../contexts/WatchlistContext';
-import { Loader, Error, Title, WatchlistFilters, MovieList, Button } from '../components';
+import { Loader, Error, Title, WatchlistFilters, GridView, Button } from '../components';
 
 const Watchlist = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -72,7 +72,7 @@ const Watchlist = () => {
                 your <span>watchlist</span>
             </Title>
             <WatchlistFilters isLoading={isLoading} />
-            <MovieList items={watchlist} />
+            <GridView items={watchlist} />
             {lastItem && (
                 <div style={{ textAlign: 'center', marginTop: '4rem' }}>
                     <Button onClick={handleClick} disabled={isLoading}>

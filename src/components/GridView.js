@@ -1,19 +1,24 @@
-import PersonCard from '../components/PersonCard';
+import { MovieCard, PersonCard } from './';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const PersonList = ({ items }) => {
+const GridView = ({ items }) => {
     return (
         <Wrapper>
-            {items.map((item, index) => {
-                return <PersonCard key={index} item={item} />;
-            })}
+            {items.map((item, index) =>
+                item.poster_path !== undefined ? (
+                    <MovieCard key={index} item={item} />
+                ) : (
+                    <PersonCard key={index} item={item} />
+                )
+            )}
         </Wrapper>
     );
 };
-export default PersonList;
 
-const Wrapper = styled.div`
+export default GridView;
+
+const Wrapper = styled.section`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     align-items: flex-start;

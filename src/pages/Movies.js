@@ -1,6 +1,6 @@
 import { useMoviesContext } from '../contexts/MoviesContext';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, MovieFilters, MovieList, Pagination } from '../components';
+import { Loader, Error, Title, MovieFilters, GridView, Pagination } from '../components';
 
 const Movies = () => {
     const {
@@ -29,7 +29,7 @@ const Movies = () => {
             ) : (
                 <>
                     {data.results.length ? (
-                        <MovieList items={data.results} />
+                        <GridView items={data.results} />
                     ) : (
                         <p className='message'>No movies found for your search</p>
                     )}

@@ -1,6 +1,6 @@
 import { usePeopleContext } from '../contexts/PeopleContext';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, PeopleSearch, PersonList, Pagination } from '../components';
+import { Loader, Error, Title, PeopleSearch, GridView, Pagination } from '../components';
 
 const People = () => {
     const { query, page, dispatch } = usePeopleContext();
@@ -21,7 +21,7 @@ const People = () => {
             ) : (
                 <>
                     {data.results.length ? (
-                        <PersonList items={data.results} />
+                        <GridView items={data.results} />
                     ) : (
                         <p className='message'>There are no people matching your search</p>
                     )}
