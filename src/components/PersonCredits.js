@@ -6,10 +6,11 @@ import { Loader, Error, AltTitle, CreditFilters, GridView, Pagination } from '.'
 
 export const initialState = {
     credits: {},
+    media_type: '',
     filters: {
         department: '',
         genre: '',
-        sort: '-release_date',
+        sort: '',
     },
     items: [],
     offset: 0,
@@ -20,15 +21,15 @@ export const initialState = {
 
 const PersonCredits = () => {
     const { id } = useParams();
-    const { isLoading, error } = useFetch(`person/${id}/movie_credits`, (data) =>
+    const { isLoading, error } = useFetch(`person/${id}/combined_credits`, (data) =>
         dispatch({ type: 'SET_CREDITS', payload: data })
     );
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        if (!state.filters.department) return;
+        if (!state.media_type) return;
         dispatch({ type: 'FILTER_ITEMS' });
-    }, [state.filters]);
+    }, [state.media_type, state.filters]);
 
     if (isLoading) return <Loader />;
 
@@ -39,10 +40,10 @@ const PersonCredits = () => {
     return (
         <section className='section-sm'>
             <AltTitle>credits:</AltTitle>
-            <CreditFilters credits={state.credits} filters={state.filters} dispatch={dispatch} />
+            <CreditFilters {...state} dispatch={dispatch} />
             <GridView items={state.items.slice(state.offset, state.offset + state.itemsPerPage)} />
             {!state.items.length && (
-                <p className='message'>There are no movies matching these criteria</p>
+                <p className='message'>There are no items matching these criteria</p>
             )}
             {state.pageCount > 1 && (
                 <Pagination

@@ -1,24 +1,46 @@
 import { initialState } from '../components/PersonCredits';
+import { sortOptions } from '../utils/localData';
 import { dynamicSort } from '../utils/helpers';
 
 const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_CREDITS':
             const credits = [...action.payload.cast, ...action.payload.crew].reduce((acc, item) => {
+                if (!acc[item.media_type]) acc[item.media_type] = {};
                 if (item.character || item.character === '') {
-                    acc.Acting ? acc.Acting.push(item) : (acc.Acting = [item]);
+                    acc[item.media_type].Acting
+                        ? acc[item.media_type].Acting.push(item)
+                        : (acc[item.media_type].Acting = [item]);
                 }
                 if (item.department) {
-                    acc[item.department]
-                        ? acc[item.department].push(item)
-                        : (acc[item.department] = [item]);
+                    acc[item.media_type][item.department]
+                        ? acc[item.media_type][item.department].push(item)
+                        : (acc[item.media_type][item.department] = [item]);
                 }
                 return acc;
             }, {});
+            const media_type = Object.keys(credits)[0];
             return {
                 ...state,
                 credits,
-                filters: { ...state.filters, department: Object.keys(credits)[0] },
+                media_type,
+                filters: {
+                    ...state.filters,
+                    department: Object.keys(credits[media_type] || {})[0],
+                    sort: sortOptions[media_type === 'movie' ? 'movie' : 'tv'][0].value,
+                },
+            };
+        case 'SWITCH_MEDIA_TYPE':
+            return {
+                ...state,
+                media_type: action.payload,
+                filters: {
+                    ...initialState.filters,
+                    department: Object.keys(state.credits[action.payload])[0],
+                    sort: sortOptions[action.payload === 'movie' ? 'movie' : 'tv'][0].value,
+                },
+                offset: 0,
+                page: 0,
             };
         case 'UPDATE_FILTERS':
             return {
@@ -27,15 +49,8 @@ const reducer = (state, action) => {
                 offset: 0,
                 page: 0,
             };
-        case 'CLEAR_FILTERS':
-            return {
-                ...state,
-                filters: { ...initialState.filters, department: Object.keys(state.credits)[0] },
-                offset: 0,
-                page: 0,
-            };
         case 'FILTER_ITEMS':
-            let items = state.credits[state.filters.department].sort(
+            let items = state.credits[state.media_type][state.filters.department].sort(
                 dynamicSort(state.filters.sort)
             );
             if (state.filters.genre)

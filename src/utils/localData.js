@@ -59,38 +59,72 @@ export const profilePageLinks = [
     },
 ];
 
-export const sortOptions = [
-    {
-        id: 1,
-        value: '-release_date',
-        name: 'Release date (desc)',
-    },
-    {
-        id: 2,
-        value: 'release_date',
-        name: 'Release date (asc)',
-    },
-    {
-        id: 3,
-        value: '-title',
-        name: 'Title (desc)',
-    },
-    {
-        id: 4,
-        value: 'title',
-        name: 'Title (asc)',
-    },
-    {
-        id: 5,
-        value: '-popularity',
-        name: 'Popularity (desc)',
-    },
-    {
-        id: 6,
-        value: 'popularity',
-        name: 'Popularity (asc)',
-    },
-];
+export const sortOptions = {
+    movie: [
+        {
+            id: 1,
+            value: '-release_date',
+            name: 'Release date (desc)',
+        },
+        {
+            id: 2,
+            value: 'release_date',
+            name: 'Release date (asc)',
+        },
+        {
+            id: 3,
+            value: '-title',
+            name: 'Title (desc)',
+        },
+        {
+            id: 4,
+            value: 'title',
+            name: 'Title (asc)',
+        },
+        {
+            id: 5,
+            value: '-popularity',
+            name: 'Popularity (desc)',
+        },
+        {
+            id: 6,
+            value: 'popularity',
+            name: 'Popularity (asc)',
+        },
+    ],
+    tv: [
+        {
+            id: 1,
+            value: '-first_air_date',
+            name: 'First air date (desc)',
+        },
+        {
+            id: 2,
+            value: 'first_air_date',
+            name: 'First air date (asc)',
+        },
+        {
+            id: 3,
+            value: '-name',
+            name: 'Name (desc)',
+        },
+        {
+            id: 4,
+            value: 'name',
+            name: 'Name (asc)',
+        },
+        {
+            id: 5,
+            value: '-popularity',
+            name: 'Popularity (desc)',
+        },
+        {
+            id: 6,
+            value: 'popularity',
+            name: 'Popularity (asc)',
+        },
+    ],
+};
 
 export const tmdbSortOptions = [
     {
