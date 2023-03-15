@@ -1,11 +1,17 @@
 import { createContext, useContext, useReducer } from 'react';
-import { watchlistOrderOptions, watchlistLimitOptions } from '../utils/localData';
+import {
+    watchlistMediaTypeOptions,
+    watchlistOrderOptions,
+    watchlistLimitOptions,
+} from '../utils/localData';
 import reducer from '../reducers/watchlistReducer';
 
 const WatchlistContext = createContext();
 export const useWatchlistContext = () => useContext(WatchlistContext);
 
 export const initialState = {
+    genres: { movie: [], tv: [] },
+    media_type: watchlistMediaTypeOptions[0].value,
     filters: {
         genre: '',
         order: watchlistOrderOptions[0].value,

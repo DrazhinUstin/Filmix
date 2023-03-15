@@ -1,12 +1,22 @@
-import useFetch from '../hooks/useFetch';
+import { useEffect } from 'react';
+import tmdbAPI from '../utils/tmdbAPI';
 import { useWatchlistContext } from '../contexts/WatchlistContext';
 import { FormField, RedButton } from './';
-import { watchlistOrderOptions, watchlistLimitOptions } from '../utils/localData';
+import {
+    watchlistMediaTypeOptions,
+    watchlistOrderOptions,
+    watchlistLimitOptions,
+} from '../utils/localData';
 import styled from 'styled-components';
 
 const WatchlistFilters = ({ isLoading }) => {
-    const { data } = useFetch('/genre/movie/list');
-    const { filters, dispatch } = useWatchlistContext();
+    const { media_type, genres, filters, dispatch } = useWatchlistContext();
+
+    useEffect(() => {
+        Promise.allSettled([tmdbAPI('/genre/movie/list'), tmdbAPI('/genre/tv/list')]).then(
+            (values) => dispatch({ type: 'SET_GENRES', payload: values })
+        );
+    }, [dispatch]);
 
     const handleChange = (e) => {
         let name = e.target.name;
@@ -19,14 +29,31 @@ const WatchlistFilters = ({ isLoading }) => {
     return (
         <Wrapper>
             <FormField
+                name='type'
+                value={media_type}
+                onChange={(e) => dispatch({ type: 'SWITCH_MEDIA_TYPE', payload: e.target.value })}
+                disabled={isLoading}
+            >
+                {watchlistMediaTypeOptions.map(({ id, value, name }) => (
+                    <option key={id} value={value}>
+                        {name}
+                    </option>
+                ))}
+            </FormField>
+            <FormField
                 name='genre'
                 value={filters.genre}
                 onChange={handleChange}
                 disabled={isLoading}
             >
-                {['All', ...(data?.genres || data)].map((item, index) => (
-                    <option key={index} value={item.name || ''}>
-                        {item.name || item}
+                {[
+                    'All',
+                    ...(!media_type
+                        ? new Set(Object.values(genres).flat().sort())
+                        : genres[media_type]),
+                ].map((item, index) => (
+                    <option key={index} value={item !== 'All' ? item : ''}>
+                        {item}
                     </option>
                 ))}
             </FormField>
@@ -58,10 +85,10 @@ const WatchlistFilters = ({ isLoading }) => {
             </FormField>
             <RedButton
                 type='button'
-                onClick={() => dispatch({ type: 'RESTORE_FILTERS' })}
+                onClick={() => dispatch({ type: 'RESET' })}
                 disabled={isLoading}
             >
-                clear filters
+                reset
             </RedButton>
         </Wrapper>
     );
@@ -71,7 +98,7 @@ export default WatchlistFilters;
 
 const Wrapper = styled.form`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
     margin-bottom: 4rem;

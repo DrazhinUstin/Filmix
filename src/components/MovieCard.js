@@ -4,7 +4,7 @@ import defaultPoster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const MovieCard = ({ item: { id, title, name, poster_path } }) => {
+const MovieCard = ({ item: { id, title, name, poster_path, media_type } }) => {
     return (
         <Wrapper>
             <img
@@ -13,7 +13,18 @@ const MovieCard = ({ item: { id, title, name, poster_path } }) => {
             />
             <div className='info'>
                 <h4>{title || name}</h4>
-                <Button as={Link} to={`/${title ? 'movies' : 'tv'}/${id}`}>
+                <Button
+                    as={Link}
+                    to={`/${
+                        media_type
+                            ? media_type === 'movie'
+                                ? 'movies'
+                                : 'tv'
+                            : title
+                            ? 'movies'
+                            : 'tv'
+                    }/${id}`}
+                >
                     details
                 </Button>
             </div>

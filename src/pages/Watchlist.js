@@ -11,6 +11,7 @@ const Watchlist = () => {
     const [lastItem, setLastItem] = useState(null);
     const {
         filters: { genre, order, limit: reqLimit },
+        media_type,
     } = useWatchlistContext();
 
     useEffect(() => {
@@ -23,8 +24,9 @@ const Watchlist = () => {
                     limit(reqLimit)
                 );
                 if (genre) q = query(q, where('genres', 'array-contains', genre));
+                if (media_type) q = query(q, where('media_type', '==', media_type));
                 const querySnapshot = await getDocs(q);
-                setWatchlist(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+                setWatchlist(querySnapshot.docs.map((doc) => doc.data()));
                 setLastItem(
                     querySnapshot.size === reqLimit
                         ? querySnapshot.docs[querySnapshot.docs.length - 1]
@@ -36,7 +38,7 @@ const Watchlist = () => {
             setIsLoading(false);
         };
         getWatchlist();
-    }, [genre, order, reqLimit]);
+    }, [genre, order, reqLimit, media_type]);
 
     const handleClick = async () => {
         setIsLoading(true);
@@ -48,11 +50,9 @@ const Watchlist = () => {
                 limit(reqLimit)
             );
             if (genre) q = query(q, where('genres', 'array-contains', genre));
+            if (media_type) q = query(q, where('media_type', '==', media_type));
             const querySnapshot = await getDocs(q);
-            setWatchlist([
-                ...watchlist,
-                ...querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-            ]);
+            setWatchlist([...watchlist, ...querySnapshot.docs.map((doc) => doc.data())]);
             setLastItem(
                 querySnapshot.size === reqLimit
                     ? querySnapshot.docs[querySnapshot.docs.length - 1]

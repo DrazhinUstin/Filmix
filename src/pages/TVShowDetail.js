@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import { useGlobalContext } from '../contexts/GlobalContext';
 import {
     Loader,
     Error,
@@ -8,6 +9,7 @@ import {
     LongParagraph,
     MovieTopCast,
     Button,
+    AddToWatchlist,
     ScrollRow,
 } from '../components';
 import { formatDate, formatRuntime } from '../utils/helpers';
@@ -18,6 +20,7 @@ import styled from 'styled-components';
 const TVShowDetail = () => {
     const { id } = useParams();
     const { isLoading, error, data } = useFetch(`/tv/${id}`);
+    const { user } = useGlobalContext();
 
     if (isLoading) return <Loader fullScreen />;
 
@@ -115,6 +118,7 @@ const TVShowDetail = () => {
                     open gallery
                 </Button>
             </section>
+            {user && <AddToWatchlist data={{ uid: user.uid, ...data }} />}
             <ScrollRow title='similar TV shows' url={`/tv/${id}/similar`} />
             <ScrollRow title='recommended TV shows' url={`/tv/${id}/recommendations`} />
         </main>

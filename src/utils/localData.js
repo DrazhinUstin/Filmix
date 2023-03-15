@@ -291,6 +291,24 @@ export const tmdbSearchOptions = [
     },
 ];
 
+export const watchlistMediaTypeOptions = [
+    {
+        id: 1,
+        value: '',
+        name: 'All',
+    },
+    {
+        id: 2,
+        value: 'movie',
+        name: 'Movie',
+    },
+    {
+        id: 3,
+        value: 'tv',
+        name: 'TV Show',
+    },
+];
+
 export const watchlistOrderOptions = [
     {
         id: 1,

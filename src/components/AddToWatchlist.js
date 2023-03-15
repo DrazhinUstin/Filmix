@@ -1,37 +1,54 @@
 import { useState, useEffect } from 'react';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
-import { doc, getDoc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import {
+    query,
+    collection,
+    doc,
+    where,
+    getDocs,
+    addDoc,
+    deleteDoc,
+    serverTimestamp,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 import { Button, RedButton } from './';
 import styled from 'styled-components';
 
-const AddToWatchlist = ({ data: { uid, id, title, genres, release_date, poster_path } }) => {
+const AddToWatchlist = ({
+    data: { uid, id, title, name, genres, release_date, first_air_date, poster_path },
+}) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [onWatchlist, setOnWatchlist] = useState(false);
+    const [docID, setDocID] = useState(null);
 
     useEffect(() => {
         setIsLoading(true);
-        getDoc(doc(db, `users/${uid}/watchlist/${id}`)).then((docSnap) =>
-            setOnWatchlist(docSnap.exists())
+        const q = query(
+            collection(db, `users/${uid}/watchlist`),
+            where('id', '==', id),
+            where('media_type', '==', title ? 'movie' : 'tv')
         );
-        setIsLoading(false);
-    }, [uid, id]);
+        getDocs(q)
+            .then((querySnapshot) => querySnapshot.size && setDocID(querySnapshot.docs[0].id))
+            .finally(() => setIsLoading(false));
+    }, [uid, id, title]);
 
     const handleClick = async () => {
         setIsLoading(true);
         try {
-            if (!onWatchlist) {
-                await setDoc(doc(db, `users/${uid}/watchlist/${id}`), {
-                    title,
+            if (!docID) {
+                const docRef = await addDoc(collection(db, `users/${uid}/watchlist`), {
+                    id,
+                    media_type: title ? 'movie' : 'tv',
+                    title: title || name,
                     genres: genres.map(({ name }) => name),
-                    release_date,
+                    release_date: release_date || first_air_date,
                     poster_path,
                     timestamp: serverTimestamp(),
                 });
-                setOnWatchlist(true);
+                setDocID(docRef.id);
             } else {
-                await deleteDoc(doc(db, `users/${uid}/watchlist/${id}`));
-                setOnWatchlist(false);
+                await deleteDoc(doc(db, `users/${uid}/watchlist/${docID}`));
+                setDocID(null);
             }
         } catch (error) {
             alert(error.message);
@@ -41,7 +58,7 @@ const AddToWatchlist = ({ data: { uid, id, title, genres, release_date, poster_p
 
     return (
         <Wrapper>
-            {!onWatchlist ? (
+            {!docID ? (
                 <Button onClick={handleClick} disabled={isLoading} $withBorder>
                     <FaPlus /> add to watchlist
                 </Button>
