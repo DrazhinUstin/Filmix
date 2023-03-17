@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Loader, Error, Button } from './';
 import { cutString } from '../utils/helpers';
+import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const Hero = () => {
-    const { isLoading, error, data } = useFetch('/movie/now_playing');
+    const { isLoading, error, data } = useFetch('/movie/upcoming');
 
     if (isLoading) return <Loader fullScreen />;
 
@@ -41,6 +42,9 @@ const Wrapper = styled.section`
         max-width: 600px;
         h1 {
             font-size: 2.5rem;
+            @media ${breakpoints.sm} {
+                font-size: 2rem;
+            }
         }
         p {
             margin: 1rem 0 1.5rem;

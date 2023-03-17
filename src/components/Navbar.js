@@ -17,7 +17,7 @@ const Navbar = () => {
         if (isMenuOpen) document.body.style.overflow = 'hidden';
         else document.body.style.overflow = '';
         navbarRef.current.querySelectorAll('.menu a').forEach((elem, i) => {
-            if (isMenuOpen) elem.style.animation = `appear 0.4s ease ${0.4 + i / 4}s forwards`;
+            if (isMenuOpen) elem.style.animation = `appear 0.4s ease ${0.4 + i / 5}s forwards`;
             else elem.style.animation = '';
         });
         const handleScroll = () => {
@@ -103,7 +103,7 @@ const Wrapper = styled.nav`
     }
     .menu {
         display: flex;
-        gap: 2rem;
+        column-gap: 2rem;
         a {
             position: relative;
             display: inline-block;

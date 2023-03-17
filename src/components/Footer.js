@@ -68,11 +68,12 @@ const Wrapper = styled.footer`
     }
     .list {
         display: flex;
+        flex-flow: row wrap;
         justify-content: flex-end;
         column-gap: 2rem;
         @media ${breakpoints.sm} {
             justify-content: center;
-            column-gap: 1rem;
+            column-gap: 0.75rem;
         }
         a {
             display: inline-block;

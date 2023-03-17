@@ -3,6 +3,8 @@ export { default as SearchForm } from './SearchForm';
 export { default as Footer } from './Footer';
 export { default as Hero } from './Hero';
 export { default as ScrollRow } from './ScrollRow';
+export { default as SelectableScrollRow } from './SelectableScrollRow';
+export { default as Selector } from './Selector';
 export { default as HorizontalMenu } from './HorizontalMenu';
 export { default as MovieFilters } from './MovieFilters';
 export { default as TVShowFilters } from './TVShowFilters';
