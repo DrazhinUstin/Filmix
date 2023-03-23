@@ -3,7 +3,7 @@ import default_poster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const PersonCard = ({ item: { id, name, character, job, profile_path } }) => {
+const PersonCard = ({ item: { id, name, character, job, roles, jobs, profile_path } }) => {
     return (
         <Link to={`/people/${id}`}>
             <Wrapper>
@@ -16,7 +16,11 @@ const PersonCard = ({ item: { id, name, character, job, profile_path } }) => {
                     alt={name}
                 />
                 <h4>{name}</h4>
-                <p>{character || job}</p>
+                <p>
+                    {character ||
+                        job ||
+                        (roles || jobs)?.map(({ character, job }) => character || job).join(', ')}
+                </p>
             </Wrapper>
         </Link>
     );

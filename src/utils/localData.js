@@ -124,6 +124,50 @@ export const sortOptions = {
             name: 'Popularity (asc)',
         },
     ],
+    seasons: [
+        {
+            id: 1,
+            name: 'Season number (asc)',
+            value: 'season_number',
+        },
+        {
+            id: 2,
+            name: 'Season number (desc)',
+            value: '-season_number',
+        },
+        {
+            id: 3,
+            name: 'Air date (asc)',
+            value: 'air_date',
+        },
+        {
+            id: 4,
+            name: 'Air date (desc)',
+            value: '-air_date',
+        },
+    ],
+    episodes: [
+        {
+            id: 1,
+            name: 'Episode number (asc)',
+            value: 'episode_number',
+        },
+        {
+            id: 2,
+            name: 'Episode number (desc)',
+            value: '-episode_number',
+        },
+        {
+            id: 3,
+            name: 'Air date (asc)',
+            value: 'air_date',
+        },
+        {
+            id: 4,
+            name: 'Air date (desc)',
+            value: '-air_date',
+        },
+    ],
 };
 
 export const tmdbSortOptions = [

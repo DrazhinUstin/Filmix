@@ -90,7 +90,7 @@ const MovieDetail = () => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
-            <MovieTopCast urlPart={`/movie/${id}`} />
+            <MovieTopCast url={`/movie/${id}/credits`} />
             <div className='section-sm'>
                 <AltTitle>media:</AltTitle>
                 <Button as={Link} to='images'>

@@ -8,6 +8,7 @@ import {
     AltTitle,
     LongParagraph,
     MovieTopCast,
+    TVSeasonScrollRow,
     Button,
     AddToWatchlist,
     ScrollRow,
@@ -40,6 +41,7 @@ const TVShowDetail = () => {
         number_of_episodes,
         episode_run_time,
         overview,
+        seasons,
     } = data;
     return (
         <main className='main'>
@@ -111,7 +113,8 @@ const TVShowDetail = () => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
-            <MovieTopCast urlPart={`/tv/${id}`} />
+            <MovieTopCast url={`/tv/${id}/aggregate_credits`} />
+            {seasons.length > 0 && <TVSeasonScrollRow id={id} seasons={seasons} />}
             <section className='section-sm'>
                 <AltTitle>media:</AltTitle>
                 <Button as={Link} to='images'>

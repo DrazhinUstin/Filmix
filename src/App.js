@@ -7,6 +7,11 @@ import {
     MovieImages,
     TVShows,
     TVShowDetail,
+    TVSeasons,
+    TVSeasonMain,
+    TVSeasonDetail,
+    TVEpisodeMain,
+    TVEpisodeDetail,
     People,
     PersonDetail,
     PersonImages,
@@ -44,6 +49,21 @@ const App = () => {
                     <Route index element={<TVShowDetail />} />
                     <Route path='credits' element={<MovieCredits urlPart='tv' name='TV show' />} />
                     <Route path='images' element={<MovieImages urlPart='tv' name='TV show' />} />
+                    <Route path='seasons' element={<TVSeasons />} />
+                    <Route path='seasons/:season_number' element={<TVSeasonMain />}>
+                        <Route index element={<TVSeasonDetail />} />
+                        <Route
+                            path='credits'
+                            element={<MovieCredits urlPart='tv' name='season' />}
+                        />
+                        <Route path='episode/:episode_number' element={<TVEpisodeMain />}>
+                            <Route index element={<TVEpisodeDetail />} />
+                            <Route
+                                path='credits'
+                                element={<MovieCredits urlPart='tv' name='episode' />}
+                            />
+                        </Route>
+                    </Route>
                 </Route>
                 <Route path='people' element={<People />} />
                 <Route path='people/:id' element={<Outlet />}>

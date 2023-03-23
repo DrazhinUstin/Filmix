@@ -2,8 +2,8 @@ import useFetch from '../hooks/useFetch';
 import { Link } from 'react-router-dom';
 import { Loader, Error, AltTitle, HorizontalMenu, TextButton } from '.';
 
-const MovieTopCast = ({ urlPart }) => {
-    const { isLoading, error, data } = useFetch(`${urlPart}/credits`);
+const MovieTopCast = ({ url }) => {
+    const { isLoading, error, data } = useFetch(url);
 
     if (isLoading) return <Loader />;
 

@@ -4,8 +4,12 @@ import useFetch from '../hooks/useFetch';
 import { Loader, Error, Title, AltTitle, GridView, Pagination, Button } from '../components';
 
 const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) => {
-    const { id } = useParams();
-    const { isLoading, error, data } = useFetch(`/${urlPart}/${id}/credits`);
+    const { id, season_number, episode_number } = useParams();
+    const { isLoading, error, data } = useFetch(
+        `/${urlPart}/${id}/${season_number ? `season/${season_number}/` : ''}${
+            episode_number ? `episode/${episode_number}/` : ''
+        }${urlPart === 'movie' || episode_number ? 'credits' : 'aggregate_credits'}`
+    );
     const [offset, setOffset] = useState(0);
 
     if (isLoading) return <Loader fullScreen />;

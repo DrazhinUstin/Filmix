@@ -4,7 +4,7 @@ import defaultPoster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const MovieCard = ({ item: { id, title, name, poster_path, media_type } }) => {
+const MovieCard = ({ item: { id, title, name, poster_path, media_type, season_number } }) => {
     return (
         <Wrapper>
             <img
@@ -23,7 +23,7 @@ const MovieCard = ({ item: { id, title, name, poster_path, media_type } }) => {
                             : title
                             ? 'movies'
                             : 'tv'
-                    }/${id}`}
+                    }/${id}${season_number >= 0 ? `/seasons/${season_number}` : ''}`}
                 >
                     details
                 </Button>
