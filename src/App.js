@@ -1,11 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
     Home,
     Movies,
+    MovieMain,
     MovieDetail,
     MovieCredits,
     MovieImages,
     TVShows,
+    TVShowMain,
     TVShowDetail,
     TVSeasons,
     TVSeasonMain,
@@ -13,6 +15,7 @@ import {
     TVEpisodeMain,
     TVEpisodeDetail,
     People,
+    PersonMain,
     PersonDetail,
     PersonImages,
     Search,
@@ -39,13 +42,13 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='movies' element={<Movies />} />
-                <Route path='movies/:id' element={<Outlet />}>
+                <Route path='movies/:id' element={<MovieMain />}>
                     <Route index element={<MovieDetail />} />
                     <Route path='credits' element={<MovieCredits />} />
                     <Route path='images' element={<MovieImages />} />
                 </Route>
                 <Route path='tv' element={<TVShows />} />
-                <Route path='tv/:id' element={<Outlet />}>
+                <Route path='tv/:id' element={<TVShowMain />}>
                     <Route index element={<TVShowDetail />} />
                     <Route path='credits' element={<MovieCredits urlPart='tv' name='TV show' />} />
                     <Route path='images' element={<MovieImages urlPart='tv' name='TV show' />} />
@@ -66,7 +69,7 @@ const App = () => {
                     </Route>
                 </Route>
                 <Route path='people' element={<People />} />
-                <Route path='people/:id' element={<Outlet />}>
+                <Route path='people/:id' element={<PersonMain />}>
                     <Route index element={<PersonDetail />} />
                     <Route path='images' element={<PersonImages />} />
                 </Route>

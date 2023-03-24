@@ -1,27 +1,11 @@
-import { useParams, Link } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import {
-    Loader,
-    Error,
-    Title,
-    AltTitle,
-    LongParagraph,
-    Button,
-    PersonCredits,
-} from '../components';
+import { useOutletContext, Link } from 'react-router-dom';
+import { Title, AltTitle, LongParagraph, Button, PersonCredits } from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
 import { formatDate } from '../utils/helpers';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const PersonDetail = () => {
-    const { id } = useParams();
-    const { isLoading, error, data } = useFetch(`/person/${id}`);
-
-    if (isLoading) return <Loader fullScreen />;
-
-    if (error) return <Error err={error} link fullScreen />;
-
     const {
         name,
         birthday,
@@ -30,9 +14,9 @@ const PersonDetail = () => {
         known_for_department,
         biography,
         profile_path,
-    } = data;
+    } = useOutletContext();
     return (
-        <main className='main'>
+        <>
             <Title>{name}</Title>
             <Wrapper>
                 <img
@@ -77,7 +61,7 @@ const PersonDetail = () => {
                 </Button>
             </section>
             <PersonCredits />
-        </main>
+        </>
     );
 };
 

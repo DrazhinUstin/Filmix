@@ -12,23 +12,19 @@ const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) 
     );
     const [offset, setOffset] = useState(0);
 
-    if (isLoading) return <Loader fullScreen />;
+    if (isLoading) return <Loader />;
 
-    if (error) return <Error err={error} link fullScreen />;
+    if (error) return <Error err={error} link />;
 
     if (!data.cast.length && !data.crew.length)
         return (
-            <Error
-                title='credits were not found'
-                link={{ title: `back to ${name}`, path: '..' }}
-                fullScreen
-            />
+            <Error title='credits were not found' link={{ title: `back to ${name}`, path: '..' }} />
         );
 
     const director = data.crew.find(({ job }) => job === 'Director');
     return (
-        <main className='main'>
-            <Title>
+        <>
+            <Title margin='4rem 0'>
                 {name} <span>credits</span>
             </Title>
             {director && (
@@ -53,7 +49,7 @@ const MovieCredits = ({ urlPart = 'movie', name = 'movie', itemsPerPage = 20 }) 
             <Button as={Link} to='..' margin='2rem 0 0'>
                 back to {name}
             </Button>
-        </main>
+        </>
     );
 };
 

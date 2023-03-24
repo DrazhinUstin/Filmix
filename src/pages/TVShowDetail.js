@@ -1,9 +1,6 @@
-import { useParams, Link } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import { useParams, useOutletContext, Link } from 'react-router-dom';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import {
-    Loader,
-    Error,
     Title,
     AltTitle,
     LongParagraph,
@@ -20,13 +17,8 @@ import styled from 'styled-components';
 
 const TVShowDetail = () => {
     const { id } = useParams();
-    const { isLoading, error, data } = useFetch(`/tv/${id}`);
+    const data = useOutletContext();
     const { user } = useGlobalContext();
-
-    if (isLoading) return <Loader fullScreen />;
-
-    if (error) return <Error err={error} link fullScreen />;
-
     const {
         name,
         poster_path,
@@ -44,7 +36,7 @@ const TVShowDetail = () => {
         seasons,
     } = data;
     return (
-        <main className='main'>
+        <>
             <Title>{name}</Title>
             <Wrapper>
                 <img
@@ -124,7 +116,7 @@ const TVShowDetail = () => {
             {user && <AddToWatchlist data={{ uid: user.uid, ...data }} />}
             <ScrollRow title='similar TV shows' url={`/tv/${id}/similar`} />
             <ScrollRow title='recommended TV shows' url={`/tv/${id}/recommendations`} />
-        </main>
+        </>
     );
 };
 

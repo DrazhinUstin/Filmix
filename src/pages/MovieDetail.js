@@ -1,7 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useOutletContext, Link } from 'react-router-dom';
 import {
-    Loader,
-    Error,
     Title,
     AltTitle,
     LongParagraph,
@@ -10,7 +8,6 @@ import {
     AddToWatchlist,
     ScrollRow,
 } from '../components';
-import useFetch from '../hooks/useFetch';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import { formatRuntime, formatToCurrency } from '../utils/helpers';
 import defaultPoster from '../assets/images/default_poster.jpg';
@@ -19,13 +16,8 @@ import styled from 'styled-components';
 
 const MovieDetail = () => {
     const { id } = useParams();
-    const { isLoading, error, data: movie } = useFetch(`/movie/${id}`);
+    const movie = useOutletContext();
     const { user } = useGlobalContext();
-
-    if (isLoading) return <Loader fullScreen />;
-
-    if (error) return <Error err={error} link fullScreen />;
-
     const {
         title,
         overview,
@@ -40,9 +32,9 @@ const MovieDetail = () => {
         belongs_to_collection: collection,
     } = movie;
     return (
-        <Wrapper>
+        <>
             <Title>{title}</Title>
-            <article className='info'>
+            <Wrapper>
                 <img
                     src={
                         poster_path
@@ -53,37 +45,37 @@ const MovieDetail = () => {
                 />
                 <ul>
                     <li>
-                        <span>year:</span> {release_date.split('-')[0]}
+                        year: <span>{release_date.split('-')[0]}</span>
                     </li>
                     <li>
-                        <span>country:</span>{' '}
-                        {countries.map(({ iso_3166_1 }) => iso_3166_1).join(', ')}
+                        country:{' '}
+                        <span>{countries.map(({ iso_3166_1 }) => iso_3166_1).join(', ')}</span>
                     </li>
                     {tagline && (
                         <li>
-                            <span>tagline:</span> «{tagline}»
+                            tagline: <span>«{tagline}»</span>
                         </li>
                     )}
                     <li>
-                        <span>genres:</span> {genres.map(({ name }) => name).join(', ')}
+                        genres: <span>{genres.map(({ name }) => name).join(', ')}</span>
                     </li>
                     {runtime > 0 && (
                         <li>
-                            <span>runtime:</span> {formatRuntime(runtime)}
+                            runtime: <span>{formatRuntime(runtime)}</span>
                         </li>
                     )}
                     {budget > 0 && (
                         <li>
-                            <span>budget:</span> {formatToCurrency(budget)}
+                            budget: <span>{formatToCurrency(budget)}</span>
                         </li>
                     )}
                     {revenue > 0 && (
                         <li>
-                            <span>revenue:</span> {formatToCurrency(revenue)}
+                            revenue: <span>{formatToCurrency(revenue)}</span>
                         </li>
                     )}
                 </ul>
-            </article>
+            </Wrapper>
             {overview && (
                 <article className='section-sm'>
                     <AltTitle>Storyline:</AltTitle>
@@ -101,39 +93,39 @@ const MovieDetail = () => {
             {collection && <ScrollRow title='in collection' url={`/collection/${collection.id}`} />}
             <ScrollRow title='recommended movies' url={`/movie/${id}/recommendations`} />
             <ScrollRow title='similar movies' url={`/movie/${id}/similar`} />
-        </Wrapper>
+        </>
     );
 };
 
 export default MovieDetail;
 
-const Wrapper = styled.main.attrs(() => ({ className: 'main' }))`
-    & > .info {
+const Wrapper = styled.article`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    img {
+        max-width: 600px;
+        width: 100%;
+        border: 1px solid var(--clr-gray);
+    }
+    li {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        img {
-            max-width: 600px;
-            width: 100%;
-            border: 1px solid var(--clr-gray);
+        grid-template-columns: 10rem 1fr;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        &:not(:last-child) {
+            margin-bottom: 1rem;
         }
-        li {
-            display: grid;
-            grid-template-columns: 10rem 1fr;
-            font-size: 1.2rem;
-            &:not(:last-child) {
-                margin-bottom: 1rem;
-            }
-            span {
-                font-weight: 500;
-                text-transform: capitalize;
-            }
-            @media ${breakpoints.xsm} {
-                grid-template-columns: 6rem 1fr;
-            }
+        span {
+            color: var(--clr-gray);
+            font-weight: normal;
         }
-        @media ${breakpoints.md} {
-            grid-template-columns: unset;
+        @media ${breakpoints.xsm} {
+            grid-template-columns: 6rem 1fr;
         }
+    }
+    @media ${breakpoints.md} {
+        grid-template-columns: unset;
     }
 `;

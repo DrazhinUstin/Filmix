@@ -10,13 +10,13 @@ const TVSeasonMain = () => {
     const { id, season_number } = useParams();
     const { isLoading, error, data } = useFetch(`/tv/${id}/season/${season_number}`);
 
-    if (isLoading) return <Loader fullScreen />;
+    if (isLoading) return <Loader />;
 
-    if (error) return <Error err={error} link fullScreen />;
+    if (error) return <Error err={error} link />;
 
     const { name, air_date, poster_path } = data;
     return (
-        <main className='main'>
+        <>
             <Wrapper>
                 <Link to='.'>
                     <img
@@ -39,7 +39,7 @@ const TVSeasonMain = () => {
                 </div>
             </Wrapper>
             <Outlet context={data} />
-        </main>
+        </>
     );
 };
 
@@ -51,11 +51,11 @@ const Wrapper = styled.article`
     align-items: center;
     gap: 2rem;
     border-bottom: 1px solid var(--clr-green);
-    border-radius: var(--radius);
+    border-radius: 0 0 var(--radius) var(--radius);
     overflow: hidden;
     background-color: var(--clr-light-black);
     img {
-        width: 92px;
+        width: 5rem;
     }
     h2 {
         margin-bottom: 0.25rem;
