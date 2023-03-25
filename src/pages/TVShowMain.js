@@ -3,6 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import useFetch from '../hooks/useFetch';
 import { Loader, Error, TextButton } from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
+import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const TVShowMain = () => {
@@ -76,5 +77,8 @@ const Wrapper = styled.article`
         svg {
             font-size: 0.9rem;
         }
+    }
+    @media ${breakpoints.sm} {
+        gap: 1rem;
     }
 `;

@@ -1,5 +1,12 @@
-import { useParams, useOutletContext } from 'react-router-dom';
-import { TVEpisodeNavigator, Title, AltTitle, LongParagraph, MovieTopCast } from '../components';
+import { useParams, useOutletContext, Link } from 'react-router-dom';
+import {
+    TVEpisodeNavigator,
+    Title,
+    AltTitle,
+    LongParagraph,
+    Button,
+    MovieTopCast,
+} from '../components';
 import { formatDate, formatRuntime } from '../utils/helpers';
 import default_poster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
@@ -56,6 +63,12 @@ const TVEpisodeDetail = () => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
+            <section className='section-sm'>
+                <AltTitle>media:</AltTitle>
+                <Button as={Link} to='images'>
+                    open gallery
+                </Button>
+            </section>
             <MovieTopCast
                 url={`/tv/${id}/season/${season_number}/episode/${episode_number}/credits`}
             />

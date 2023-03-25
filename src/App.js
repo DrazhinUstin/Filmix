@@ -5,7 +5,7 @@ import {
     MovieMain,
     MovieDetail,
     MovieCredits,
-    MovieImages,
+    Images,
     TVShows,
     TVShowMain,
     TVShowDetail,
@@ -17,7 +17,6 @@ import {
     People,
     PersonMain,
     PersonDetail,
-    PersonImages,
     Search,
     About,
     Auth,
@@ -45,13 +44,13 @@ const App = () => {
                 <Route path='movies/:id' element={<MovieMain />}>
                     <Route index element={<MovieDetail />} />
                     <Route path='credits' element={<MovieCredits />} />
-                    <Route path='images' element={<MovieImages />} />
+                    <Route path='images' element={<Images />} />
                 </Route>
                 <Route path='tv' element={<TVShows />} />
                 <Route path='tv/:id' element={<TVShowMain />}>
                     <Route index element={<TVShowDetail />} />
                     <Route path='credits' element={<MovieCredits urlPart='tv' name='TV show' />} />
-                    <Route path='images' element={<MovieImages urlPart='tv' name='TV show' />} />
+                    <Route path='images' element={<Images media_type='tv' label='TV show' />} />
                     <Route path='seasons' element={<TVSeasons />} />
                     <Route path='seasons/:season_number' element={<TVSeasonMain />}>
                         <Route index element={<TVSeasonDetail />} />
@@ -65,13 +64,17 @@ const App = () => {
                                 path='credits'
                                 element={<MovieCredits urlPart='tv' name='episode' />}
                             />
+                            <Route
+                                path='images'
+                                element={<Images media_type='tv' label='episode' />}
+                            />
                         </Route>
                     </Route>
                 </Route>
                 <Route path='people' element={<People />} />
                 <Route path='people/:id' element={<PersonMain />}>
                     <Route index element={<PersonDetail />} />
-                    <Route path='images' element={<PersonImages />} />
+                    <Route path='images' element={<Images media_type='person' />} />
                 </Route>
                 <Route path='search/:q' element={<Search />} />
                 <Route path='about' element={<About />} />

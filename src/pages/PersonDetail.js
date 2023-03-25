@@ -55,7 +55,7 @@ const PersonDetail = () => {
                 </article>
             )}
             <section className='section-sm'>
-                <AltTitle>media</AltTitle>
+                <AltTitle>media:</AltTitle>
                 <Button as={Link} to='images'>
                     open gallery
                 </Button>
