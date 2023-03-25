@@ -10,7 +10,7 @@ const PersonCard = ({ item: { id, name, character, job, roles, jobs, profile_pat
                 <img
                     src={
                         profile_path
-                            ? `http://image.tmdb.org/t/p/w185${profile_path}`
+                            ? `https://image.tmdb.org/t/p/w185${profile_path}`
                             : default_poster
                     }
                     alt={name}

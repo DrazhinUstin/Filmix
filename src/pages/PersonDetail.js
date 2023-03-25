@@ -22,7 +22,7 @@ const PersonDetail = () => {
                 <img
                     src={
                         profile_path
-                            ? `http://image.tmdb.org/t/p/h632${profile_path}`
+                            ? `https://image.tmdb.org/t/p/h632${profile_path}`
                             : default_poster
                     }
                     alt={name}

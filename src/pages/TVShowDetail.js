@@ -42,7 +42,7 @@ const TVShowDetail = () => {
                 <img
                     src={
                         poster_path
-                            ? `http://image.tmdb.org/t/p/w780${poster_path}`
+                            ? `https://image.tmdb.org/t/p/w780${poster_path}`
                             : default_poster
                     }
                     alt={name}

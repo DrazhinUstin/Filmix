@@ -13,13 +13,13 @@ import { breakpoints } from '../GlobalStyles';
 import styled, { css } from 'styled-components';
 
 const TVEpisodeDetail = () => {
-    const { id, season_number, episode_number } = useParams();
+    const { id } = useParams();
     const {
         episodeData: {
             name,
             still_path,
-            episode_number: episode,
-            season_number: season,
+            episode_number,
+            season_number,
             air_date,
             runtime,
             overview,
@@ -33,17 +33,17 @@ const TVEpisodeDetail = () => {
                 <img
                     src={
                         still_path
-                            ? `http://image.tmdb.org/t/p/original${still_path}`
+                            ? `https://image.tmdb.org/t/p/original${still_path}`
                             : default_poster
                     }
                     alt={name}
                 />
                 <ul>
                     <li>
-                        Episode №: <span>{episode}</span>
+                        Episode №: <span>{episode_number}</span>
                     </li>
                     <li>
-                        Season №: <span>{season}</span>
+                        Season №: <span>{season_number}</span>
                     </li>
                     {air_date && (
                         <li>

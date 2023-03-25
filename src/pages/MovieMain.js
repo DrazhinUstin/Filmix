@@ -24,7 +24,7 @@ const MovieMain = () => {
                         <img
                             src={
                                 poster_path
-                                    ? `http://image.tmdb.org/t/p/w92${poster_path}`
+                                    ? `https://image.tmdb.org/t/p/w92${poster_path}`
                                     : defaultPoster
                             }
                             alt={title}

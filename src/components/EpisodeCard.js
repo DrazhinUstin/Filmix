@@ -11,7 +11,7 @@ const EpisodeCard = ({
     return (
         <Wrapper isStillExist={!!still_path}>
             <img
-                src={still_path ? `http://image.tmdb.org/t/p/w300${still_path}` : default_poster}
+                src={still_path ? `https://image.tmdb.org/t/p/w300${still_path}` : default_poster}
                 alt={name}
             />
             <div>
