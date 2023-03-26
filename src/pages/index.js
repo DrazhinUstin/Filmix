@@ -2,7 +2,7 @@ export { default as Home } from './Home';
 export { default as Movies } from './Movies';
 export { default as MovieMain } from './MovieMain';
 export { default as MovieDetail } from './MovieDetail';
-export { default as MovieCredits } from './MovieCredits';
+export { default as Credits } from './Credits';
 export { default as Images } from './Images';
 export { default as TVShows } from './TVShows';
 export { default as TVShowMain } from './TVShowMain';

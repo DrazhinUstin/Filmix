@@ -4,7 +4,7 @@ import {
     Movies,
     MovieMain,
     MovieDetail,
-    MovieCredits,
+    Credits,
     Images,
     TVShows,
     TVShowMain,
@@ -43,26 +43,26 @@ const App = () => {
                 <Route path='movies' element={<Movies />} />
                 <Route path='movies/:id' element={<MovieMain />}>
                     <Route index element={<MovieDetail />} />
-                    <Route path='credits' element={<MovieCredits />} />
+                    <Route path='credits' element={<Credits />} />
                     <Route path='images' element={<Images />} />
                 </Route>
                 <Route path='tv' element={<TVShows />} />
                 <Route path='tv/:id' element={<TVShowMain />}>
                     <Route index element={<TVShowDetail />} />
-                    <Route path='credits' element={<MovieCredits urlPart='tv' name='TV show' />} />
+                    <Route path='credits' element={<Credits media_type='tv' label='TV show' />} />
                     <Route path='images' element={<Images media_type='tv' label='TV show' />} />
                     <Route path='seasons' element={<TVSeasons />} />
                     <Route path='seasons/:season_number' element={<TVSeasonMain />}>
                         <Route index element={<TVSeasonDetail />} />
                         <Route
                             path='credits'
-                            element={<MovieCredits urlPart='tv' name='season' />}
+                            element={<Credits media_type='tv' label='season' />}
                         />
                         <Route path='episode/:episode_number' element={<TVEpisodeMain />}>
                             <Route index element={<TVEpisodeDetail />} />
                             <Route
                                 path='credits'
-                                element={<MovieCredits urlPart='tv' name='episode' />}
+                                element={<Credits media_type='tv' label='episode' />}
                             />
                             <Route
                                 path='images'

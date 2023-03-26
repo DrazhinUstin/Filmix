@@ -9,6 +9,7 @@ export { default as HorizontalMenu } from './HorizontalMenu';
 export { default as MovieFilters } from './MovieFilters';
 export { default as TVShowFilters } from './TVShowFilters';
 export { default as CreditFilters } from './CreditFilters';
+export { default as CrewFilter } from './CrewFilter';
 export { default as Sort } from './Sort';
 export { default as PeopleSearch } from './PeopleSearch';
 export { default as SearchMenu } from './SearchMenu';

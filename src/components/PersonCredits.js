@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import reducer from '../reducers/creditReducer';
+import reducer from '../reducers/personCreditReducer';
 import { Loader, Error, AltTitle, CreditFilters, GridView, Pagination } from '.';
 
 export const initialState = {
