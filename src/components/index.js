@@ -18,7 +18,7 @@ export { default as Pagination } from './Pagination';
 export { default as MovieCard } from './MovieCard';
 export { default as EpisodeCard } from './EpisodeCard';
 export { default as PersonCard } from './PersonCard';
-export { default as MovieTopCast } from './MovieTopCast';
+export { default as TopCredits } from './TopCredits';
 export { default as TVSeasonScrollRow } from './TVSeasonScrollRow';
 export { default as TVEpisodeNavigator } from './TVEpisodeNavigator';
 export { default as PersonCredits } from './PersonCredits';

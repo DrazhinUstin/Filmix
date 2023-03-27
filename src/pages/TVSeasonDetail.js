@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
-import {
-    AltTitle,
-    LongParagraph,
-    MovieTopCast,
-    Sort,
-    EpisodeCard,
-    Pagination,
-} from '../components';
+import { AltTitle, LongParagraph, TopCredits, Sort, EpisodeCard, Pagination } from '../components';
 import { sortOptions } from '../utils/localData';
 import { dynamicSort } from '../utils/helpers';
 
@@ -24,7 +17,7 @@ const TVSeasonDetail = ({ episodesPerPage = 10 }) => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
-            <MovieTopCast url={`/tv/${id}/season/${season_number}/aggregate_credits`} />
+            <TopCredits url={`/tv/${id}/season/${season_number}/aggregate_credits`} />
             {episodes.length > 0 && (
                 <section className='section-sm'>
                     <AltTitle>episodes ({episodes.length}):</AltTitle>

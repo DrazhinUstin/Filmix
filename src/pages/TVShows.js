@@ -21,7 +21,7 @@ const TVShows = () => {
     return (
         <main className='main'>
             <Title>
-                TV shows <span>library</span>
+                TV show <span>library</span>
             </Title>
             <TVShowFilters isLoading={isLoading} />
             {isLoading ? (

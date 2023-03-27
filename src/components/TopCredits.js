@@ -2,7 +2,7 @@ import useFetch from '../hooks/useFetch';
 import { Link } from 'react-router-dom';
 import { Loader, Error, AltTitle, HorizontalMenu, TextButton } from '.';
 
-const MovieTopCast = ({ url }) => {
+const TopCredits = ({ url }) => {
     const { isLoading, error, data } = useFetch(url);
 
     if (isLoading) return <Loader />;
@@ -29,4 +29,4 @@ const MovieTopCast = ({ url }) => {
     );
 };
 
-export default MovieTopCast;
+export default TopCredits;

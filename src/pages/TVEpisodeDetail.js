@@ -5,7 +5,7 @@ import {
     AltTitle,
     LongParagraph,
     Button,
-    MovieTopCast,
+    TopCredits,
 } from '../components';
 import { formatDate, formatRuntime } from '../utils/helpers';
 import default_poster from '../assets/images/default_poster.jpg';
@@ -69,7 +69,7 @@ const TVEpisodeDetail = () => {
                     open gallery
                 </Button>
             </section>
-            <MovieTopCast
+            <TopCredits
                 url={`/tv/${id}/season/${season_number}/episode/${episode_number}/credits`}
             />
         </>

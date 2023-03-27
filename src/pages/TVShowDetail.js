@@ -4,7 +4,7 @@ import {
     Title,
     AltTitle,
     LongParagraph,
-    MovieTopCast,
+    TopCredits,
     TVSeasonScrollRow,
     Button,
     AddToWatchlist,
@@ -105,7 +105,7 @@ const TVShowDetail = () => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
-            <MovieTopCast url={`/tv/${id}/aggregate_credits`} />
+            <TopCredits url={`/tv/${id}/aggregate_credits`} />
             {seasons.length > 0 && <TVSeasonScrollRow id={id} seasons={seasons} />}
             <section className='section-sm'>
                 <AltTitle>media:</AltTitle>

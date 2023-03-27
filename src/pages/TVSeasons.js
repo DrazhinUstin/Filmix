@@ -22,7 +22,7 @@ const TVSeasons = ({ itemsPerPage = 20 }) => {
     return (
         <>
             <Title margin='4rem 0'>
-                seasons <span>library</span>
+                all <span>seasons</span>
             </Title>
             <Sort
                 value={sort}

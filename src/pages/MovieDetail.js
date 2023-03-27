@@ -3,7 +3,7 @@ import {
     Title,
     AltTitle,
     LongParagraph,
-    MovieTopCast,
+    TopCredits,
     Button,
     AddToWatchlist,
     ScrollRow,
@@ -82,7 +82,7 @@ const MovieDetail = () => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
-            <MovieTopCast url={`/movie/${id}/credits`} />
+            <TopCredits url={`/movie/${id}/credits`} />
             <div className='section-sm'>
                 <AltTitle>media:</AltTitle>
                 <Button as={Link} to='images'>
