@@ -9,8 +9,10 @@ const MovieTopCast = ({ url }) => {
 
     if (error) return <Error title='failed to fetch credits' err={error} />;
 
-    const cast = data.cast.slice(0, 20);
-    const director = data.crew.find(({ job }) => job === 'Director');
+    const cast = [...data.cast, ...(data.guest_stars || [])].slice(0, 20);
+    const director = data.crew.find(
+        ({ job, jobs }) => job === 'Director' || jobs?.some(({ job }) => job === 'Director')
+    );
     const items = director ? [director, ...cast] : cast;
     return (
         items.length > 0 && (

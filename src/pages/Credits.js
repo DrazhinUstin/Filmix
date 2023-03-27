@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import reducer from '../reducers/movieCreditReducer';
+import reducer from '../reducers/creditReducer';
 import {
     Loader,
     Error,
