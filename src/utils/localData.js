@@ -168,6 +168,18 @@ export const sortOptions = {
             value: '-air_date',
         },
     ],
+    videos: [
+        {
+            id: 1,
+            name: 'Published at (asc)',
+            value: 'published_at',
+        },
+        {
+            id: 2,
+            name: 'Published at (desc)',
+            value: '-published_at',
+        },
+    ],
 };
 
 export const tmdbSortOptions = [

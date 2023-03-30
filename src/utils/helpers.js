@@ -19,6 +19,12 @@ export const formatRuntime = (timeInMin) => {
     return `${h}h ${m}m`;
 };
 
+export const formatDuration = (timeInSec) => {
+    let m = Math.floor(timeInSec / 60);
+    let s = timeInSec % 60;
+    return `${m < 10 ? `0${m}` : m}:${s < 10 ? `0${s}` : s}`;
+};
+
 export const formatToCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
