@@ -17,7 +17,7 @@ export { default as SearchMenu } from './SearchMenu';
 export { default as GridView } from './GridView';
 export { default as Pagination } from './Pagination';
 export { default as MovieCard } from './MovieCard';
-export { default as EpisodeCard } from './EpisodeCard';
+export { default as TVEpisodeCard } from './TVEpisodeCard';
 export { default as VideoCard } from './VideoCard';
 export { default as PersonCard } from './PersonCard';
 export { default as TopCredits } from './TopCredits';

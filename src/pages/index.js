@@ -3,6 +3,7 @@ export { default as Movies } from './Movies';
 export { default as MovieMain } from './MovieMain';
 export { default as MovieDetail } from './MovieDetail';
 export { default as Credits } from './Credits';
+export { default as Media } from './Media';
 export { default as Images } from './Images';
 export { default as Videos } from './Videos';
 export { default as TVShows } from './TVShows';

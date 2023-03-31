@@ -62,7 +62,7 @@ const Videos = ({ media_type = 'movie', label = media_type }) => {
     return (
         <>
             <Title margin='4rem 0'>
-                all <span>videos</span>
+                video <span>gallery</span>
             </Title>
             <VideoFilters {...state} dispatch={dispatch} />
             <Sort

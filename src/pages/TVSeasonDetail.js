@@ -1,6 +1,14 @@
 import { useState } from 'react';
-import { useParams, useOutletContext } from 'react-router-dom';
-import { AltTitle, LongParagraph, TopCredits, Sort, EpisodeCard, Pagination } from '../components';
+import { useParams, useOutletContext, Link } from 'react-router-dom';
+import {
+    AltTitle,
+    LongParagraph,
+    Button,
+    TopCredits,
+    Sort,
+    TVEpisodeCard,
+    Pagination,
+} from '../components';
 import { sortOptions } from '../utils/localData';
 import { dynamicSort } from '../utils/helpers';
 
@@ -17,6 +25,12 @@ const TVSeasonDetail = ({ episodesPerPage = 10 }) => {
                     <LongParagraph str={overview} fontSize='1.2rem' />
                 </article>
             )}
+            <section className='section-sm'>
+                <AltTitle>media:</AltTitle>
+                <Button as={Link} to='videos'>
+                    open gallery
+                </Button>
+            </section>
             <TopCredits url={`/tv/${id}/season/${season_number}/aggregate_credits`} />
             {episodes.length > 0 && (
                 <section className='section-sm'>
@@ -30,7 +44,7 @@ const TVSeasonDetail = ({ episodesPerPage = 10 }) => {
                         .sort(dynamicSort(sort))
                         .slice(offset, offset + episodesPerPage)
                         .map((item, index) => (
-                            <EpisodeCard key={index} item={{ ...item, id }} />
+                            <TVEpisodeCard key={index} item={{ ...item, id }} />
                         ))}
                     {episodes.length > episodesPerPage && (
                         <Pagination

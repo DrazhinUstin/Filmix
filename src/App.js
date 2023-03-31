@@ -5,6 +5,7 @@ import {
     MovieMain,
     MovieDetail,
     Credits,
+    Media,
     Images,
     Videos,
     TVShows,
@@ -45,15 +46,19 @@ const App = () => {
                 <Route path='movies/:id' element={<MovieMain />}>
                     <Route index element={<MovieDetail />} />
                     <Route path='credits' element={<Credits />} />
-                    <Route path='images' element={<Images />} />
-                    <Route path='videos' element={<Videos />} />
+                    <Route element={<Media />}>
+                        <Route path='images' element={<Images />} />
+                        <Route path='videos' element={<Videos />} />
+                    </Route>
                 </Route>
                 <Route path='tv' element={<TVShows />} />
                 <Route path='tv/:id' element={<TVShowMain />}>
                     <Route index element={<TVShowDetail />} />
                     <Route path='credits' element={<Credits media_type='tv' label='TV show' />} />
-                    <Route path='images' element={<Images media_type='tv' label='TV show' />} />
-                    <Route path='videos' element={<Videos media_type='tv' label='TV show' />} />
+                    <Route element={<Media />}>
+                        <Route path='images' element={<Images media_type='tv' label='TV show' />} />
+                        <Route path='videos' element={<Videos media_type='tv' label='TV show' />} />
+                    </Route>
                     <Route path='seasons' element={<TVSeasons />} />
                     <Route path='seasons/:season_number' element={<TVSeasonMain />}>
                         <Route index element={<TVSeasonDetail />} />
@@ -68,14 +73,16 @@ const App = () => {
                                 path='credits'
                                 element={<Credits media_type='tv' label='episode' />}
                             />
-                            <Route
-                                path='images'
-                                element={<Images media_type='tv' label='episode' />}
-                            />
-                            <Route
-                                path='videos'
-                                element={<Videos media_type='tv' label='episode' />}
-                            />
+                            <Route element={<Media />}>
+                                <Route
+                                    path='images'
+                                    element={<Images media_type='tv' label='episode' />}
+                                />
+                                <Route
+                                    path='videos'
+                                    element={<Videos media_type='tv' label='episode' />}
+                                />
+                            </Route>
                         </Route>
                     </Route>
                 </Route>

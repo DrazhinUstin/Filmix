@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Button, LongParagraph } from './';
+import { Button, LongParagraph } from '.';
 import { formatDate } from '../utils/helpers';
 import default_poster from '../assets/images/default_poster.jpg';
 import { breakpoints } from '../GlobalStyles';
 import styled, { css } from 'styled-components';
 
-const EpisodeCard = ({
+const TVEpisodeCard = ({
     item: { id, name, air_date, still_path, overview, season_number, episode_number },
 }) => {
     return (
@@ -36,7 +36,7 @@ const EpisodeCard = ({
     );
 };
 
-export default EpisodeCard;
+export default TVEpisodeCard;
 
 const Wrapper = styled.article`
     display: grid;

@@ -47,18 +47,22 @@ const MovieDetail = () => {
                     <li>
                         year: <span>{release_date.split('-')[0]}</span>
                     </li>
-                    <li>
-                        country:{' '}
-                        <span>{countries.map(({ iso_3166_1 }) => iso_3166_1).join(', ')}</span>
-                    </li>
+                    {countries.length > 0 && (
+                        <li>
+                            country:{' '}
+                            <span>{countries.map(({ iso_3166_1 }) => iso_3166_1).join(', ')}</span>
+                        </li>
+                    )}
                     {tagline && (
                         <li>
                             tagline: <span>«{tagline}»</span>
                         </li>
                     )}
-                    <li>
-                        genres: <span>{genres.map(({ name }) => name).join(', ')}</span>
-                    </li>
+                    {genres.length > 0 && (
+                        <li>
+                            genres: <span>{genres.map(({ name }) => name).join(', ')}</span>
+                        </li>
+                    )}
                     {runtime > 0 && (
                         <li>
                             runtime: <span>{formatRuntime(runtime)}</span>

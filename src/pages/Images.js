@@ -14,7 +14,7 @@ const Images = ({ media_type = 'movie', label = media_type }) => {
 
     if (error) return <Error err={error} link />;
 
-    const images = data.backdrops || data.stills || data.profiles;
+    const images = data.backdrops || data.stills || data.profiles || [];
     if (!images.length)
         return (
             <Error title='images were not found' link={{ title: `back to ${label}`, path: '..' }} />
