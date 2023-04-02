@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, getCountFromServer, getDocs, writeBatch } from 'firebase/firestore';
 import { auth, db } from '../firebase';
-import { Title, RedButton, Modal } from '../components';
+import { Title, GridList, RedButton, Modal } from '../components';
 import styled from 'styled-components';
 
 const WatchlistDetail = () => {
@@ -42,11 +42,11 @@ const WatchlistDetail = () => {
     return (
         <Wrapper>
             <Title margin='0 0 2rem'>watchlist:</Title>
-            <ul>
+            <GridList fontWeight='normal'>
                 <li>
-                    total items: <span>{count}</span>
+                    Total items: <span>{count}</span>
                 </li>
-            </ul>
+            </GridList>
             <RedButton
                 onClick={() => setIsModalOpen(true)}
                 disabled={isLoading || !count}
@@ -69,19 +69,13 @@ export default WatchlistDetail;
 
 const Wrapper = styled.article`
     text-align: center;
-    ul {
-        display: grid;
+    ${GridList} {
         justify-content: center;
-        gap: 1rem;
         margin: 2rem 0;
         text-align: left;
         li {
-            display: grid;
             grid-template-columns: 8rem auto;
-            font-size: 1.2rem;
-            text-transform: capitalize;
             span {
-                text-transform: none;
                 color: var(--clr-green);
             }
         }

@@ -13,6 +13,12 @@ export const formatDate = (dateStr) => {
     }).format(date);
 };
 
+export const calcPersonAge = (birthday, deathday) => {
+    const date = deathday ? new Date(deathday) : new Date();
+    const birthDate = new Date(birthday);
+    return Math.floor((date - birthDate) / (365 * 24 * 60 * 60 * 1000));
+};
+
 export const formatRuntime = (timeInMin) => {
     const h = Math.floor(timeInMin / 60);
     const m = timeInMin % (h * 60 || 60);

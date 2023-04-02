@@ -34,10 +34,10 @@ const Wrapper = styled.section`
             margin: 0 auto;
         `}
     h2 {
-        margin-bottom: 2rem;
-        font-size: 2rem;
+        margin: 0;
     }
     p {
+        margin-top: 2rem;
         text-decoration: underline;
         text-decoration-color: var(--clr-green);
         font-size: 1.2rem;

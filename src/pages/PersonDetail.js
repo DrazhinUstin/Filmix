@@ -1,7 +1,7 @@
 import { useOutletContext, Link } from 'react-router-dom';
-import { Title, AltTitle, LongParagraph, Button, PersonCredits } from '../components';
+import { Title, AltTitle, GridList, LongParagraph, Button, PersonCredits } from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
-import { formatDate } from '../utils/helpers';
+import { formatDate, calcPersonAge } from '../utils/helpers';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
@@ -27,26 +27,31 @@ const PersonDetail = () => {
                     }
                     alt={name}
                 />
-                <ul>
+                <GridList>
                     {birthday && (
                         <li>
-                            birthday: <span>{formatDate(birthday)}</span>
+                            Birthday: <span>{formatDate(birthday)}</span>
                         </li>
                     )}
                     {place_of_birth && (
                         <li>
-                            place of birth: <span>{place_of_birth}</span>
+                            Place of birth: <span>{place_of_birth}</span>
                         </li>
                     )}
                     {deathday && (
                         <li>
-                            deathday: <span>{formatDate(deathday)}</span>
+                            Deathday: <span>{formatDate(deathday)}</span>
+                        </li>
+                    )}
+                    {birthday && (
+                        <li>
+                            Age: <span>{calcPersonAge(birthday, deathday)}</span>
                         </li>
                     )}
                     <li>
-                        department: <span>{known_for_department}</span>
+                        Department: <span>{known_for_department}</span>
                     </li>
-                </ul>
+                </GridList>
             </Wrapper>
             {biography && (
                 <article className='section-sm'>
@@ -78,20 +83,5 @@ const Wrapper = styled.article`
     img {
         max-width: 100%;
         max-height: 632px;
-    }
-    ul {
-        display: grid;
-        gap: 1rem;
-        li {
-            display: grid;
-            grid-template-columns: 10rem 1fr;
-            text-transform: capitalize;
-            font-size: 1.2rem;
-            font-weight: 500;
-            span {
-                color: var(--clr-gray);
-                font-weight: normal;
-            }
-        }
     }
 `;

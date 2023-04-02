@@ -3,6 +3,7 @@ import {
     TVEpisodeNavigator,
     Title,
     AltTitle,
+    GridList,
     LongParagraph,
     Button,
     TopCredits,
@@ -38,7 +39,7 @@ const TVEpisodeDetail = () => {
                     }
                     alt={name}
                 />
-                <ul>
+                <GridList columns='8rem 1fr'>
                     <li>
                         Episode №: <span>{episode_number}</span>
                     </li>
@@ -55,7 +56,7 @@ const TVEpisodeDetail = () => {
                             Runtime: <span>{formatRuntime(runtime)}</span>
                         </li>
                     )}
-                </ul>
+                </GridList>
             </Wrapper>
             {overview && (
                 <article className='section-sm'>
@@ -95,17 +96,5 @@ const Wrapper = styled.article`
                 max-height: 400px;
                 object-fit: cover;
             `}
-    }
-    ul {
-        display: grid;
-        gap: 1rem;
-        li {
-            display: grid;
-            grid-template-columns: 8rem 1fr;
-            font-size: 1.2rem;
-            span {
-                color: var(--clr-gray);
-            }
-        }
     }
 `;

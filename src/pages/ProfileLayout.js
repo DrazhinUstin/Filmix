@@ -34,6 +34,7 @@ const Wrapper = styled.main`
         a {
             display: block;
             padding: 0.5rem 1rem;
+            border-radius: var(--radius);
             color: var(--clr-white);
             font-size: 1.2rem;
             font-weight: 500;

@@ -1,10 +1,8 @@
 import { useParams, useMatch, Link, Outlet } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import { Loader, Error, TextButton } from '../components';
+import { Loader, Error, MainPageRow, TextButton } from '../components';
 import useFetch from '../hooks/useFetch';
 import defaultPoster from '../assets/images/default_poster.jpg';
-import { breakpoints } from '../GlobalStyles';
-import styled from 'styled-components';
 
 const MovieMain = () => {
     const { id } = useParams();
@@ -19,7 +17,7 @@ const MovieMain = () => {
     return (
         <main className='main'>
             {!match && (
-                <Wrapper>
+                <MainPageRow>
                     <Link to='.'>
                         <img
                             src={
@@ -39,7 +37,7 @@ const MovieMain = () => {
                             <FaArrowLeft /> back to main
                         </TextButton>
                     </div>
-                </Wrapper>
+                </MainPageRow>
             )}
             <Outlet context={data} />
         </main>
@@ -47,38 +45,3 @@ const MovieMain = () => {
 };
 
 export default MovieMain;
-
-const Wrapper = styled.article`
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 2rem;
-    border-bottom: 1px solid var(--clr-green);
-    border-radius: var(--radius) var(--radius) 0 0;
-    overflow: hidden;
-    background-color: var(--clr-light-black);
-    img {
-        width: 5rem;
-    }
-    h2 {
-        margin-bottom: 0.25rem;
-        a {
-            color: var(--clr-white);
-        }
-    }
-    h3 {
-        margin-bottom: 0.25rem;
-        color: var(--clr-gray);
-    }
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-        svg {
-            font-size: 0.9rem;
-        }
-    }
-    @media ${breakpoints.sm} {
-        gap: 1rem;
-    }
-`;

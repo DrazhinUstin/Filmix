@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useGlobalContext } from '../contexts/GlobalContext';
-import { Title, RedButton } from '../components';
+import { Title, GridList, RedButton } from '../components';
 import styled from 'styled-components';
 
 const Profile = () => {
@@ -14,17 +14,17 @@ const Profile = () => {
             ) : (
                 <span className='avatar'>{user.displayName[0].toUpperCase()}</span>
             )}
-            <ul>
+            <GridList columns='8rem auto' fontWeight='normal'>
                 <li>
-                    username: <span>{user.displayName}</span>
+                    Username: <span>{user.displayName}</span>
                 </li>
                 <li>
-                    email: <span>{user.email}</span>
+                    Email: <span>{user.email}</span>
                 </li>
                 <li>
-                    created at: <span>{new Date(+user.metadata.createdAt).toLocaleString()}</span>
+                    Created at: <span>{new Date(+user.metadata.createdAt).toLocaleString()}</span>
                 </li>
-            </ul>
+            </GridList>
             <RedButton onClick={() => signOut(auth)} $withBorder>
                 sign out
             </RedButton>
@@ -50,21 +50,9 @@ const Wrapper = styled.article`
         font-size: 2.5rem;
         font-weight: 500;
     }
-    ul {
-        display: grid;
+    ${GridList} {
         justify-content: center;
-        gap: 1rem;
         margin: 2rem 0;
         text-align: left;
-        li {
-            display: grid;
-            grid-template-columns: 8rem auto;
-            font-size: 1.2rem;
-            text-transform: capitalize;
-            span {
-                text-transform: none;
-                color: var(--clr-gray);
-            }
-        }
     }
 `;

@@ -7,10 +7,12 @@ const Selector = ({ items = [], callback, isLoading }) => {
 
     useEffect(() => {
         const parent = anchorRef.current.parentElement;
+        const parentRect = parent.getBoundingClientRect();
         const elem = parent.children[index];
-        const x = elem.getBoundingClientRect().left - parent.getBoundingClientRect().left;
+        const elemRect = elem.getBoundingClientRect();
+        const x = elemRect.left + parent.scrollLeft - parentRect.left;
         anchorRef.current.style.left = x + 'px';
-        anchorRef.current.style.width = elem.offsetWidth + 'px';
+        anchorRef.current.style.width = elemRect.width + 'px';
     }, [index]);
 
     return (
@@ -38,7 +40,7 @@ const Wrapper = styled.div`
     position: relative;
     display: inline-flex;
     border-radius: calc(var(--radius) * 4);
-    overflow: hidden;
+    overflow-x: auto;
     background-color: var(--clr-light-black);
     box-shadow: 0 0 0 1px var(--clr-green);
     button {

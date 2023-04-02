@@ -3,6 +3,7 @@ import { useGlobalContext } from '../contexts/GlobalContext';
 import {
     Title,
     AltTitle,
+    GridList,
     LongParagraph,
     TopCredits,
     TVSeasonScrollRow,
@@ -47,7 +48,7 @@ const TVShowDetail = () => {
                     }
                     alt={name}
                 />
-                <ul>
+                <GridList>
                     {first_air_date && (
                         <li>
                             Year: <span>{first_air_date.split('-')[0]}</span>
@@ -97,7 +98,7 @@ const TVShowDetail = () => {
                             Episode runtime: <span>{formatRuntime(episode_run_time[0])}</span>
                         </li>
                     )}
-                </ul>
+                </GridList>
             </Wrapper>
             {overview && (
                 <article className='section-sm'>
@@ -134,19 +135,5 @@ const Wrapper = styled.article`
         max-width: 600px;
         width: 100%;
         border: 1px solid var(--clr-gray);
-    }
-    ul {
-        display: grid;
-        gap: 1rem;
-        font-size: 1.2rem;
-        li {
-            display: grid;
-            grid-template-columns: 10rem 1fr;
-            font-weight: 500;
-            span {
-                color: var(--clr-gray);
-                font-weight: normal;
-            }
-        }
     }
 `;

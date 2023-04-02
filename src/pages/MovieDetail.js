@@ -2,6 +2,7 @@ import { useParams, useOutletContext, Link } from 'react-router-dom';
 import {
     Title,
     AltTitle,
+    GridList,
     LongParagraph,
     TopCredits,
     Button,
@@ -43,42 +44,42 @@ const MovieDetail = () => {
                     }
                     alt={title}
                 />
-                <ul>
+                <GridList>
                     <li>
-                        year: <span>{release_date.split('-')[0]}</span>
+                        Year: <span>{release_date.split('-')[0]}</span>
                     </li>
                     {countries.length > 0 && (
                         <li>
-                            country:{' '}
+                            Country:{' '}
                             <span>{countries.map(({ iso_3166_1 }) => iso_3166_1).join(', ')}</span>
                         </li>
                     )}
                     {tagline && (
                         <li>
-                            tagline: <span>«{tagline}»</span>
+                            Tagline: <span>«{tagline}»</span>
                         </li>
                     )}
                     {genres.length > 0 && (
                         <li>
-                            genres: <span>{genres.map(({ name }) => name).join(', ')}</span>
+                            Genres: <span>{genres.map(({ name }) => name).join(', ')}</span>
                         </li>
                     )}
                     {runtime > 0 && (
                         <li>
-                            runtime: <span>{formatRuntime(runtime)}</span>
+                            Runtime: <span>{formatRuntime(runtime)}</span>
                         </li>
                     )}
                     {budget > 0 && (
                         <li>
-                            budget: <span>{formatToCurrency(budget)}</span>
+                            Budget: <span>{formatToCurrency(budget)}</span>
                         </li>
                     )}
                     {revenue > 0 && (
                         <li>
-                            revenue: <span>{formatToCurrency(revenue)}</span>
+                            Revenue: <span>{formatToCurrency(revenue)}</span>
                         </li>
                     )}
-                </ul>
+                </GridList>
             </Wrapper>
             {overview && (
                 <article className='section-sm'>
@@ -106,30 +107,14 @@ export default MovieDetail;
 const Wrapper = styled.article`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
     gap: 2rem;
+    @media ${breakpoints.md} {
+        grid-template-columns: unset;
+    }
     img {
         max-width: 600px;
         width: 100%;
         border: 1px solid var(--clr-gray);
-    }
-    li {
-        display: grid;
-        grid-template-columns: 10rem 1fr;
-        font-size: 1.2rem;
-        font-weight: 500;
-        text-transform: capitalize;
-        &:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-        span {
-            color: var(--clr-gray);
-            font-weight: normal;
-        }
-        @media ${breakpoints.xsm} {
-            grid-template-columns: 6rem 1fr;
-        }
-    }
-    @media ${breakpoints.md} {
-        grid-template-columns: unset;
     }
 `;

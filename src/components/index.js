@@ -37,3 +37,5 @@ export { default as LongParagraph } from './LongParagraph';
 export { default as Title, AltTitle } from './Title';
 export { default as Button, RedButton } from './Button';
 export { default as TextButton } from './TextButton';
+export { default as GridList } from './GridList';
+export { default as MainPageRow } from './MainPageRow';
