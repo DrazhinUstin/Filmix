@@ -39,3 +39,5 @@ export { default as Button, RedButton } from './Button';
 export { default as TextButton } from './TextButton';
 export { default as GridList } from './GridList';
 export { default as MainPageRow } from './MainPageRow';
+export { default as Rating } from './Rating';
+export { default as RatingMenu } from './RatingMenu';

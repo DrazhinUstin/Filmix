@@ -3,6 +3,7 @@ import {
     Title,
     AltTitle,
     GridList,
+    Rating,
     LongParagraph,
     TopCredits,
     Button,
@@ -81,6 +82,7 @@ const MovieDetail = () => {
                     )}
                 </GridList>
             </Wrapper>
+            <Rating data={{ uid: user?.uid, ...movie }} />
             {overview && (
                 <article className='section-sm'>
                     <AltTitle>Storyline:</AltTitle>
