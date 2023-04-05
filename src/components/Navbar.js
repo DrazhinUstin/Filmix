@@ -42,8 +42,8 @@ const Navbar = () => {
                     <img src={logo} alt='logo' />
                 </Link>
                 <ul className='menu'>
-                    {navbarLinks.map(({ id, path, title }) => {
-                        if (!user && title === 'watchlist') return null;
+                    {navbarLinks.map(({ id, path, title, isAuthRequired }) => {
+                        if (!user && isAuthRequired) return null;
                         return (
                             <li key={id}>
                                 <NavLink

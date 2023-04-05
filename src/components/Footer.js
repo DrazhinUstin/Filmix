@@ -21,8 +21,8 @@ const Footer = () => {
                     &#169; {new Date().getFullYear()} Filmix, Inc
                 </p>
                 <ul className='list'>
-                    {navbarLinks.map(({ id, path, title }) => {
-                        if (!user && title === 'watchlist') return null;
+                    {navbarLinks.map(({ id, path, title, isAuthRequired }) => {
+                        if (!user && isAuthRequired) return null;
                         return (
                             <li key={id}>
                                 <Link to={path}>{title}</Link>

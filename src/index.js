@@ -7,6 +7,7 @@ import MoviesProvider from './contexts/MoviesContext';
 import TVShowsProvider from './contexts/TVShowsContext';
 import PeopleProvider from './contexts/PeopleContext';
 import WatchlistProvider from './contexts/WatchlistContext';
+import RatingsProvider from './contexts/RatingsContext';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,7 +19,9 @@ root.render(
                 <TVShowsProvider>
                     <PeopleProvider>
                         <WatchlistProvider>
-                            <App />
+                            <RatingsProvider>
+                                <App />
+                            </RatingsProvider>
                         </WatchlistProvider>
                     </PeopleProvider>
                 </TVShowsProvider>

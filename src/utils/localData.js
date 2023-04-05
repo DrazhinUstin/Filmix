@@ -28,6 +28,13 @@ export const navbarLinks = [
         id: 6,
         path: '/watchlist',
         title: 'watchlist',
+        isAuthRequired: true,
+    },
+    {
+        id: 7,
+        path: '/ratings',
+        title: 'rated',
+        isAuthRequired: true,
     },
 ];
 
@@ -399,6 +406,29 @@ export const watchlistOrderOptions = [
 ];
 
 export const watchlistLimitOptions = [5, 10, 15, 20, 25];
+
+export const ratingsOrderOptions = [
+    {
+        id: 1,
+        value: ['timestamp', 'desc'],
+        name: 'Date rated (desc)',
+    },
+    {
+        id: 2,
+        value: ['timestamp'],
+        name: 'Date rated (asc)',
+    },
+    {
+        id: 3,
+        value: ['rating', 'desc'],
+        name: 'Rating (desc)',
+    },
+    {
+        id: 4,
+        value: ['rating'],
+        name: 'Rating (asc)',
+    },
+];
 
 export const faqList = [
     {

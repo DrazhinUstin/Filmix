@@ -31,6 +31,7 @@ import {
     UpdatePassword,
     WatchlistDetail,
     Watchlist,
+    Ratings,
     NotFound,
 } from './pages';
 import { Navbar, SearchForm, Footer } from './components';
@@ -104,6 +105,7 @@ const App = () => {
                         <Route path='watchlist' element={<WatchlistDetail />} />
                     </Route>
                     <Route path='watchlist' element={<Watchlist />} />
+                    <Route path='ratings' element={<Ratings />} />
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>

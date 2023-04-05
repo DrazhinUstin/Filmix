@@ -16,7 +16,7 @@ const RatingMenu = ({ isLoading, rating, addRating, deleteRating, closeMenu }) =
                 <button className='close-btn' onClick={closeMenu}>
                     <FaTimes />
                 </button>
-                <h4>rate this</h4>
+                {rating ? <h2>{rating.toFixed(1)}</h2> : <h4>rate this</h4>}
                 <Rating
                     className='my_rating'
                     itemStyles={myStyles}
@@ -57,6 +57,7 @@ const Wrapper = styled.div`
         border-radius: var(--radius);
         background-color: var(--clr-light-black);
         text-align: center;
+        h2,
         h4 {
             margin-bottom: 1rem;
             text-transform: uppercase;
