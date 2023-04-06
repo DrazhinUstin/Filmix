@@ -405,7 +405,7 @@ export const watchlistOrderOptions = [
     },
 ];
 
-export const watchlistLimitOptions = [5, 10, 15, 20, 25];
+export const watchlistLimitOptions = [10, 15, 20, 25];
 
 export const ratingsOrderOptions = [
     {

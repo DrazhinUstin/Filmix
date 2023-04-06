@@ -1,5 +1,5 @@
 import { FormField, RedButton } from '../components';
-import { watchlistMediaTypeOptions } from '../utils/localData';
+import { watchlistMediaTypeOptions, watchlistLimitOptions } from '../utils/localData';
 import styled from 'styled-components';
 
 const RatingFilters = ({ filters, dispatch, isLoading }) => {
@@ -35,6 +35,19 @@ const RatingFilters = ({ filters, dispatch, isLoading }) => {
                     </option>
                 ))}
             </FormField>
+            <FormField
+                name='limit'
+                value={filters.limit}
+                onChange={handleChange}
+                disabled={isLoading}
+                labelText='show by'
+            >
+                {watchlistLimitOptions.map((item, index) => (
+                    <option key={index} value={item}>
+                        {item}
+                    </option>
+                ))}
+            </FormField>
             <RedButton onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}>clear filters</RedButton>
         </Wrapper>
     );
@@ -44,7 +57,7 @@ export default RatingFilters;
 
 const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
     margin-bottom: 2rem;

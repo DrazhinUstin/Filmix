@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Sort = ({ name = 'sort', value, onChange, isLoading, options }) => {
+const Sort = ({ name = 'sort', value, onChange, isLoading, options, labelText = 'Sort by:' }) => {
     return (
         <Wrapper>
-            <label htmlFor={name}>Sort by:</label>
+            <label htmlFor={name}>{labelText}</label>
             <select name={name} id={name} value={value} onChange={onChange} disabled={isLoading}>
                 {options.map(({ name, value }, index) => (
                     <option key={index} value={value}>

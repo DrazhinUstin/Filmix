@@ -15,7 +15,7 @@ export const initialState = {
     filters: {
         genre: '',
         order: watchlistOrderOptions[0].value,
-        limit: watchlistLimitOptions[1],
+        limit: watchlistLimitOptions[0],
     },
 };
 

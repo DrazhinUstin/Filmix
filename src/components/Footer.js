@@ -70,10 +70,11 @@ const Wrapper = styled.footer`
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-end;
-        column-gap: 2rem;
+        column-gap: 1.5rem;
         @media ${breakpoints.sm} {
             justify-content: center;
             column-gap: 0.75rem;
+            font-size: 0.8rem;
         }
         a {
             display: inline-block;
