@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { query, collection, where, orderBy, limit, startAfter, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useWatchlistContext } from '../contexts/WatchlistContext';
-import { Loader, Error, Title, WatchlistFilters, GridView, Button } from '../components';
+import { Loader, Error, Title, WatchlistFilters, Sort, GridView, Button } from '../components';
+import { watchlistOrderOptions as options } from '../utils/localData';
 
 const Watchlist = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -10,8 +11,10 @@ const Watchlist = () => {
     const [watchlist, setWatchlist] = useState([]);
     const [lastItem, setLastItem] = useState(null);
     const {
-        filters: { genre, order, limit: reqLimit },
+        filters: { genre, limit: reqLimit },
         media_type,
+        order,
+        dispatch,
     } = useWatchlistContext();
 
     useEffect(() => {
@@ -25,13 +28,9 @@ const Watchlist = () => {
                 );
                 if (genre) q = query(q, where('genres', 'array-contains', genre));
                 if (media_type) q = query(q, where('media_type', '==', media_type));
-                const querySnapshot = await getDocs(q);
-                setWatchlist(querySnapshot.docs.map((doc) => doc.data()));
-                setLastItem(
-                    querySnapshot.size === reqLimit
-                        ? querySnapshot.docs[querySnapshot.docs.length - 1]
-                        : null
-                );
+                const { docs } = await getDocs(q);
+                setWatchlist(docs.map((doc) => doc.data()));
+                setLastItem(docs.length === reqLimit ? docs[docs.length - 1] : null);
             } catch (error) {
                 setError(error);
             }
@@ -51,13 +50,9 @@ const Watchlist = () => {
             );
             if (genre) q = query(q, where('genres', 'array-contains', genre));
             if (media_type) q = query(q, where('media_type', '==', media_type));
-            const querySnapshot = await getDocs(q);
-            setWatchlist([...watchlist, ...querySnapshot.docs.map((doc) => doc.data())]);
-            setLastItem(
-                querySnapshot.size === reqLimit
-                    ? querySnapshot.docs[querySnapshot.docs.length - 1]
-                    : null
-            );
+            const { docs } = await getDocs(q);
+            setWatchlist([...watchlist, ...docs.map((doc) => doc.data())]);
+            setLastItem(docs.length === reqLimit ? docs[docs.length - 1] : null);
         } catch (error) {
             setError(error);
         }
@@ -72,6 +67,14 @@ const Watchlist = () => {
                 your <span>watchlist</span>
             </Title>
             <WatchlistFilters isLoading={isLoading} />
+            <Sort
+                value={JSON.stringify(order)}
+                onChange={(e) =>
+                    dispatch({ type: 'UPDATE_ORDER', payload: JSON.parse(e.target.value) })
+                }
+                isLoading={isLoading}
+                options={options.map((opt) => ({ ...opt, value: JSON.stringify(opt.value) }))}
+            />
             <GridView items={watchlist} />
             {lastItem && (
                 <div style={{ textAlign: 'center', marginTop: '4rem' }}>

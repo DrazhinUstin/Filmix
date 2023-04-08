@@ -48,7 +48,7 @@ const RatingFilters = ({ filters, dispatch, isLoading }) => {
                     </option>
                 ))}
             </FormField>
-            <RedButton onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}>clear filters</RedButton>
+            <RedButton onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}>reset</RedButton>
         </Wrapper>
     );
 };

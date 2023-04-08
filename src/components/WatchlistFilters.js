@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 import tmdbAPI from '../utils/tmdbAPI';
 import { useWatchlistContext } from '../contexts/WatchlistContext';
 import { FormField, RedButton } from './';
-import {
-    watchlistMediaTypeOptions,
-    watchlistOrderOptions,
-    watchlistLimitOptions,
-} from '../utils/localData';
+import { watchlistMediaTypeOptions, watchlistLimitOptions } from '../utils/localData';
 import styled from 'styled-components';
 
 const WatchlistFilters = ({ isLoading }) => {
@@ -21,7 +17,6 @@ const WatchlistFilters = ({ isLoading }) => {
     const handleChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
-        if (name === 'order') value = JSON.parse(value);
         if (name === 'limit') value = +value;
         dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });
     };
@@ -58,19 +53,6 @@ const WatchlistFilters = ({ isLoading }) => {
                 ))}
             </FormField>
             <FormField
-                name='order'
-                value={JSON.stringify(filters.order)}
-                onChange={handleChange}
-                disabled={isLoading}
-                labelText='order by'
-            >
-                {watchlistOrderOptions.map(({ id, value, name }) => (
-                    <option key={id} value={JSON.stringify(value)}>
-                        {name}
-                    </option>
-                ))}
-            </FormField>
-            <FormField
                 name='limit'
                 value={filters.limit}
                 onChange={handleChange}
@@ -98,8 +80,8 @@ export default WatchlistFilters;
 
 const Wrapper = styled.form`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 `;

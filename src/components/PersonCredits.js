@@ -2,7 +2,8 @@ import { useReducer, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import reducer from '../reducers/personCreditReducer';
-import { Loader, Error, AltTitle, CreditFilters, GridView, Pagination } from '.';
+import { Loader, Error, AltTitle, CreditFilters, Sort, GridView, Pagination } from '.';
+import { sortOptions } from '../utils/localData';
 
 export const initialState = {
     credits: {},
@@ -10,8 +11,8 @@ export const initialState = {
     filters: {
         department: '',
         genre: '',
-        sort: '',
     },
+    sort: '',
     items: [],
     offset: 0,
     page: 0,
@@ -29,7 +30,7 @@ const PersonCredits = () => {
     useEffect(() => {
         if (!state.media_type) return;
         dispatch({ type: 'FILTER_ITEMS' });
-    }, [state.media_type, state.filters]);
+    }, [state.media_type, state.filters, state.sort]);
 
     if (isLoading) return <Loader />;
 
@@ -41,6 +42,11 @@ const PersonCredits = () => {
         <section className='section-sm'>
             <AltTitle>credits:</AltTitle>
             <CreditFilters {...state} dispatch={dispatch} />
+            <Sort
+                value={state.sort}
+                onChange={(e) => dispatch({ type: 'UPDATE_SORT', payload: e.target.value })}
+                options={sortOptions[state.media_type]}
+            />
             <GridView items={state.items.slice(state.offset, state.offset + state.itemsPerPage)} />
             {!state.items.length && (
                 <p className='message'>There are no items matching these criteria</p>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTVShowsContext } from '../contexts/TVShowsContext';
 import tmdbAPI from '../utils/tmdbAPI';
 import { FormField, RedButton } from './';
-import { tmdbTVStatusOptions, tmdbRuntimeOptions, tmdbTVSortOptions } from '../utils/localData';
+import { tmdbTVStatusOptions, tmdbRuntimeOptions } from '../utils/localData';
 import { dynamicSort, getYears } from '../utils/helpers';
 import styled from 'styled-components';
 
@@ -90,20 +90,11 @@ const TVShowFilters = ({ isLoading }) => {
                     </option>
                 ))}
             </FormField>
-            <FormField
-                name='sort'
-                value={filters.sort}
-                onChange={handleChange}
-                disabled={isLoading}
-                labelText='sort by'
+            <RedButton
+                type='button'
+                onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}
+                disabled={isLoading || !Object.values(filters).join('')}
             >
-                {tmdbTVSortOptions.map(({ id, name, value }) => (
-                    <option key={id} value={value}>
-                        {name}
-                    </option>
-                ))}
-            </FormField>
-            <RedButton type='button' onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}>
                 clear filters
             </RedButton>
         </Wrapper>
@@ -117,5 +108,5 @@ const Wrapper = styled.form`
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 `;

@@ -14,9 +14,9 @@ export const initialState = {
     media_type: watchlistMediaTypeOptions[0].value,
     filters: {
         genre: '',
-        order: watchlistOrderOptions[0].value,
         limit: watchlistLimitOptions[0],
     },
+    order: watchlistOrderOptions[0].value,
 };
 
 const WatchlistProvider = ({ children }) => {

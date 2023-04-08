@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { tmdbSortOptions } from '../utils/localData';
 import reducer from '../reducers/moviesReducer';
 
 const MoviesContext = createContext();
@@ -6,13 +7,13 @@ export const useMoviesContext = () => useContext(MoviesContext);
 
 export const initialState = {
     filters: {
-        sort: 'popularity.desc',
         genre: '',
         year: '',
         language: '',
         runtime: '',
         certification: '',
     },
+    sort: tmdbSortOptions[0].value,
     page: 0,
 };
 

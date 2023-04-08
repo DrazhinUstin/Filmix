@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import tmdbAPI from '../utils/tmdbAPI';
 import { FormField, RedButton } from './';
-import { sortOptions } from '../utils/localData';
 import styled from 'styled-components';
 
 const CreditFilters = ({ credits, media_type, filters, dispatch }) => {
@@ -54,17 +53,7 @@ const CreditFilters = ({ credits, media_type, filters, dispatch }) => {
                     )
                 )}
             </FormField>
-            <FormField name='sort' value={filters.sort} onChange={handleFilters}>
-                {sortOptions[media_type === 'movie' ? 'movie' : 'tv'].map(({ id, name, value }) => (
-                    <option key={id} value={value}>
-                        {name}
-                    </option>
-                ))}
-            </FormField>
-            <RedButton
-                type='button'
-                onClick={() => dispatch({ type: 'SWITCH_MEDIA_TYPE', payload: media_type })}
-            >
+            <RedButton type='button' onClick={() => dispatch({ type: 'RESET' })}>
                 reset
             </RedButton>
         </Wrapper>
@@ -75,7 +64,7 @@ export default CreditFilters;
 
 const Wrapper = styled.form`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
     margin-bottom: 2rem;

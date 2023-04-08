@@ -12,8 +12,8 @@ export const initialState = {
         year: '',
         status: '',
         runtime: '',
-        sort: tmdbTVSortOptions[0].value,
     },
+    sort: tmdbTVSortOptions[0].value,
     page: 1,
 };
 

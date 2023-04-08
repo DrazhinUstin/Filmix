@@ -1,10 +1,12 @@
 import { useTVShowsContext } from '../contexts/TVShowsContext';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, TVShowFilters, GridView, Pagination } from '../components';
+import { Loader, Error, Title, TVShowFilters, Sort, GridView, Pagination } from '../components';
+import { tmdbTVSortOptions } from '../utils/localData';
 
 const TVShows = () => {
     const {
-        filters: { sort, genre, language, year, status, runtime },
+        filters: { genre, language, year, status, runtime },
+        sort,
         page,
         dispatch,
     } = useTVShowsContext();
@@ -24,6 +26,12 @@ const TVShows = () => {
                 TV show <span>library</span>
             </Title>
             <TVShowFilters isLoading={isLoading} />
+            <Sort
+                value={sort}
+                onChange={(e) => dispatch({ type: 'UPDATE_SORT', payload: e.target.value })}
+                isLoading={isLoading}
+                options={tmdbTVSortOptions}
+            />
             {isLoading ? (
                 <Loader />
             ) : (

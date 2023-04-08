@@ -27,8 +27,8 @@ const reducer = (state, action) => {
                 filters: {
                     ...state.filters,
                     department: Object.keys(credits[media_type] || {})[0],
-                    sort: sortOptions[media_type === 'movie' ? 'movie' : 'tv'][0].value,
                 },
+                sort: sortOptions[media_type]?.[0].value,
             };
         case 'SWITCH_MEDIA_TYPE':
             return {
@@ -37,27 +37,39 @@ const reducer = (state, action) => {
                 filters: {
                     ...initialState.filters,
                     department: Object.keys(state.credits[action.payload])[0],
-                    sort: sortOptions[action.payload === 'movie' ? 'movie' : 'tv'][0].value,
                 },
-                offset: 0,
-                page: 0,
+                sort: sortOptions[action.payload][0].value,
             };
         case 'UPDATE_FILTERS':
             return {
                 ...state,
                 filters: { ...state.filters, [action.payload.name]: action.payload.value },
-                offset: 0,
-                page: 0,
             };
+        case 'UPDATE_SORT':
+            return { ...state, sort: action.payload };
         case 'FILTER_ITEMS':
             let items = state.credits[state.media_type][state.filters.department].sort(
-                dynamicSort(state.filters.sort)
+                dynamicSort(state.sort)
             );
             if (state.filters.genre)
                 items = items.filter(({ genre_ids }) => genre_ids.includes(+state.filters.genre));
-            return { ...state, items, pageCount: Math.ceil(items.length / state.itemsPerPage) };
+            return {
+                ...state,
+                items,
+                offset: 0,
+                page: 0,
+                pageCount: Math.ceil(items.length / state.itemsPerPage),
+            };
         case 'SWITCH_PAGE':
             return { ...state, page: action.payload, offset: action.payload * state.itemsPerPage };
+        case 'RESET':
+            return {
+                ...state,
+                filters: {
+                    ...initialState.filters,
+                    department: Object.keys(state.credits[state.media_type])[0],
+                },
+            };
         default:
             throw Error(`There is no action with type: ${action.type}`);
     }

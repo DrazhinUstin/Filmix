@@ -34,7 +34,12 @@ const VideoFilters = ({ data, filters, allTypes, allSizes, allSites, dispatch })
                     </option>
                 ))}
             </FormField>
-            <RedButton onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}>clear filters</RedButton>
+            <RedButton
+                onClick={() => dispatch({ type: 'CLEAR_FILTERS' })}
+                disabled={!Object.values(filters).join('')}
+            >
+                clear filters
+            </RedButton>
         </Wrapper>
     );
 };

@@ -23,8 +23,10 @@ const reducer = (state, action) => {
                 ...state,
                 filters: { ...state.filters, [action.payload.name]: action.payload.value },
             };
+        case 'UPDATE_ORDER':
+            return { ...state, order: action.payload };
         case 'RESET':
-            return { ...initialState, genres: state.genres };
+            return { ...initialState, genres: state.genres, order: state.order };
         default:
             throw Error(`Unknown action: ${action.type}`);
     }

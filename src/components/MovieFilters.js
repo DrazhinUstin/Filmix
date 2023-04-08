@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMoviesContext } from '../contexts/MoviesContext';
 import tmdbAPI from '../utils/tmdbAPI';
-import { tmdbSortOptions, tmdbRuntimeOptions } from '../utils/localData';
+import { tmdbRuntimeOptions } from '../utils/localData';
 import { dynamicSort, getYears } from '../utils/helpers';
 import { FormField, RedButton } from './';
 import styled from 'styled-components';
@@ -94,23 +94,10 @@ const MovieFilters = ({ isLoading }) => {
                     </option>
                 ))}
             </FormField>
-            <FormField
-                name='sort'
-                value={filters.sort}
-                onChange={handleChange}
-                disabled={isLoading}
-                labelText='sort by'
-            >
-                {tmdbSortOptions.map(({ id, name, value }) => (
-                    <option key={id} value={value}>
-                        {name}
-                    </option>
-                ))}
-            </FormField>
             <RedButton
                 type='button'
                 onClick={() => dispatch({ type: 'RESTORE_FILTERS' })}
-                disabled={isLoading}
+                disabled={isLoading || !Object.values(filters).join('')}
             >
                 clear filters
             </RedButton>
@@ -125,5 +112,5 @@ const Wrapper = styled.form`
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 `;

@@ -1,11 +1,13 @@
 import { useMoviesContext } from '../contexts/MoviesContext';
 import useFetch from '../hooks/useFetch';
-import { Loader, Error, Title, MovieFilters, GridView, Pagination } from '../components';
+import { Loader, Error, Title, MovieFilters, Sort, GridView, Pagination } from '../components';
+import { tmdbSortOptions } from '../utils/localData';
 
 const Movies = () => {
     const {
         page,
-        filters: { sort, genre, year, language, runtime, certification },
+        sort,
+        filters: { genre, year, language, runtime, certification },
         dispatch,
     } = useMoviesContext();
     const { isLoading, error, data } = useFetch(
@@ -24,6 +26,12 @@ const Movies = () => {
                 movie <span>library</span>
             </Title>
             <MovieFilters isLoading={isLoading} />
+            <Sort
+                value={sort}
+                onChange={(e) => dispatch({ type: 'UPDATE_SORT', payload: e.target.value })}
+                isLoading={isLoading}
+                options={tmdbSortOptions}
+            />
             {isLoading ? (
                 <Loader />
             ) : (
