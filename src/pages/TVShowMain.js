@@ -1,6 +1,7 @@
 import { useParams, useMatch, Link, Outlet } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import useFetch from '../hooks/useFetch';
+import useRecentlyViewed from '../hooks/useRecentlyViewed';
 import { Loader, Error, MainPageRow, TextButton } from '../components';
 import default_poster from '../assets/images/default_poster.jpg';
 
@@ -8,6 +9,7 @@ const TVShowMain = () => {
     const { id } = useParams();
     const { isLoading, error, data } = useFetch(`/tv/${id}`);
     const match = useMatch('tv/:id');
+    useRecentlyViewed(data);
 
     if (isLoading) return <Loader fullScreen />;
 

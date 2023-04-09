@@ -2,12 +2,14 @@ import { useParams, useMatch, Link, Outlet } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Loader, Error, MainPageRow, TextButton } from '../components';
 import useFetch from '../hooks/useFetch';
+import useRecentlyViewed from '../hooks/useRecentlyViewed';
 import defaultPoster from '../assets/images/default_poster.jpg';
 
 const MovieMain = () => {
     const { id } = useParams();
     const { isLoading, error, data } = useFetch(`/movie/${id}`);
     const match = useMatch('movies/:id');
+    useRecentlyViewed(data);
 
     if (isLoading) return <Loader fullScreen />;
 

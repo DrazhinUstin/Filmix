@@ -8,6 +8,7 @@ export const useGlobalContext = () => useContext(GlobalContext);
 const GlobalProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isSearchEnabled, setIsSearchEnabled] = useState(false);
+    const [recentlyViewed, setRecentlyViewed] = useState([]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
@@ -15,7 +16,9 @@ const GlobalProvider = ({ children }) => {
     }, []);
 
     return (
-        <GlobalContext.Provider value={{ user, isSearchEnabled, setIsSearchEnabled }}>
+        <GlobalContext.Provider
+            value={{ user, isSearchEnabled, setIsSearchEnabled, recentlyViewed, setRecentlyViewed }}
+        >
             {children}
         </GlobalContext.Provider>
     );

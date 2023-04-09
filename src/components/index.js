@@ -42,3 +42,4 @@ export { default as MainPageRow } from './MainPageRow';
 export { default as Rating } from './Rating';
 export { default as RatingMenu } from './RatingMenu';
 export { default as RatingFilters } from './RatingFilters';
+export { default as RecentlyViewed } from './RecentlyViewed';

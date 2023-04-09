@@ -1,9 +1,10 @@
-import { Hero, SelectableScrollRow } from '../components';
+import { Hero, RecentlyViewed, SelectableScrollRow } from '../components';
 
 const Home = () => {
     return (
         <main>
             <Hero />
+            <RecentlyViewed />
             <SelectableScrollRow
                 title='trending'
                 data={[
