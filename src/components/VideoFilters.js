@@ -51,5 +51,5 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     align-items: flex-end;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 `;

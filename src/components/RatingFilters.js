@@ -3,11 +3,11 @@ import { watchlistMediaTypeOptions, watchlistLimitOptions } from '../utils/local
 import styled from 'styled-components';
 
 const RatingFilters = ({ filters, dispatch, isLoading }) => {
-    const handleChange = (e) =>
-        dispatch({
-            type: 'UPDATE_FILTERS',
-            payload: { name: [e.target.name], value: e.target.value },
-        });
+    const handleChange = (e) => {
+        let { name, value } = e.target;
+        if (name !== 'media_type' && value) value = +value;
+        dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });
+    };
     return (
         <Wrapper>
             <FormField

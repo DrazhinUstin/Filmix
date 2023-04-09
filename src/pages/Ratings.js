@@ -21,7 +21,7 @@ const Ratings = () => {
                     limit(filters.limit)
                 );
                 if (filters.media_type) q = query(q, where('media_type', '==', filters.media_type));
-                if (filters.rating) q = query(q, where('rating', '==', +filters.rating));
+                if (filters.rating) q = query(q, where('rating', '==', filters.rating));
                 if (!(order.includes('rating') && filters.rating)) q = query(q, orderBy(...order));
                 const { docs } = await getDocs(q);
                 setRatings(docs.map((doc) => doc.data()));
@@ -42,7 +42,7 @@ const Ratings = () => {
                 limit(filters.limit)
             );
             if (filters.media_type) q = query(q, where('media_type', '==', filters.media_type));
-            if (filters.rating) q = query(q, where('rating', '==', +filters.rating));
+            if (filters.rating) q = query(q, where('rating', '==', filters.rating));
             q =
                 order.includes('rating') && filters.rating
                     ? query(q, startAfter(lastVisible))
