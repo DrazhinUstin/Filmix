@@ -1,5 +1,4 @@
 import { useReducer, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import reducer from '../reducers/personCreditReducer';
 import { Loader, Error, AltTitle, CreditFilters, Sort, GridView, Pagination } from '.';
@@ -20,8 +19,7 @@ export const initialState = {
     pageCount: 0,
 };
 
-const PersonCredits = () => {
-    const { id } = useParams();
+const PersonCredits = ({ id }) => {
     const { isLoading, error } = useFetch(`person/${id}/combined_credits`, (data) =>
         dispatch({ type: 'SET_CREDITS', payload: data })
     );

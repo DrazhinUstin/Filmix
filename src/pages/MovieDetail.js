@@ -1,4 +1,4 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import {
     Title,
     AltTitle,
@@ -17,10 +17,10 @@ import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const MovieDetail = () => {
-    const { id } = useParams();
     const movie = useOutletContext();
     const { user } = useGlobalContext();
     const {
+        id,
         title,
         overview,
         tagline,

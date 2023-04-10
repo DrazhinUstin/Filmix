@@ -1,4 +1,4 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import { useGlobalContext } from '../contexts/GlobalContext';
 import {
     Title,
@@ -18,10 +18,10 @@ import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const TVShowDetail = () => {
-    const { id } = useParams();
     const data = useOutletContext();
     const { user } = useGlobalContext();
     const {
+        id,
         name,
         poster_path,
         first_air_date,

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const PersonDetail = () => {
     const {
+        id,
         name,
         birthday,
         place_of_birth,
@@ -65,7 +66,7 @@ const PersonDetail = () => {
                     open gallery
                 </Button>
             </section>
-            <PersonCredits />
+            <PersonCredits id={id} />
         </>
     );
 };

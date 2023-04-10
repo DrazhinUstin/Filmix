@@ -13,8 +13,8 @@ import { sortOptions } from '../utils/localData';
 import { dynamicSort } from '../utils/helpers';
 
 const TVSeasonDetail = ({ episodesPerPage = 10 }) => {
-    const { id, season_number } = useParams();
-    const { overview, episodes } = useOutletContext();
+    const { id } = useParams();
+    const { overview, season_number, episodes } = useOutletContext();
     const [sort, setSort] = useState(sortOptions.episodes[0].value);
     const [offset, setOffset] = useState(0);
     return (
