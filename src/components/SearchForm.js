@@ -5,7 +5,7 @@ import { useGlobalContext } from '../contexts/GlobalContext';
 import styled from 'styled-components';
 
 const SearchForm = () => {
-    const { isSearchEnabled, setIsSearchEnabled } = useGlobalContext();
+    const { isSearchEnabled, dispatch } = useGlobalContext();
     const inputRef = useRef(null);
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const SearchForm = () => {
         <Wrapper isVisible={isSearchEnabled}>
             <form onSubmit={handleSubmit}>
                 <input type='text' placeholder='Search a movie...' ref={inputRef} />
-                <button type='button' onClick={() => setIsSearchEnabled(false)}>
+                <button type='button' onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}>
                     <FaTimes />
                 </button>
             </form>

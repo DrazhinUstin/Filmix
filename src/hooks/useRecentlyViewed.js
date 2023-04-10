@@ -2,19 +2,11 @@ import { useEffect } from 'react';
 import { useGlobalContext } from '../contexts/GlobalContext';
 
 const useRecentlyViewed = (data) => {
-    const { recentlyViewed, setRecentlyViewed } = useGlobalContext();
+    const { recentlyViewed, dispatch } = useGlobalContext();
 
     useEffect(() => {
         if (!data?.id) return;
-        setRecentlyViewed((state) => {
-            const recent = { ...data, media_type: data.title ? 'movie' : 'tv' };
-            return [
-                recent,
-                ...state.filter(
-                    ({ media_type, id }) => media_type !== recent.media_type || id !== recent.id
-                ),
-            ].slice(0, 20);
-        });
+        dispatch({ type: 'UPDATE_RECENTLY_VIEWED', payload: data });
     }, [data]); // eslint-disable-line
 
     return recentlyViewed;

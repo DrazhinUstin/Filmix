@@ -11,7 +11,7 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navbarRef = useRef(null);
-    const { user, setIsSearchEnabled } = useGlobalContext();
+    const { user, dispatch } = useGlobalContext();
 
     useEffect(() => {
         if (isMenuOpen) document.body.style.overflow = 'hidden';
@@ -67,7 +67,7 @@ const Navbar = () => {
                     <Link className='btn' to='/profile' onClick={() => setIsMenuOpen(false)}>
                         {user ? <FaUserCheck /> : <FaUserPlus />}
                     </Link>
-                    <button onClick={() => setIsSearchEnabled(true)}>
+                    <button onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}>
                         <FaSearch />
                     </button>
                 </div>
