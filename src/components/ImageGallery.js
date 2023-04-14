@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Pagination, ImageViewer } from './';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
 const ImageGallery = ({ items, itemsPerPage = 20, imgSizes = { sm: 'w300', lg: 'w1280' } }) => {
-    const [itemsOffset, setItemsOffset] = useState(0);
-    const currentItems = items.slice(itemsOffset, itemsOffset + itemsPerPage);
+    const [page, setPage] = useState(0);
+    const [offset, setOffset] = useState(0);
+    const currentItems = items.slice(offset, offset + itemsPerPage);
     const [index, setIndex] = useState(0);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+    useEffect(() => {
+        setPage(0);
+        setOffset(0);
+    }, [items]);
+
     return (
         <Wrapper>
             <p className='total'>
@@ -20,7 +27,7 @@ const ImageGallery = ({ items, itemsPerPage = 20, imgSizes = { sm: 'w300', lg: '
                         src={`https://image.tmdb.org/t/p/${imgSizes.sm}${file_path}`}
                         alt='backdrop'
                         onClick={() => {
-                            setIndex(itemsOffset + i);
+                            setIndex(offset + i);
                             setIsViewerOpen(true);
                         }}
                     />
@@ -29,7 +36,11 @@ const ImageGallery = ({ items, itemsPerPage = 20, imgSizes = { sm: 'w300', lg: '
             {items.length > itemsPerPage && (
                 <Pagination
                     pageCount={Math.ceil(items.length / itemsPerPage)}
-                    handlePageClick={(e) => setItemsOffset(e.selected * itemsPerPage)}
+                    handlePageClick={(e) => {
+                        setPage(e.selected);
+                        setOffset(e.selected * itemsPerPage);
+                    }}
+                    forcePage={page}
                 />
             )}
             {isViewerOpen && (

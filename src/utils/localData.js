@@ -354,6 +354,29 @@ export const tmdbSearchOptions = [
     },
 ];
 
+export const tmdbImgSizes = {
+    backdrops: {
+        sm: 'w300',
+        lg: 'w1280',
+    },
+    posters: {
+        sm: 'w342',
+        lg: 'w780',
+    },
+    logos: {
+        sm: 'w300',
+        lg: 'w500',
+    },
+    stills: {
+        sm: 'w300',
+        lg: 'original',
+    },
+    profiles: {
+        sm: 'w185',
+        lg: 'h632',
+    },
+};
+
 export const watchlistMediaTypeOptions = [
     {
         id: 1,

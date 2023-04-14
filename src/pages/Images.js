@@ -1,21 +1,31 @@
+import { useReducer } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Loader, Error, Title, ImageGallery, Button } from '../components';
+import { Loader, Error, Title, ImagesFilter, ImageGallery, Button } from '../components';
 import useFetch from '../hooks/useFetch';
+import reducer from '../reducers/imagesReducer';
+import { tmdbImgSizes } from '../utils/localData';
+
+const initialState = {
+    allTypes: [],
+    type: '',
+    images: {},
+};
 
 const Images = ({ media_type = 'movie', label = media_type }) => {
     const { id, season_number, episode_number } = useParams();
-    const { isLoading, error, data } = useFetch(
+    const { isLoading, error } = useFetch(
         `/${media_type}/${id}/${season_number ? `season/${season_number}/` : ''}${
             episode_number ? `episode/${episode_number}/` : ''
-        }images`
+        }images`,
+        (data) => dispatch({ type: 'SET_INITIAL', payload: data })
     );
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     if (isLoading) return <Loader />;
 
     if (error) return <Error err={error} link />;
 
-    const images = data.backdrops || data.stills || data.profiles || [];
-    if (!images.length)
+    if (!state.allTypes.length)
         return (
             <Error title='images were not found' link={{ title: `back to ${label}`, path: '..' }} />
         );
@@ -25,16 +35,8 @@ const Images = ({ media_type = 'movie', label = media_type }) => {
             <Title margin='4rem 0'>
                 image <span>gallery</span>
             </Title>
-            <ImageGallery
-                items={images}
-                imgSizes={
-                    data.backdrops
-                        ? { sm: 'w300', lg: 'w1280' }
-                        : data.stills
-                        ? { sm: 'w300', lg: 'original' }
-                        : { sm: 'w185', lg: 'h632' }
-                }
-            />
+            {state.allTypes.length > 1 && <ImagesFilter {...state} dispatch={dispatch} />}
+            <ImageGallery items={state.images[state.type]} imgSizes={tmdbImgSizes[state.type]} />
             <Button margin='4rem 0 0' as={Link} to='..'>
                 back to {label}
             </Button>
