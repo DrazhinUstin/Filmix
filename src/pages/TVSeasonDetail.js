@@ -27,7 +27,7 @@ const TVSeasonDetail = ({ episodesPerPage = 10 }) => {
             )}
             <section className='section-sm'>
                 <AltTitle>media:</AltTitle>
-                <Button as={Link} to='videos'>
+                <Button as={Link} to='images'>
                     open gallery
                 </Button>
             </section>

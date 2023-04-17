@@ -67,7 +67,16 @@ const App = () => {
                             path='credits'
                             element={<Credits media_type='tv' label='season' />}
                         />
-                        <Route path='videos' element={<Videos media_type='tv' label='season' />} />
+                        <Route element={<Media />}>
+                            <Route
+                                path='images'
+                                element={<Images media_type='tv' label='season' />}
+                            />
+                            <Route
+                                path='videos'
+                                element={<Videos media_type='tv' label='season' />}
+                            />
+                        </Route>
                         <Route path='episode/:episode_number' element={<TVEpisodeMain />}>
                             <Route index element={<TVEpisodeDetail />} />
                             <Route
