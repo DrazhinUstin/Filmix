@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { collection, getCountFromServer, getDocs, writeBatch } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { Title, GridList, RedButton, Modal } from '../components';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 const WatchlistDetail = () => {
@@ -13,7 +14,7 @@ const WatchlistDetail = () => {
         setIsLoading(true);
         getCountFromServer(collection(db, `users/${auth.currentUser.uid}/watchlist`))
             .then((snapshot) => setCount(snapshot.data().count))
-            .catch((error) => alert(error.message))
+            .catch((error) => toast.error(error.message))
             .finally(() => setIsLoading(false));
     }, []);
 
@@ -34,7 +35,7 @@ const WatchlistDetail = () => {
             });
             setCount(0);
         } catch (error) {
-            alert(error.message);
+            toast.error(error.message);
         }
         setIsLoading(false);
     };

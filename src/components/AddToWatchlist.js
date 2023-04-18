@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Button, RedButton } from './';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 const AddToWatchlist = ({
@@ -29,6 +30,7 @@ const AddToWatchlist = ({
         );
         getDocs(q)
             .then((querySnapshot) => querySnapshot.size && setDocID(querySnapshot.docs[0].id))
+            .catch((error) => toast.error(error.message))
             .finally(() => setIsLoading(false));
     }, [uid, id, title]);
 
@@ -51,7 +53,7 @@ const AddToWatchlist = ({
                 setDocID(null);
             }
         } catch (error) {
-            alert(error.message);
+            toast.error(error.message);
         }
         setIsLoading(false);
     };

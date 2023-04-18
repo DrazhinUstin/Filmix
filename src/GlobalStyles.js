@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
         --fullscreen: calc(100vh - var(--navbar-height) - var(--footer-height));
         --radius: 0.25rem;
         --trans-ease: all 0.4s ease;
+        --toastify-color-light: var(--clr-white);
+        --toastify-color-error: var(--clr-red);
+        --toastify-font-family: var(--font);
+        --toastify-text-color-light: var(--clr-light-black);
     }
 
     * {

@@ -35,6 +35,7 @@ import {
     NotFound,
 } from './pages';
 import { Navbar, SearchForm, Footer } from './components';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
     return (
@@ -119,6 +120,7 @@ const App = () => {
                 <Route path='*' element={<NotFound />} />
             </Routes>
             <Footer />
+            <ToastContainer position='top-center' closeButton={false} />
         </Router>
     );
 };

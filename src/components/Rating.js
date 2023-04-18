@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { TextButton, RatingMenu } from '.';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 const Rating = ({ data: { uid, id, title, name, poster_path, vote_average, vote_count } }) => {
@@ -34,6 +35,7 @@ const Rating = ({ data: { uid, id, title, name, poster_path, vote_average, vote_
             .then(({ docs: [doc] }) =>
                 setRating(doc ? { id: doc.id, value: doc.data().rating } : null)
             )
+            .catch((err) => toast.error(err.message))
             .finally(() => setIsLoading(false));
     }, [uid, id, title]);
 
@@ -48,7 +50,7 @@ const Rating = ({ data: { uid, id, title, name, poster_path, vote_average, vote_
             timestamp: serverTimestamp(),
         })
             .then((docRef) => setRating({ id: docRef.id, value: rating }))
-            .catch((err) => alert(err.message))
+            .catch((err) => toast.error(err.message))
             .finally(() => setIsLoading(false));
     };
 
@@ -56,7 +58,7 @@ const Rating = ({ data: { uid, id, title, name, poster_path, vote_average, vote_
         setIsLoading(true);
         deleteDoc(doc(db, `users/${uid}/ratings/${rating.id}`))
             .then(() => setRating(null))
-            .catch((err) => alert(err.message))
+            .catch((err) => toast.error(err.message))
             .finally(() => setIsLoading(false));
     };
 
