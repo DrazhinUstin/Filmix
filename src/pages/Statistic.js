@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { breakpoints } from '../GlobalStyles';
 import styled from 'styled-components';
 
-const WatchlistDetail = () => {
+const Statistic = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [count, setCount] = useState({ watchlist: 0, ratings: 0 });
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,7 +75,7 @@ const WatchlistDetail = () => {
     );
 };
 
-export default WatchlistDetail;
+export default Statistic;
 
 const Wrapper = styled.article`
     text-align: center;

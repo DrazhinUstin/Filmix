@@ -29,7 +29,7 @@ import {
     EditProfile,
     UpdateEmail,
     UpdatePassword,
-    WatchlistDetail,
+    Statistic,
     Watchlist,
     Ratings,
     NotFound,
@@ -112,7 +112,7 @@ const App = () => {
                         <Route path='edit_profile' element={<EditProfile />} />
                         <Route path='update_email' element={<UpdateEmail />} />
                         <Route path='update_password' element={<UpdatePassword />} />
-                        <Route path='watchlist' element={<WatchlistDetail />} />
+                        <Route path='statistic' element={<Statistic />} />
                     </Route>
                     <Route path='watchlist' element={<Watchlist />} />
                     <Route path='ratings' element={<Ratings />} />

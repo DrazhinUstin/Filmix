@@ -61,8 +61,8 @@ export const profilePageLinks = [
     },
     {
         id: 5,
-        path: 'watchlist',
-        title: 'watchlist',
+        path: 'statistic',
+        title: 'view statistic',
     },
 ];
 
